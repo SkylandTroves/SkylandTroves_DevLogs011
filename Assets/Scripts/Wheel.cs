@@ -35,11 +35,10 @@ public class Wheel : MonoBehaviour
       
    }
    
-   private void HandleWheelScroll(float distancePlayerAndWheel)
+   private void HandleWheelScroll(float checkedDistancePlayerAndWheel)
    {
-      if (turnRequested && distancePlayerAndWheel <= distanceToWheel)
+      if (turnRequested && checkedDistancePlayerAndWheel <= distanceToWheel)
       {
-         //Debug.Log("You can turn the wheel");
          isTurningObject = true; // The player is allowed to turn the wheel
          
          // Detect mouse scroll input
