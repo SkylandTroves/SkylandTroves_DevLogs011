@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dcbe6735-7eb8-4c37-843a-590aef5f579e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Ground.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Ground.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ClickParticle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ClickParticle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ST_Level_01.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ST_Level_01.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ST_Level_02.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ST_Level_02.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ST_Level_03.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ST_Level_03.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ST_Level_04.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ST_Level_04.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ST_Level_05.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ST_Level_05.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ST_StartScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ST_StartScreen.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockableMovingPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockableMovingPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ConstMovingPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConstMovingPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ImportedScripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ImportedScripts/AgentLinkMover.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ImportedScripts/AgentLinkMover.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IObserver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IObserver.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelSwapping.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelSwapping.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObservedSubject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObservedSubject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OldRollerBall/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OldRollerBall/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OldRollerBall/CameraController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OldRollerBall/CameraController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OldRollerBall/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OldRollerBall/GameController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickUpController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PodiumController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PodiumController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnchargedPickUps.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UnchargedPickUps.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnchargedPodium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UnchargedPodium.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Wheel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Wheel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ignoreRaycast.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ignoreRaycast.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ObjectSpin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ObjectSpin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/TMP Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/TMP Settings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/AudioManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/AudioManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/SceneTemplateSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimeManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimeManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/VFXManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/VFXManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/VersionControlSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/VersionControlSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/XRSettings.asset" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="2tBE3Q9J3IHhNMLi6a8Ld7aGiD5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Discover.Launch.Via.Unity": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.General"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1739816872972</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739816872972</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

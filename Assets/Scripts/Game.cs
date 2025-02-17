@@ -15,45 +15,13 @@ public class Game : MonoBehaviour
     public Animator crossFade;
     public GameObject player;
     [SerializeField] private float crossFadeTime = 1f;
-    
-    public void GoToMainMenu()
-    {
-        //SceneController.GoToNewScene("ST_MainMenu");
-    }
-    
-    public void GoToLevelOne()
-    {
-        SceneController.GoToNewScene("ST_Level_01");
-    }
-    
-    public void GoToLevelTwo()
-    {
-        SceneController.GoToNewScene("ST_Level_02");
-    }
-    
-    public void GoToLevelThree()
-    {
-        SceneController.GoToNewScene("ST_Level_03");
-    }
+    [SerializeField] private SceneController sceneController;  // Add [SerializeField]
 
     public void LoadNextLevel()
     {
         StartCoroutine(PauseBeforeLoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
-    
-    IEnumerator PauseBeforeLoadLevel(string levelName)
-    {
-        // play animation
-        crossFade.SetTrigger("Start");
-        
-        // wait for animation to finish
-        yield return new WaitForSeconds(crossFadeTime);
 
-        // load scene
-        SceneController.GoToNewScene(levelName);
-
-    }
-    
     IEnumerator PauseBeforeLoadLevel(int levelIndex)
     {
         // play animation
@@ -63,7 +31,7 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(crossFadeTime);
 
         // load scene
-        SceneController.GoToNewScene(levelIndex);
+        sceneController.GoToNewScene(levelIndex);
 
     }
 
@@ -78,6 +46,5 @@ public class Game : MonoBehaviour
         player.SetActive(true);
     }
 
-    
-    
+
 }

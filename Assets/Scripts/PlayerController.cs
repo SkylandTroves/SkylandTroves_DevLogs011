@@ -80,16 +80,9 @@ public class PlayerController : MonoBehaviour
 	public void GetPlayerInput()
 	{
 		int layerMask = 1 << LayerMask.NameToLayer("Player");
-		layerMask = ~layerMask; // invert the mask to exclude teh player 
-
-		Vector3 rayOrigin = Camera.main.transform.position;
-		Vector3 rayDirection = Camera.main.transform.forward;
-		float rayLength = 100f;
-		Color rayColor = Color.red;
+		layerMask = ~layerMask; // invert the mask to exclude the player 
 		
-		Debug.DrawRay(rayOrigin, rayDirection * rayLength, rayColor);
-		
-		if (Input.GetMouseButtonDown(0)) // left click - - - - - - - - - - - -
+		if (Input.GetMouseButtonDown(0)) // LEFT CLICK - - - - - - - - - - - -
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
@@ -100,11 +93,20 @@ public class PlayerController : MonoBehaviour
 				isMoving = true;
 			}
 			
-			// instantiate instance of particle effect 
-			Instantiate(clickParticle,hit.point ,Quaternion.identity);
+			// Check if clickParticle is not null before instantiating
+			if (clickParticle != null)
+			{
+				// instantiate instance of particle effect 
+				Instantiate(clickParticle, hit.point, Quaternion.identity);
+			}
+			else
+			{
+				Debug.LogWarning("Click particle is not assigned!");
+			}
+			
 		}
 
-		if (Input.GetMouseButtonDown(1)) // right click - - - - - - - - - - - -
+		if (Input.GetMouseButtonDown(1)) // RIGHT CLICK  - - - - - - - - - - - -
 		{
 			DropCurrentOrb();
 		}
@@ -112,6 +114,16 @@ public class PlayerController : MonoBehaviour
 		{
 			QuitGame();
 		}
+		
+		// - - - - following is for debugging only - - - - - 
+		Ray ray02 = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Vector3 rayOrigin = ray02.origin;
+		Vector3 rayDirection = Camera.main.transform.forward;
+		float rayLength = 100f;
+		Color rayColor = Color.red;
+		
+		Debug.DrawRay(rayOrigin, rayDirection * rayLength, rayColor);
+		// - - - - - - - - - - - - - 
 		
 	}
 	

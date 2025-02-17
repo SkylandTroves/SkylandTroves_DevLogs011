@@ -16,7 +16,6 @@ public class Wheel : MonoBehaviour
    //[SerializeField] private PickUpController pickUps; // use if not using a list 
    
    private bool turnRequested = false;
-   private bool isTurningObject = false;
    private float distancePlayerAndWheel;
    private float distanceToWheel = 2f; // Maximum distance to allow wheel hold
    
@@ -40,7 +39,6 @@ public class Wheel : MonoBehaviour
       if (turnRequested && distancePlayerAndWheel <= distanceToWheel)
       {
          //Debug.Log("You can turn the wheel");
-         isTurningObject = true; // The player is allowed to turn the wheel
          
          // Detect mouse scroll input
          float scrollInput = Input.GetAxis("Mouse ScrollWheel");
