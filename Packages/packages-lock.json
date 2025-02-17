@@ -59,11 +59,7 @@
     },
     "com.unity.ext.nunit": {
       "version": "2.0.5",
-<<<<<<< HEAD
       "depth": 2,
-=======
-      "depth": 1,
->>>>>>> Diego
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -83,11 +79,7 @@
     },
     "com.unity.ide.rider": {
       "version": "3.0.28",
-<<<<<<< HEAD
       "depth": 1,
-=======
-      "depth": 0,
->>>>>>> Diego
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6"
@@ -96,11 +88,7 @@
     },
     "com.unity.ide.visualstudio": {
       "version": "2.0.22",
-<<<<<<< HEAD
       "depth": 1,
-=======
-      "depth": 0,
->>>>>>> Diego
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
@@ -183,11 +171,7 @@
     },
     "com.unity.test-framework": {
       "version": "1.3.9",
-<<<<<<< HEAD
       "depth": 1,
-=======
-      "depth": 0,
->>>>>>> Diego
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "2.0.3",
@@ -237,19 +221,6 @@
       },
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-=======
-    "com.unity.xr.legacyinputhelpers": {
-      "version": "2.1.10",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.vr": "1.0.0",
-        "com.unity.modules.xr": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
->>>>>>> Diego
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
