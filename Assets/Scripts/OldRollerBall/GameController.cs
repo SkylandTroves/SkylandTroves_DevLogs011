@@ -15,15 +15,17 @@ using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
+    
+    private GameStates gameState;
+    
     public enum GameStates
     {
         GamePlaying,
         GameWon,
         GameLost
     };
-    public static int MaxCollectiblesCount;
     
-    private GameStates gameState;
+    public static int MaxCollectiblesCount;
 
     private void Start()
     {
@@ -63,29 +65,5 @@ public class GameController : MonoBehaviour
         gameState = GameStates.GameLost;
         
     }
-
-    public void StateUpdate(GameStates newState)
-    {
-        //Exit condition- if the game is not in play, we cannot advance to win or lose
-        if (gameState != GameStates.GamePlaying)
-        {
-            return;
-        }
-        
-        switch (newState)
-        {
-            case GameStates.GamePlaying:
-                break;
-            case GameStates.GameWon:
-                gameState = GameStates.GameWon;
-                OnGameWon();
-                break;
-            case GameStates.GameLost:
-                gameState = GameStates.GameLost;
-                OnGameLost();
-                break;
-        }
-    }
-    
     
 }

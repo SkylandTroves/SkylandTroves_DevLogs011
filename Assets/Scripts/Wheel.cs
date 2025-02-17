@@ -80,8 +80,4 @@ public class Wheel : MonoBehaviour
    {
       distancePlayerAndWheel = Vector3.Distance(player.transform.position, transform.position);
    }
-   
-   
-   
-
 }
