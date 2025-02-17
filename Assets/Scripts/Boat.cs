@@ -69,7 +69,9 @@ public class Boat : MonoBehaviour
     // This method is called from MovingPlatform.cs when the platform starts moving ONLY if its a boat
     public void OnMovingPlatformStarted()
     {
-        RemoveNavMeshAgentAndParentPlayer();
+        //RemoveNavMeshAgentAndParentPlayer();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         if (isLevelSwitchCatalyst)
         {
             GoToNextLevel();
@@ -115,6 +117,7 @@ public class Boat : MonoBehaviour
         }
     }
 
+    // TODO: MOVE TO PLAYERCONTROLLER, CHECK IF ON BOAT
     private void KeepPlayerFromMoving()
     {
         Vector3 platformMoveDirection = (GetComponent<MovingPlatform>().GetPositionA() - GetComponent<MovingPlatform>().GetPositionB()).normalized;

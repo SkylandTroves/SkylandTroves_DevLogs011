@@ -65,6 +65,9 @@ public class Game : MonoBehaviour
         // load scene
         SceneController.GoToNewScene(levelIndex);
 
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void Start()

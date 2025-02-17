@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		navAgent = GetComponent<NavMeshAgent>();
+		navAgent.autoTraverseOffMeshLink = false;
 	}
 
 	void Update()
@@ -60,7 +61,44 @@ public class PlayerController : MonoBehaviour
 		
 		//SetAnimatorIsMoving();
 		UpdateMovementState();
+
+		if (navAgent.isOnOffMeshLink)
+		{
+			stAnimator.SetBool(isWalking, true);
+
+			StartCoroutine(SmoothTraverse(navAgent));
+		}
 	}
+	
+	IEnumerator SmoothTraverse(NavMeshAgent agent)
+	{
+		if (!agent.isOnOffMeshLink) yield break;
+
+		OffMeshLinkData linkData = agent.currentOffMeshLinkData;
+		Vector3 startPos = agent.transform.position;
+		Vector3 endPos = new Vector3(linkData.endPos.x, agent.transform.position.y, linkData.endPos.z); // Keep consistent Y level
+
+		float duration = Vector3.Distance(startPos, endPos) / agent.speed;
+		float elapsedTime = 0f;
+
+		while (elapsedTime < duration)
+		{
+			elapsedTime += Time.deltaTime;
+			float t = elapsedTime / duration;
+
+			// Create a smooth arc using a sine wave (optional)
+			float height = Mathf.Sin(t * Mathf.PI) * 2f; // Adjust 2f to control arc height
+
+			agent.transform.position = Vector3.Lerp(startPos, endPos, t);
+
+			yield return null;
+		}
+
+		agent.transform.position = endPos; // Ensure final position is accurate
+		agent.CompleteOffMeshLink();
+	}
+
+
 
 	private void CheckArrivedAtDestination()
 	{
