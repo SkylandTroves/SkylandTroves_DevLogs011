@@ -49,7 +49,7 @@ public class SceneController : MonoBehaviour
     private void UpdateCurrentLevel()
     {
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Current Scene Index: " + CurrentLevel);
+        // Debug.Log("Current Scene Index: " + CurrentLevel);
     }
 
     // public void LoadNextLevel()
