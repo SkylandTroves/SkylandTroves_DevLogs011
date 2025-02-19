@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public Canvas SkipButtonCanvas;
-    [SerializeField] private SceneController sceneController;
+    // [SerializeField] private SceneController sceneController;
     private static SceneController instance = null; // Singleton instance
     private static int CurrentLevel;
 
