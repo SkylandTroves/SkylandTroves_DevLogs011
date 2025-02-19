@@ -9,8 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-
 public class UnchargedPickUps : PickUpController
 {
     [SerializeField] private GameObject chargedOrbPrefab; // Reference to the charged orb prefab

@@ -64,6 +64,8 @@ public class MovingPlatform : MonoBehaviour
         
         StartCoroutine(Move());
     }
+    
+    public float maxSpeed = 2f;
 
     IEnumerator Move()
     {

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using System;
@@ -124,4 +124,4 @@ public class AgentLinkMover : MonoBehaviour
         public OffMeshLinkMoveMethod MoveMethod;
         public int AreaType;
     }
-}
+}*/
