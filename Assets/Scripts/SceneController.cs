@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public Canvas SkipButtonCanvas;
-    // [SerializeField] private SceneController sceneController;
-    private static SceneController instance = null; // Singleton instance
+    private static SceneController instance = null;
     private static int CurrentLevel;
 
     private void Awake()
@@ -49,7 +48,7 @@ public class SceneController : MonoBehaviour
     private void UpdateCurrentLevel()
     {
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-        // Debug.Log("Current Scene Index: " + CurrentLevel);
+        Debug.Log("Current Scene Index: " + CurrentLevel);
     }
 
     // public void LoadNextLevel()

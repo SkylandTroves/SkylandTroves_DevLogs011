@@ -69,7 +69,7 @@ public class Boat : MonoBehaviour
     // This method is called from MovingPlatform.cs when the platform starts moving ONLY if its a boat
     public void OnMovingPlatformStarted()
     {
-        //RemoveNavMeshAgentAndParentPlayer();
+        RemoveNavMeshAgentAndParentPlayer();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         if (isLevelSwitchCatalyst)
@@ -85,8 +85,7 @@ public class Boat : MonoBehaviour
             NavMeshAgent playerAgent = Player.GetComponent<NavMeshAgent>();
             if (playerAgent != null)
             {
-                Destroy(playerAgent);  // Remove the NavMeshAgent component
-                Debug.Log("player no longer nav mesh agent ");
+                playerAgent.enabled = false;
             }
             Player.transform.SetParent(transform);
             
