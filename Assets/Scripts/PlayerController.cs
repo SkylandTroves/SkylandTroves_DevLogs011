@@ -56,17 +56,24 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		GetPlayerInput();
-		CheckArrivedAtDestination();
-		
-		//SetAnimatorIsMoving();
-		UpdateMovementState();
-
-		if (navAgent.isOnOffMeshLink)
+		if (Cursor.lockState != CursorLockMode.Locked)
 		{
-			stAnimator.SetBool(isWalking, true);
+			GetPlayerInput();
 
-			StartCoroutine(SmoothTraverse(navAgent));
+			CheckArrivedAtDestination();
+
+			//SetAnimatorIsMoving();
+			UpdateMovementState();
+
+			if (navAgent.isOnOffMeshLink)
+			{
+				stAnimator.SetBool(isWalking, true);
+				StartCoroutine(SmoothTraverse(navAgent));
+			}
+		}
+		else
+		{
+			StopWalking();
 		}
 	}
 	
@@ -260,5 +267,9 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void StopWalking()
+	{
+		stAnimator.SetBool(isWalking, false);
+	}
 
 }
