@@ -40,7 +40,7 @@ public class Wheel : MonoBehaviour
       if (turnRequested && checkedDistancePlayerAndWheel <= distanceToWheel)
       {
          isTurningObject = true; // The player is allowed to turn the wheel
-         
+
          // Detect mouse scroll input
          float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
@@ -48,18 +48,18 @@ public class Wheel : MonoBehaviour
          {
             foreach (MovingPlatform movingPlatform in movingPlatforms)
             {
-               // Adjust wheel progress based on scroll input
+               // Adjust wheel progress based on scroll input with speed restriction
                float currentProgress = movingPlatform.GetWheelProgress();
-               float newProgress = Mathf.Clamp(currentProgress + scrollInput, 0, 1);
-               
+               float maxChange = 0.01f; // Maximum allowed change per frame
+               float clampedScrollInput = Mathf.Clamp(scrollInput, -maxChange, maxChange);
+               float newProgress = Mathf.Clamp(currentProgress + clampedScrollInput, 0, 1);
+
                // Update the wheel progress in the MovingPlatform
                movingPlatform.SetWheelProgress(newProgress);
                TurnWheelObject(newProgress);
-               
-               Debug.Log("wheel is turning "+ newProgress );
+
+               Debug.Log("wheel is turning " + newProgress);
             }
-            
-            
          }
       }
    }
