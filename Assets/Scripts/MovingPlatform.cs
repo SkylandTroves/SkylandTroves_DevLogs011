@@ -52,11 +52,12 @@ public class MovingPlatform : MonoBehaviour
 
     public void StartMoving()
     {
-        if (isBoat)
+        if (isBoat && gameObject.CompareTag("movingPlatform"))
         {
             Boat boat = GetComponent<Boat>();  
             if (boat != null)  
             {
+                Debug.Log("moving");
                 boat.OnMovingPlatformStarted();  
             }
             // do nothing if platform is not a boat

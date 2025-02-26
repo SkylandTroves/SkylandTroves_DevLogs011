@@ -50,7 +50,7 @@ public class Wheel : MonoBehaviour
             {
                // Adjust wheel progress based on scroll input with speed restriction
                float currentProgress = movingPlatform.GetWheelProgress();
-               float maxChange = 0.01f; // Maximum allowed change per frame
+               float maxChange = 0.015f; // Maximum allowed change per frame
                float clampedScrollInput = Mathf.Clamp(scrollInput, -maxChange, maxChange);
                float newProgress = Mathf.Clamp(currentProgress + clampedScrollInput, 0, 1);
 
