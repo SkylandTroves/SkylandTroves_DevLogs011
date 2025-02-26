@@ -6,10 +6,10 @@ TagManager:
   tags:
   - movingPlatform
   - mapGround
-  - podiumUncharged
-  - podiumCharged
   - energyOrbUncharged
   - energyOrbCharged
+  - podiumUncharged
+  - podiumCharged
   - ChargeArea
   layers:
   - Default

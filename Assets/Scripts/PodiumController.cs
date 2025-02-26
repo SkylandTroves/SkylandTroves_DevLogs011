@@ -40,6 +40,7 @@ public class PodiumController : ObservedSubject
         Orb.transform.SetParent(orbPositionOnPodium);
         Orb.transform.localPosition = Vector3.zero; // Reset local position to place the orb exactly in the hand's front position
 
+        
         // Disable physics on TriggerObject (the orb) while it's held
         Rigidbody orbRB = Orb.GetComponent<Rigidbody>();
         if (orbRB != null)

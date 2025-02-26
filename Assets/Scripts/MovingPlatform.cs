@@ -57,7 +57,6 @@ public class MovingPlatform : MonoBehaviour
             Boat boat = GetComponent<Boat>();  
             if (boat != null)  
             {
-                Debug.Log("moving");
                 boat.OnMovingPlatformStarted();  
             }
             // do nothing if platform is not a boat

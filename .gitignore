@@ -13,6 +13,9 @@
 # IDE's project files
 .idea
 
+# Unity version control
+.plastic
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
