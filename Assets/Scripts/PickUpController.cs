@@ -126,6 +126,15 @@ public class PickUpController : MonoBehaviour
         transform.position = startingPosition;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ChargeArea"))
+        {
+            isCharged = true;
+            Debug.Log("The orb is now charged.");
+        }
+    }
+
     // GETTERS AND SETTERS
 
     public PlayerController GetPlayerController()
