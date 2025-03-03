@@ -60,6 +60,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -104,7 +106,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.43776676, y: 0.491968, z: 0.07453709}
+  m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: -0.004599757, y: 0, z: -0.000000003725291}
 --- !u!114 &8594934101805328131
 MonoBehaviour:

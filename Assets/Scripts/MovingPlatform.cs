@@ -52,7 +52,7 @@ public class MovingPlatform : MonoBehaviour
 
     public void StartMoving()
     {
-        if (isBoat)
+        if (isBoat && gameObject.CompareTag("movingPlatform"))
         {
             Boat boat = GetComponent<Boat>();  
             if (boat != null)  
