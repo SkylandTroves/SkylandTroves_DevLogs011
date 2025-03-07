@@ -9,6 +9,8 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+
 
 public class PickUpController : MonoBehaviour
 {
@@ -106,9 +108,12 @@ public class PickUpController : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        isHoldingObject = true; // Now the orb is being held
-        player.SetHeldOrb(gameObject); // Set this orb as the currently held one
-        
+        isHoldingObject = true; 
+        player.SetHeldOrb(gameObject); 
+
+        // Use HandlePickUpOrbStart() instead of manually triggering animation
+        player.HandlePickUpOrbStart(); 
+
     }
     
     public void StoreDistanceToPickUp()
@@ -150,4 +155,17 @@ public class PickUpController : MonoBehaviour
     {
         this.isCharged = isCharged;
     }
+    
+    private IEnumerator SetHoldingOrbAfterAnimation()
+    {
+        Animator animator = player.GetAnimator();
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        animator.SetBool("isHoldingOrb", true);  // Set bool AFTER animation completes
+        player.SetHeldOrb(gameObject);  // Ensure the player knows they are holding an orb
+    }
+    
+    
+    
+    
 }

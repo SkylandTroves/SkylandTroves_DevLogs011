@@ -11,6 +11,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem; // new input system 
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
 	private const string isWalking = "IsWalking";
 	private const string pickedUpOrb = "PickedUpOrb";
 	private const string droppedOrb = "DroppedOrb";
+	private const string hasPickedUpOrb = "HasPickedUpOrb";
 
 	private List<Action> methodsToCallWhenReachDestination = new List<Action>();
 
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
 	{
 		navAgent = GetComponent<NavMeshAgent>();
 		navAgent.autoTraverseOffMeshLink = false;
+		stAnimator.SetBool(hasPickedUpOrb, false);
 	}
 
 	void Update()
@@ -62,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
 			CheckArrivedAtDestination();
 
-			//SetAnimatorIsMoving();
+			SetAnimatorIsMoving();
 			UpdateMovementState();
 
 			if (navAgent.isOnOffMeshLink)
@@ -231,27 +234,44 @@ public class PlayerController : MonoBehaviour
 			{
 				pickUpController.DropObject();
 				currentHeldOrb = null;
+				HandleDropOrb();
 			}
 		}
 	}
+	
+	public Animator GetAnimator()
+	{
+		return stAnimator;
+	}
+	
+	public void TriggerPickUpAnimation()
+	{
+		stAnimator.SetTrigger(pickedUpOrb);
+	}
 
+	public void StopWalking()
+	{
+		stAnimator.SetBool(isWalking, false);
+	}
+	
+	public void HandlePickUpOrbStart()
+	{
+		Debug.Log("HandlePickUpOrbStart() called");
+		stAnimator.SetTrigger(pickedUpOrb);
+		StartCoroutine(SetHasPickedUpOrbAfterAnimation());
+	}
+
+
+
+	
 	private void SetAnimatorIsMoving()
 	{
 		//stAnimator.SetBool(isWalking, navAgent.velocity.magnitude > 0.0001f);
 		isMoving = navAgent.velocity.sqrMagnitude > 0.001f && navAgent.remainingDistance > navAgent.stoppingDistance;
 		stAnimator.SetBool(isWalking, isMoving);
 	}
-
-	private void HandlePickUpOrbStart()
-	{
-		stAnimator.SetTrigger(pickedUpOrb);
-	}
 	
-	private void HandlePickUpOrbEnd()
-	{
-		stAnimator.SetTrigger(droppedOrb);
-	}
-	
+	/*
 	private void UpdateMovementState()
 	{
 		//Debug.Log($"Movement State Changed: IsMoving = {isMoving}");
@@ -266,10 +286,64 @@ public class PlayerController : MonoBehaviour
 			stAnimator.SetBool(isWalking, isMoving);
 		}
 	}
-
-	public void StopWalking()
+	*/
+	
+	private void UpdateMovementState()
 	{
-		stAnimator.SetBool(isWalking, false);
+		bool currentlyMoving = navAgent.velocity.sqrMagnitude > 0.01f && navAgent.remainingDistance > navAgent.stoppingDistance;
+
+		if (isMoving != currentlyMoving)
+		{
+			isMoving = currentlyMoving;
+        
+			// Check if holding an orb to determine animation
+			if (currentHeldOrb != null)
+			{
+				stAnimator.SetBool(isWalking, isMoving);
+				if (isMoving)
+				{
+					stAnimator.Play("WalkAndHold");
+				}
+				else
+				{
+					stAnimator.Play("IdleAndHold");
+				}
+			}
+			else
+			{
+				stAnimator.SetBool(isWalking, isMoving);
+			}
+		}
 	}
+	
+	private IEnumerator SetHasPickedUpOrbAfterAnimation()
+    	{
+		    Debug.Log("Waiting for pickup animation..."); 
+		    //yield return new WaitForSeconds(2.0f); // Adjust this time based on your animation length
+		    // wait for anim to finish instead of doing waitforSeconds 
+		    
+		    // Get the AnimatorStateInfo for the current layer (usually 0 for the default layer)
+		    AnimatorStateInfo stateInfo = stAnimator.GetCurrentAnimatorStateInfo(0);
+		    if (stateInfo.IsName(pickedUpOrb))
+		    {
+			    Debug.Log("This is actually getting the animation");
+		    }
+			// Wait until the animation state has finished playing
+		    while (stAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f && stateInfo.IsName("pickUp0002"))
+		    {
+			    yield return null; // Wait for the next frame
+		    }
+		    
+		    Debug.Log("Animation finished, setting hasPickedUpOrb = true"); 
+		    stAnimator.SetBool("HasPickedUpOrb", true);
+    	}
+	
+	private void HandleDropOrb()
+	{
+		stAnimator.SetTrigger(droppedOrb);
+		stAnimator.SetBool("HasPickedUpOrb", false);
+	}
+	
+	
 
 }
