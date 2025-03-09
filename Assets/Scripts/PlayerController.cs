@@ -11,6 +11,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem; // new input system 
 using System.Collections;
 using System.Collections.Generic;
+using Object = System.Object;
 
 public class PlayerController : MonoBehaviour
 {
@@ -57,13 +58,15 @@ public class PlayerController : MonoBehaviour
 			if (navAgent.isOnOffMeshLink)
 			{
 				playerState.UpdateStateOnStartMoving();
+				//stAnimator.SetBool(isWalking, true);
 				StartCoroutine(SmoothTraverse(navAgent));
 			}
 		}
-		/*else
+		else
 		{
-			playerState.UpdateStateOnStopMoving();
-		}*/
+			/*playerState.UpdateStateOnStopMoving();*/
+			StopWalking();
+		}
 	}
 
 	
@@ -107,12 +110,13 @@ public class PlayerController : MonoBehaviour
 				onDestinationReached?.Invoke();
 				onDestinationReached = null;
 				
-				playerState.UpdateStateOnStopMoving();
+				//playerState.UpdateStateOnStopMoving();
+				StopWalking();
 			}
-			else
+			/*else
 			{
 				playerState.UpdateStateOnStartMoving();
-			}
+			}*/
 		}
 	}
 
@@ -278,7 +282,7 @@ public class PlayerController : MonoBehaviour
 	{
 		stAnimator.SetBool(isWalking, false);
 		playerState.UpdateStateOnStopMoving();
-		isMoving = false;
+		//isMoving = false;
 	}
 
 	public void StartWalking(Vector3 destination)
@@ -286,7 +290,82 @@ public class PlayerController : MonoBehaviour
 		stAnimator.SetBool(isWalking, true);
 		navAgent.SetDestination(destination);
 		onDestinationReached = OnDestinationReached;
-		isMoving = true;
+		//isMoving = true;
 		playerState.UpdateStateOnStartMoving();
+	}
+	
+	public void HandleCurrentState(PlayerStateType currentState, GameObject currentInteractable)
+	{
+		switch (currentState)
+		{
+			case PlayerStateType.IdleWithoutOrb:
+				HandleIdleState();
+				break;
+
+			case PlayerStateType.WalkWithoutOrb:
+				HandleWalkState();
+				break;
+
+			case PlayerStateType.WalkWithOrb:
+				HandleWalkWithOrbState();
+				break;
+
+			case PlayerStateType.IdleWithOrb:
+				HandleIdleWithOrbState();
+				break;
+
+			case PlayerStateType.NextToOrb:
+				HandlePickupState();
+				break;
+
+			case PlayerStateType.NextToPodiumWithOrb:
+				HandleNextToPodiumWithOrbState();
+				break;
+			case PlayerStateType.NextToWheel:
+				HandleTurnWheelState(currentInteractable);
+				break;
+			default:
+				Debug.Log("need handle");
+				break;
+		}
+	}
+
+	private void HandleIdleState()
+	{
+		StopWalking();
+	}
+
+	private void HandleWalkState()
+	{
+		//StartWalking();
+	}
+
+	private void HandleWalkWithOrbState()
+	{
+		
+	}
+
+	private void HandleIdleWithOrbState()
+	{
+		
+	}
+
+	private void HandlePickupState()
+	{
+		
+	}
+
+	private void HandleNextToPodiumWithOrbState()
+	{
+		DropCurrentOrb();
+	}
+
+	private void HandleTurnWheelState(GameObject currentInteractable)
+	{
+		currentWheel = currentInteractable.GetComponent<Wheel>();
+		if (Input.GetAxis("Mouse ScrollWheel") != 0)
+		{
+			currentWheel.HandleWheelScroll();
+		}
 	}
 }

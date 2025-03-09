@@ -6,54 +6,12 @@ using UnityEngine;
 public class Wheel : MonoBehaviour
 {
    [SerializeField] private List<MovingPlatform> movingPlatforms;
-   [SerializeField] private PlayerController player;
    //[SerializeField] private PickUpController pickUps; // use if not using a list 
-   
-   private bool turnRequested = false;
    private bool isTurningObject = false;
-   /*private float distancePlayerAndWheel;
-   private float distanceToWheel = 2f; // Maximum distance to allow wheel hold*/
-   private bool playerInRange = false;
-
-   private void OnTriggerEnter(Collider other)
-   {
-      if (other.CompareTag("Player"))
-      {
-         playerInRange = true;
-         Debug.Log("player entered");
-      }
-   }
-
-   private void OnTriggerExit(Collider other)
-   {
-      if (other.CompareTag("Player"))
-      {
-         playerInRange = false;
-         Debug.Log("player left ");
-      }
-   }
-
-   private void FixedUpdate()
-   {
-      //StoreDistanceToWheel();
-      if (turnRequested)
-      {
-         HandleWheelScroll();
-      }
-   }
-   
-   private void OnMouseDown()
-   {
-      Debug.Log("You are now clicking on the wheel ");
-      turnRequested = true;
-      //player.AddToMethodsToCallWhenReachDestination(TurnObject);
-      
-   }
    
    public void HandleWheelScroll()
    {
 
-         Debug.Log("Player is close enough to turn the wheel.");
          isTurningObject = true; // The player is allowed to turn the wheel
 
          // Detect mouse scroll input
@@ -90,8 +48,4 @@ public class Wheel : MonoBehaviour
       transform.localEulerAngles = new Vector3(currentRotation.x, currentRotation.y, newZRotation);
    }
 
-   /*public void StoreDistanceToWheel()
-   {
-      distancePlayerAndWheel = Vector3.Distance(player.transform.position, transform.position);
-   }*/
 }

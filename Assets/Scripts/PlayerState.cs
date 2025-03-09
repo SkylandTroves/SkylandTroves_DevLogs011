@@ -10,7 +10,7 @@ public class PlayerState : MonoBehaviour
     private Dictionary<String, List<ObjectInformation>> objectTypeToPositions;
     
     private PlayerStateType currentState;
-    private float maximumDistance = 1f; //max distance player can be from object for interaction
+    private float maximumDistance = 3f; //max distance player can be from object for interaction
 
     private GameObject playerObject;
     public PlayerController playerController;
@@ -23,7 +23,7 @@ public class PlayerState : MonoBehaviour
 
     private void Update()
     {
-        //HandleCurrentState();
+        playerController.HandleCurrentState(currentState, currentInteractable);
     }
 
     // needs to know position of player and all objects on level: orbs, pedestals, wheels, swtiches, buttons
@@ -151,13 +151,19 @@ public class PlayerState : MonoBehaviour
 
         if (!playerController.IsCarryingOrb())
         {
-            // if the closest object is a podium
-                // if the podium has an orb on it
-                     // set the closet object to the orb
+            // if the closest object is a podium and it has a child orb on it
+            if (closestObject.ObjectType == "Podium" && PodiumHasOrb(closestObject.ObjectGameObject))
+            {
+                // set closest object to closest orb 
+                closestObject = objectTypeToPositions
+                    .Where(kv => kv.Key == "Orb") // Filter only "Orb" objects
+                    .SelectMany(kv => kv.Value) // Flatten the lists
+                    .OrderBy(obj => obj.Distance) // Order by Distance
+                    .FirstOrDefault();
+            }
         }
-
+        
         return closestObject;
-
     }
 
     private bool PodiumHasOrb(GameObject podiumObject)
@@ -229,83 +235,5 @@ public class PlayerState : MonoBehaviour
         objectTypeToPositions.Add("Wheel", wheelInformations);
         
         // do the same for all the other objects
-    }
-    
-    private void HandleCurrentState()
-    {
-        switch (currentState)
-        {
-            case PlayerStateType.IdleWithoutOrb:
-                HandleIdleState();
-                break;
-
-            case PlayerStateType.WalkWithoutOrb:
-                HandleWalkState();
-                break;
-
-            case PlayerStateType.WalkWithOrb:
-                HandleWalkWithOrbState();
-                break;
-
-            case PlayerStateType.IdleWithOrb:
-                HandleIdleWithOrbState();
-                break;
-
-            case PlayerStateType.NextToOrb:
-                HandlePickupState();
-                break;
-
-            case PlayerStateType.NextToPodiumWithOrb:
-                HandleDropState();
-                break;
-            case PlayerStateType.NextToWheel:
-                HandleTurnWheelState();
-                break;
-            default:
-                Debug.Log("need handle");
-                break;
-        }
-    }
-
-    private void HandleIdleState()
-    {
-        //Debug.Log("Player is idle");
-        //playerController.StopWalking();
-    }
-
-    private void HandleWalkState()
-    {
-        Debug.Log("Player is walking");
-        /*
-        playerController.StartWalking();
-    */
-    }
-
-    private void HandleWalkWithOrbState()
-    {
-        //playerController.StartWalking();
-        Debug.Log("Player is walking with an orb");
-    }
-
-    private void HandleIdleWithOrbState()
-    {
-        //playerController.StopWalking();
-        Debug.Log("Player is idle with an orb");
-    }
-
-    private void HandlePickupState()
-    {
-        Debug.Log("Player is picking up an item");
-    }
-
-    private void HandleDropState()
-    {
-        Debug.Log("Player is dropping an item");
-        playerController.DropCurrentOrb();
-    }
-
-    private void HandleTurnWheelState()
-    {
-        Debug.Log("Player is turning a wheel");
     }
 }
