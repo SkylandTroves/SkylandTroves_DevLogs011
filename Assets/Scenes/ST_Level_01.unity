@@ -323,6 +323,7 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
+  maxSpeed: 2
 --- !u!114 &123194684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.1
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 7b019fa3c47b9c340a17b8417ff34677, type: 2}
   m_BuildHeightMesh: 0
@@ -1597,6 +1598,7 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
+  maxSpeed: 2
 --- !u!1 &1283798378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,6 +1970,7 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
+  maxSpeed: 2
 --- !u!1 &1332046687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,7 +3193,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.1
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: bdafad3c6977e454686c47bcc6b65da9, type: 2}
   m_BuildHeightMesh: 0
@@ -3402,6 +3405,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5001359171642754599, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9df867d1330a18b4c8b921e4f0be79cf, type: 2}
     - target: {fileID: 6917668786559360460, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
       propertyPath: pickUp
       value: 
