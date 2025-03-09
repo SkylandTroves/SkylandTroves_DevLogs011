@@ -36,7 +36,7 @@ public class Wheel : MonoBehaviour
    private void FixedUpdate()
    {
       //StoreDistanceToWheel();
-      if (turnRequested && playerInRange)
+      if (turnRequested)
       {
          HandleWheelScroll();
       }
@@ -50,7 +50,7 @@ public class Wheel : MonoBehaviour
       
    }
    
-   private void HandleWheelScroll()
+   public void HandleWheelScroll()
    {
 
          Debug.Log("Player is close enough to turn the wheel.");
@@ -65,7 +65,7 @@ public class Wheel : MonoBehaviour
             {
                // Adjust wheel progress based on scroll input with speed restriction
                float currentProgress = movingPlatform.GetWheelProgress();
-               float maxChange = 0.5f; // Maximum allowed change per frame
+               float maxChange = 0.03f; // Maximum allowed change per frame
                float clampedScrollInput = Mathf.Clamp(scrollInput, -maxChange, maxChange);
                float newProgress = Mathf.Clamp(currentProgress + clampedScrollInput, 0, 1);
 

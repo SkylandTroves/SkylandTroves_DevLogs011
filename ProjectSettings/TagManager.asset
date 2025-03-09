@@ -11,6 +11,8 @@ TagManager:
   - podiumUncharged
   - podiumCharged
   - ChargeArea
+  - Wheel
+  - Podium
   layers:
   - Default
   - TransparentFX

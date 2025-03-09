@@ -14,35 +14,25 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
-	// character animation states  
-	private enum PlayerState
-	{
-		Idle,
-		Walk,
-		PickUp,
-		Drop,
-		PushWallButton,
-		PushFloorButton,
-		PullLever,
-		TurnWheel
-	}
-	
+
 	//[SerializeField] private PickUpController pickUp;
 	[SerializeField] private GameObject clickParticle;
 	[SerializeField] private Animator stAnimator;
-	
+
 	private List<PickUpController> pickUps;
 	private NavMeshAgent navAgent;
 	private Action onDestinationReached;
 	private GameObject currentHeldOrb;
 	private bool isMoving = false;
-	
+
 	private const string isWalking = "IsWalking";
 	private const string pickedUpOrb = "PickedUpOrb";
 	private const string droppedOrb = "DroppedOrb";
 
 	private List<Action> methodsToCallWhenReachDestination = new List<Action>();
+	private Wheel currentWheel;
 
+	private PlayerState playerState;
 	private void Awake()
 	{
 		navAgent = GetComponent<NavMeshAgent>();
@@ -50,8 +40,10 @@ public class PlayerController : MonoBehaviour
 
 	void Start()
 	{
+		playerState = GetComponent<PlayerState>();
 		navAgent = GetComponent<NavMeshAgent>();
 		navAgent.autoTraverseOffMeshLink = false;
+
 	}
 
 	void Update()
@@ -59,23 +51,21 @@ public class PlayerController : MonoBehaviour
 		if (Cursor.lockState != CursorLockMode.Locked)
 		{
 			GetPlayerInput();
-
 			CheckArrivedAtDestination();
-
-			//SetAnimatorIsMoving();
 			UpdateMovementState();
 
 			if (navAgent.isOnOffMeshLink)
 			{
-				stAnimator.SetBool(isWalking, true);
+				playerState.UpdateStateOnStartMoving();
 				StartCoroutine(SmoothTraverse(navAgent));
 			}
 		}
-		else
+		/*else
 		{
-			StopWalking();
-		}
+			playerState.UpdateStateOnStopMoving();
+		}*/
 	}
+
 	
 	IEnumerator SmoothTraverse(NavMeshAgent agent)
 	{
@@ -83,7 +73,8 @@ public class PlayerController : MonoBehaviour
 
 		OffMeshLinkData linkData = agent.currentOffMeshLinkData;
 		Vector3 startPos = agent.transform.position;
-		Vector3 endPos = new Vector3(linkData.endPos.x, agent.transform.position.y, linkData.endPos.z); // Keep consistent Y level
+		Vector3 endPos =
+			new Vector3(linkData.endPos.x, agent.transform.position.y, linkData.endPos.z); // Keep consistent Y level
 
 		float duration = Vector3.Distance(startPos, endPos) / agent.speed;
 		float elapsedTime = 0f;
@@ -116,8 +107,11 @@ public class PlayerController : MonoBehaviour
 				onDestinationReached?.Invoke();
 				onDestinationReached = null;
 				
-				isMoving = false;
-				stAnimator.SetBool(isWalking, false);
+				playerState.UpdateStateOnStopMoving();
+			}
+			else
+			{
+				playerState.UpdateStateOnStartMoving();
 			}
 		}
 	}
@@ -126,18 +120,16 @@ public class PlayerController : MonoBehaviour
 	{
 		int layerMask = 1 << LayerMask.NameToLayer("Player");
 		layerMask = ~layerMask; // invert the mask to exclude the player 
-		
+
 		if (Input.GetMouseButtonDown(0)) // LEFT CLICK - - - - - - - - - - - -
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
 			{
-				navAgent.SetDestination(hit.point);
-				onDestinationReached = OnDestinationReached;
-				isMoving = true;
+				StartWalking(hit.point);
 			}
-			
+
 			// Check if clickParticle is not null before instantiating
 			if (clickParticle != null)
 			{
@@ -148,36 +140,36 @@ public class PlayerController : MonoBehaviour
 			{
 				Debug.LogWarning("Click particle is not assigned!");
 			}
-			
 		}
 
 		if (Input.GetMouseButtonDown(1)) // RIGHT CLICK  - - - - - - - - - - - -
 		{
 			DropCurrentOrb();
 		}
+
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			QuitGame();
 		}
-		
+
 		// - - - - following is for debugging only - - - - - 
 		Ray ray02 = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Vector3 rayOrigin = ray02.origin;
 		Vector3 rayDirection = Camera.main.transform.forward;
 		float rayLength = 100f;
 		Color rayColor = Color.red;
-		
+
 		Debug.DrawRay(rayOrigin, rayDirection * rayLength, rayColor);
 		// - - - - - - - - - - - - - 
-		
+
 	}
-	
+
 	public static void QuitGame()
 	{
 		#if UNITY_EDITOR
-		UnityEditor.EditorApplication.isPlaying = false;
+				UnityEditor.EditorApplication.isPlaying = false;
 		#endif
-		Application.Quit();
+				Application.Quit();
 	}
 
 	public void AddToMethodsToCallWhenReachDestination(Action method)
@@ -185,6 +177,7 @@ public class PlayerController : MonoBehaviour
 		methodsToCallWhenReachDestination.Add(method);
 	}
 
+	//TODO: when we stop moving, call PLayerState.UpdateStateOnStopMoving() to set our new state
 	public void OnDestinationReached()
 	{
 		//print("Reached destination!");
@@ -194,16 +187,17 @@ public class PlayerController : MonoBehaviour
 		}
 
 		methodsToCallWhenReachDestination = new List<Action>();
-		isMoving = false;
+		StopWalking();
+		
 	}
-	
+
 	// GETTER AND SETTER
-	
+
 	public void SetPickUpControllers(List<PickUpController> pickUpControllers)
 	{
 		this.pickUps = pickUpControllers;
 	}
-	
+
 	public void SetPickUpController(PickUpController pickUp)
 	{
 		if (pickUps == null)
@@ -216,10 +210,16 @@ public class PlayerController : MonoBehaviour
 			pickUps.Add(pickUp);
 		}
 	}
-	
+
 	public void SetHeldOrb(GameObject orb)
 	{
 		currentHeldOrb = orb;
+	}
+
+	//if have orb, change playerstate walking with orb or idling
+	public bool IsCarryingOrb()
+	{
+		return (currentHeldOrb != null);
 	}
 
 	public void DropCurrentOrb()
@@ -246,30 +246,47 @@ public class PlayerController : MonoBehaviour
 	{
 		stAnimator.SetTrigger(pickedUpOrb);
 	}
-	
+
 	private void HandlePickUpOrbEnd()
 	{
 		stAnimator.SetTrigger(droppedOrb);
 	}
-	
+
 	private void UpdateMovementState()
 	{
 		//Debug.Log($"Movement State Changed: IsMoving = {isMoving}");
-		
+
 		// Check if the character is moving
-		bool currentlyMoving = navAgent.velocity.sqrMagnitude > 0.01f && navAgent.remainingDistance > navAgent.stoppingDistance;
+		bool currentlyMoving = navAgent.velocity.sqrMagnitude > 0.01f &&
+		                       navAgent.remainingDistance > navAgent.stoppingDistance;
 
 		// Update the Animator only if the movement state changes
-		if (isMoving != currentlyMoving)
+
+		if (currentlyMoving)
 		{
-			isMoving = currentlyMoving;
-			stAnimator.SetBool(isWalking, isMoving);
+			//If moving switch to walk 
+			playerState.UpdateStateOnStartMoving();
 		}
+		/*else
+		{
+			//If not moving switch to idle
+			playerState.UpdateStateOnStopMoving();
+		}*/
 	}
 
 	public void StopWalking()
 	{
 		stAnimator.SetBool(isWalking, false);
+		playerState.UpdateStateOnStopMoving();
+		isMoving = false;
 	}
 
+	public void StartWalking(Vector3 destination)
+	{
+		stAnimator.SetBool(isWalking, true);
+		navAgent.SetDestination(destination);
+		onDestinationReached = OnDestinationReached;
+		isMoving = true;
+		playerState.UpdateStateOnStartMoving();
+	}
 }
