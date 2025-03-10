@@ -21,7 +21,7 @@ public class PlayerState : MonoBehaviour
         playerController = playerObject.GetComponent<PlayerController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         playerController.HandleCurrentState(currentState, currentInteractable);
     }
@@ -148,6 +148,8 @@ public class PlayerState : MonoBehaviour
             .SelectMany(kv => kv.Value) // Flatten all ObjectInformation lists into a single collection
             .OrderBy(obj => obj.Distance) // Order by Distance
             .FirstOrDefault(); // Get the closest one or null if empty
+        
+        Debug.Log("closest: "+ closestObject.ObjectType);
 
         if (!playerController.IsCarryingOrb())
         {

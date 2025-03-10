@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 	private const string droppedOrb = "DroppedOrb";
 
 	private List<Action> methodsToCallWhenReachDestination = new List<Action>();
-	private Wheel currentWheel;
+	//private Wheel currentWheel;
 
 	private PlayerState playerState;
 	private void Awake()
@@ -96,6 +96,37 @@ public class PlayerController : MonoBehaviour
 		}
 
 		agent.transform.position = endPos; // Ensure final position is accurate
+		NavMeshHit hit;
+		if (NavMesh.SamplePosition(agent.transform.position, out hit, 1.0f, NavMesh.AllAreas))
+		{
+			agent.Warp(hit.position); // Move agent onto the nearest NavMesh point
+		}
+		/*if (!agent.isOnNavMesh)
+		{
+			Debug.LogError("Agent is not on a NavMesh!");
+			yield break;
+		}
+		linkData = agent.currentOffMeshLinkData;
+		if (linkData.valid == false)
+		{
+			Debug.LogError("OffMeshLinkData is invalid.");
+			yield break;
+		}
+		if (!agent.enabled)
+		{
+			Debug.LogError("NavMeshAgent is disabled!");
+			yield break;
+		}
+		if (agent.pathStatus != NavMeshPathStatus.PathComplete)
+		{
+			Debug.LogError("Agent path is incomplete!");
+			yield break;
+		}
+		*/
+		
+		
+
+
 		agent.CompleteOffMeshLink();
 	}
 
@@ -146,10 +177,10 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		if (Input.GetMouseButtonDown(1)) // RIGHT CLICK  - - - - - - - - - - - -
+		/*if (Input.GetMouseButtonDown(1)) // RIGHT CLICK  - - - - - - - - - - - -
 		{
 			DropCurrentOrb();
-		}
+		}*/
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
@@ -315,11 +346,11 @@ public class PlayerController : MonoBehaviour
 				break;
 
 			case PlayerStateType.NextToOrb:
-				HandlePickupState();
+				HandlePickupState(currentInteractable);
 				break;
 
 			case PlayerStateType.NextToPodiumWithOrb:
-				HandleNextToPodiumWithOrbState();
+				HandleNextToPodiumWithOrbState(currentInteractable);
 				break;
 			case PlayerStateType.NextToWheel:
 				HandleTurnWheelState(currentInteractable);
@@ -342,29 +373,53 @@ public class PlayerController : MonoBehaviour
 
 	private void HandleWalkWithOrbState()
 	{
-		
+		if (currentHeldOrb != null && Input.GetMouseButtonDown(1))
+		{
+			DropCurrentOrb();
+			playerState.UpdateStateOnStartMoving();
+		}
 	}
 
 	private void HandleIdleWithOrbState()
 	{
-		
+		if (Input.GetMouseButtonDown(1))
+		{
+			DropCurrentOrb();
+			playerState.UpdateStateOnStopMoving();
+		}
 	}
 
-	private void HandlePickupState()
+	private void HandlePickupState(GameObject currentInteractable)
 	{
-		
+		if (currentHeldOrb == null && (Input.GetMouseButtonDown(1)))
+		{
+			PickUpController currentOrb = currentInteractable.GetComponent<PickUpController>();
+			if (currentOrb != null)
+			{
+				currentOrb.PickUpObject();
+				SetHeldOrb(currentInteractable);
+			}
+		}
 	}
 
-	private void HandleNextToPodiumWithOrbState()
+	private void HandleNextToPodiumWithOrbState(GameObject currentInteractable)
 	{
-		DropCurrentOrb();
+		if (Input.GetMouseButtonDown(1))
+		{
+			PickUpController currentOrb = currentInteractable.GetComponent<PickUpController>();
+			if (currentOrb != null)
+			{
+				currentOrb.DropObject();
+				playerState.UpdateStateOnStopMoving();
+			}
+		}
 	}
 
 	private void HandleTurnWheelState(GameObject currentInteractable)
 	{
-		currentWheel = currentInteractable.GetComponent<Wheel>();
 		if (Input.GetAxis("Mouse ScrollWheel") != 0)
 		{
+			Wheel currentWheel = currentInteractable.GetComponent<Wheel>();
 			currentWheel.HandleWheelScroll();
 		}
 	}

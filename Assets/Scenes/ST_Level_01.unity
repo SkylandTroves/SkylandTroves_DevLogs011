@@ -1953,6 +1953,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheel
       objectReference: {fileID: 0}
+    - target: {fileID: 8594934101805328131, guid: 0e5e600d7384ac34d961fb77626d2dcc, type: 3}
+      propertyPath: movingPlatforms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594934101805328131, guid: 0e5e600d7384ac34d961fb77626d2dcc, type: 3}
+      propertyPath: 'movingPlatforms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 123194683}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -25,10 +25,10 @@ public class PickUpController : MonoBehaviour
 
     public virtual void PickUpObject()
     {
-        StoreDistanceToPickUp();
+        /*StoreDistanceToPickUp();
         Debug.Log("player is  " + distancePlayerAndOrb + " units away from orb");
         if (distancePlayerAndOrb > maxDistanceToOrb)
-            return;
+            return;*/
 
         Debug.Log("You can pick up the orb");
 
@@ -52,30 +52,25 @@ public class PickUpController : MonoBehaviour
         }
 
         isHoldingObject = true; // Now the orb is being held
-        player.SetHeldOrb(gameObject); // Set this orb as the currently held one
+        //player.SetHeldOrb(gameObject); // Set this orb as the currently held one
     }
 
     public void DropObject()
     {
-        if (isHoldingObject)
+        transform.SetParent(null); // Un-parent the object from the hand
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (rb != null)
         {
-            transform.SetParent(null); // Un-parent the object from the hand
-            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.useGravity = true; // make it fall down to floor again
+            rb.isKinematic = false; // Enable physics again
+        }
 
-            if (rb != null)
-            {
-                rb.useGravity = true; // make it fall down to floor again
-                rb.isKinematic = false; // Enable physics again
-            }
-
-            // Re-enable the collider
-            Collider collider = GetComponent<Collider>();
-            if (collider != null)
-            {
-                collider.enabled = true;
-            }
-
-            isHoldingObject = false; // The object is no longer being held
+        // Re-enable the collider
+        Collider collider = GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = true;
         }
     }
 
@@ -107,7 +102,7 @@ public class PickUpController : MonoBehaviour
 
         Debug.Log("You are now clicking on the orb");
         pickUpRequested = true;
-        player.AddToMethodsToCallWhenReachDestination(PickUpObject);
+        //player.AddToMethodsToCallWhenReachDestination(PickUpObject);
     }
 
     private void CheckIfOrbFellOfMap()
