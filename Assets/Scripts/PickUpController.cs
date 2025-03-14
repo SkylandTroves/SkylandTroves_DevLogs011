@@ -30,7 +30,7 @@ public class PickUpController : MonoBehaviour
         if (distancePlayerAndOrb > maxDistanceToOrb)
             return;*/
 
-        Debug.Log("You can pick up the orb");
+        print(" *** PickUpObject: picking up object and setting parent");
 
         // Parent the orb to the player's hand front position
         transform.SetParent(handFrontPosition);
@@ -50,6 +50,8 @@ public class PickUpController : MonoBehaviour
         {
             collider.enabled = false;
         }
+        
+        print(" *** PickUpObject: setting isHoldingObject to TRUE");
 
         isHoldingObject = true; // Now the orb is being held
         //player.SetHeldOrb(gameObject); // Set this orb as the currently held one

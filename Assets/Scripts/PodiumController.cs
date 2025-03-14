@@ -36,6 +36,7 @@ public class PodiumController : ObservedSubject
     
     public virtual void SnapOrb()
     {
+        print("*** SnapOrb: PODIUM CONTROLLER SNAPPING ORB");
         // Parent the orb to the podium
         Orb.transform.SetParent(orbPositionOnPodium);
         Orb.transform.localPosition = Vector3.zero; // Reset local position to place the orb exactly in the hand's front position
@@ -48,6 +49,11 @@ public class PodiumController : ObservedSubject
             orbRB.useGravity = false;
             orbRB.isKinematic = true;
         }
+        
+        if (Orb.CompareTag("energyOrbCharged"))
+        {
+            Orb.tag = "usedOrb";
+        }
     }
     
     public virtual void OnCollisionEnter(Collision other)
@@ -58,6 +64,15 @@ public class PodiumController : ObservedSubject
             SnapOrb();
         }
     }
+    
+    /*public virtual void CollisionWithOrb(GameObject other)
+    {
+        
+        MessageTargetObjects();
+        SnapOrb(other);
+        
+    }*/
+
     
     // GETTERS AND SETTERS 
     public GameObject GetOrb()

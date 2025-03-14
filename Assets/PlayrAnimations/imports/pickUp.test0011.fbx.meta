@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9a7ab2230da9568438beb1381bd2947a
+guid: 3d961a1cc7b052b4dbfef0d46c8b116b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: IdleAndHold0002
+      name: pickUp0002
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0
@@ -43,7 +43,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

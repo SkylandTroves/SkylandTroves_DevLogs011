@@ -31,7 +31,7 @@ public class Wheel : MonoBehaviour
                movingPlatform.SetWheelProgress(newProgress);
                TurnWheelObject(newProgress);
 
-               Debug.Log("wheel is turning " + newProgress);
+               //Debug.Log("wheel is turning " + newProgress);
          }
       }
    }

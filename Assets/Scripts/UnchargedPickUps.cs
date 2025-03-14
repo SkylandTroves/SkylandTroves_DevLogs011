@@ -62,7 +62,10 @@ public class UnchargedPickUps : PickUpController
            */ // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             
             
-            player.SetHeldOrb(newOrb);
+            if (player.IsCarryingOrb())
+            {
+                player.SetHeldOrb(newOrb);
+            }
             //destroy the uncharged orb (or deactivate it)
             Destroy(gameObject); //ameObject.SetActive(false) //to disable instead
             

@@ -11,11 +11,12 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem; // new input system 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Object = System.Object;
 
 public class PlayerController : MonoBehaviour
 {
-
+	public AnimationStates AnimationStates;
 	//[SerializeField] private PickUpController pickUp;
 	[SerializeField] private GameObject clickParticle;
 	[SerializeField] private Animator stAnimator;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 	private NavMeshAgent navAgent;
 	private Action onDestinationReached;
 	private GameObject currentHeldOrb;
+	private PickUpController currentHeldOrbController;
 	private bool isMoving = false;
 
 	private const string isWalking = "IsWalking";
@@ -78,7 +80,8 @@ public class PlayerController : MonoBehaviour
 		Vector3 startPos = agent.transform.position;
 		Vector3 endPos =
 			new Vector3(linkData.endPos.x, agent.transform.position.y, linkData.endPos.z); // Keep consistent Y level
-
+		print("*** ENDPOS: " + endPos);
+		
 		float duration = Vector3.Distance(startPos, endPos) / agent.speed;
 		float elapsedTime = 0f;
 
@@ -86,47 +89,18 @@ public class PlayerController : MonoBehaviour
 		{
 			elapsedTime += Time.deltaTime;
 			float t = elapsedTime / duration;
-
-			// Create a smooth arc using a sine wave (optional)
-			float height = Mathf.Sin(t * Mathf.PI) * 2f; // Adjust 2f to control arc height
-
+			
 			agent.transform.position = Vector3.Lerp(startPos, endPos, t);
 
 			yield return null;
 		}
 
+		if (!agent.isOnNavMesh)
+		{
+			Debug.LogWarning("Agent is NOT on the NavMesh");
+		}
+
 		agent.transform.position = endPos; // Ensure final position is accurate
-		NavMeshHit hit;
-		if (NavMesh.SamplePosition(agent.transform.position, out hit, 1.0f, NavMesh.AllAreas))
-		{
-			agent.Warp(hit.position); // Move agent onto the nearest NavMesh point
-		}
-		/*if (!agent.isOnNavMesh)
-		{
-			Debug.LogError("Agent is not on a NavMesh!");
-			yield break;
-		}
-		linkData = agent.currentOffMeshLinkData;
-		if (linkData.valid == false)
-		{
-			Debug.LogError("OffMeshLinkData is invalid.");
-			yield break;
-		}
-		if (!agent.enabled)
-		{
-			Debug.LogError("NavMeshAgent is disabled!");
-			yield break;
-		}
-		if (agent.pathStatus != NavMeshPathStatus.PathComplete)
-		{
-			Debug.LogError("Agent path is incomplete!");
-			yield break;
-		}
-		*/
-		
-		
-
-
 		agent.CompleteOffMeshLink();
 	}
 
@@ -212,7 +186,6 @@ public class PlayerController : MonoBehaviour
 		methodsToCallWhenReachDestination.Add(method);
 	}
 
-	//TODO: when we stop moving, call PLayerState.UpdateStateOnStopMoving() to set our new state
 	public void OnDestinationReached()
 	{
 		//print("Reached destination!");
@@ -248,6 +221,7 @@ public class PlayerController : MonoBehaviour
 
 	public void SetHeldOrb(GameObject orb)
 	{
+		print(" *** SetHeldOrb: setting currentHeldOrb");
 		currentHeldOrb = orb;
 	}
 
@@ -261,10 +235,12 @@ public class PlayerController : MonoBehaviour
 	{
 		if (currentHeldOrb != null)
 		{
-			PickUpController pickUpController = currentHeldOrb.GetComponent<PickUpController>();
-			if (pickUpController != null)
+			print("*** DropCurrentOrb: dropping currentHeldOrb");
+			Debugger.UpdateMessage("dropcurrentorb: dropping");
+			//PickUpController orbController = currentHeldOrb.GetComponent<PickUpController>();
+			if (currentHeldOrbController != null)
 			{
-				pickUpController.DropObject();
+				currentHeldOrbController.DropObject();
 				currentHeldOrb = null;
 			}
 		}
@@ -274,17 +250,17 @@ public class PlayerController : MonoBehaviour
 	{
 		//stAnimator.SetBool(isWalking, navAgent.velocity.magnitude > 0.0001f);
 		isMoving = navAgent.velocity.sqrMagnitude > 0.001f && navAgent.remainingDistance > navAgent.stoppingDistance;
-		stAnimator.SetBool(isWalking, isMoving);
+		//stAnimator.SetBool(isWalking, isMoving);
 	}
 
 	private void HandlePickUpOrbStart()
 	{
-		stAnimator.SetTrigger(pickedUpOrb);
+		//stAnimator.SetTrigger(pickedUpOrb);
 	}
 
 	private void HandlePickUpOrbEnd()
 	{
-		stAnimator.SetTrigger(droppedOrb);
+		//stAnimator.SetTrigger(droppedOrb);
 	}
 
 	private void UpdateMovementState()
@@ -311,18 +287,20 @@ public class PlayerController : MonoBehaviour
 
 	public void StopWalking()
 	{
-		stAnimator.SetBool(isWalking, false);
+		//stAnimator.SetBool(isWalking, false);
 		playerState.UpdateStateOnStopMoving();
 		//isMoving = false;
 	}
 
 	public void StartWalking(Vector3 destination)
 	{
-		stAnimator.SetBool(isWalking, true);
+		//stAnimator.SetBool(isWalking, true);
 		navAgent.SetDestination(destination);
-		onDestinationReached = OnDestinationReached;
+		
 		//isMoving = true;
 		playerState.UpdateStateOnStartMoving();
+		onDestinationReached = OnDestinationReached;
+		Debugger.UpdateMessage("Started Walking");
 	}
 	
 	public void HandleCurrentState(PlayerStateType currentState, GameObject currentInteractable)
@@ -373,10 +351,12 @@ public class PlayerController : MonoBehaviour
 
 	private void HandleWalkWithOrbState()
 	{
-		if (currentHeldOrb != null && Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButtonDown(1))
 		{
 			DropCurrentOrb();
 			playerState.UpdateStateOnStartMoving();
+			//AnimationStates.ChangeToDrop();
+			Debugger.UpdateMessage("Dropped orb walking");
 		}
 	}
 
@@ -384,33 +364,44 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(1))
 		{
+			print("*** HandleIdleWithOrbState: right click drop orb ");
 			DropCurrentOrb();
-			playerState.UpdateStateOnStopMoving();
+			//playerState.UpdateStateOnStopMoving();
+			Debugger.UpdateMessage("Dropped orb idling");
 		}
 	}
 
 	private void HandlePickupState(GameObject currentInteractable)
 	{
-		if (currentHeldOrb == null && (Input.GetMouseButtonDown(1)))
+		if (currentHeldOrb == null)
 		{
-			PickUpController currentOrb = currentInteractable.GetComponent<PickUpController>();
-			if (currentOrb != null)
+			print("*** HandlePickupState: currentHeldOrb is null");
+			currentHeldOrbController = currentInteractable.GetComponent<PickUpController>();
+			if (currentHeldOrbController != null)
 			{
-				currentOrb.PickUpObject();
+				print("*** HandlePickupState: currentOrb is not null");
+				currentHeldOrbController.PickUpObject();
 				SetHeldOrb(currentInteractable);
+				
+				AnimationStates.ChangeToPickUp();
+				
+				Debugger.UpdateMessage("Picked up orb");
 			}
+			playerState.UpdateStateOnStopMoving();
 		}
 	}
-
+	
+	//TODO: FIX SNAPPING TO PODIUM
+	//TODO: make transition between walking with orb and idling without?
 	private void HandleNextToPodiumWithOrbState(GameObject currentInteractable)
 	{
 		if (Input.GetMouseButtonDown(1))
 		{
-			PickUpController currentOrb = currentInteractable.GetComponent<PickUpController>();
-			if (currentOrb != null)
+			print(" *** HandleNextToPodiumWithOrbState: mouse down, dropping orb");
+			//PickUpController currentOrb = currentInteractable.GetComponent<PickUpController>();
+			if (currentHeldOrb != null)
 			{
-				currentOrb.DropObject();
-				playerState.UpdateStateOnStopMoving();
+				DropCurrentOrb();
 			}
 		}
 	}

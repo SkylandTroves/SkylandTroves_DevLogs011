@@ -13,6 +13,8 @@ TagManager:
   - ChargeArea
   - Wheel
   - Podium
+  - usedOrb
+  - Boat
   layers:
   - Default
   - TransparentFX
