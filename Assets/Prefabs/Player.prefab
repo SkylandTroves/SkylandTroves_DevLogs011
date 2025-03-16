@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 5830348337551467824}
   - component: {fileID: 5181943425401161848}
   - component: {fileID: 4975260070658855728}
+  - component: {fileID: 1677122417055758582}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6565ea6141ea34a6f8b1b7ec81398f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationStates: {fileID: 0}
+  AnimationStates: {fileID: 1677122417055758582}
   clickParticle: {fileID: 7081818284377541030, guid: e75ea7f091702434cbca7800b050a052, type: 3}
   stAnimator: {fileID: 2790724665313000117}
 --- !u!114 &6399093907994181243
@@ -268,9 +269,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe8326af97abe844b55e12cab5a48b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationStates: {fileID: 0}
+  AnimationStates: {fileID: 1677122417055758582}
   playerController: {fileID: 6917668786559360460}
   currentInteractable: {fileID: 0}
+--- !u!114 &1677122417055758582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789051471155413835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06870a178ad31514a8d84a4f9a9b2cf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stAnimator: {fileID: 2790724665313000117}
 --- !u!1 &6093932992311882126
 GameObject:
   m_ObjectHideFlags: 0

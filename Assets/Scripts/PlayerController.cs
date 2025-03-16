@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 				onDestinationReached = null;
 				
 				//playerState.UpdateStateOnStopMoving();
-				StopWalking();
+				//StopWalking();
 			}
 			/*else
 			{

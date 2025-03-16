@@ -127,7 +127,7 @@ public class PlayerState : MonoBehaviour
             {
                 print("*** UpdateStateOnStopMoving: closest object was null");
             }
-
+            
             if (playerController.IsCarryingOrb())
             {
                 AnimationStates.UpdateState(PlayerStateType.IdleWithOrb);
