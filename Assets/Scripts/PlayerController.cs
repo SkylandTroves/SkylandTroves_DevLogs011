@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 	private NavMeshAgent navAgent;
 	private Action onDestinationReached;
 	private GameObject currentHeldOrb;
-	private PickUpController currentHeldOrbController;
+	//private PickUpController currentHeldOrbController;
 	private bool isMoving = false;
 
 	private const string isWalking = "IsWalking";
@@ -193,7 +193,6 @@ public class PlayerController : MonoBehaviour
 		{
 			method.Invoke();
 		}
-
 		methodsToCallWhenReachDestination = new List<Action>();
 		StopWalking();
 		
@@ -236,11 +235,11 @@ public class PlayerController : MonoBehaviour
 		if (currentHeldOrb != null)
 		{
 			print("*** DropCurrentOrb: dropping currentHeldOrb");
-			Debugger.UpdateMessage("dropcurrentorb: dropping");
-			//PickUpController orbController = currentHeldOrb.GetComponent<PickUpController>();
-			if (currentHeldOrbController != null)
+			//Debugger.UpdateMessage("dropcurrentorb: dropping");
+			PickUpController orbController = currentHeldOrb.GetComponent<PickUpController>();
+			if (currentHeldOrb != null)
 			{
-				currentHeldOrbController.DropObject();
+				orbController.DropObject();
 				currentHeldOrb = null;
 			}
 		}
@@ -300,7 +299,7 @@ public class PlayerController : MonoBehaviour
 		//isMoving = true;
 		playerState.UpdateStateOnStartMoving();
 		onDestinationReached = OnDestinationReached;
-		Debugger.UpdateMessage("Started Walking");
+		//Debugger.UpdateMessage("Started Walking");
 	}
 	
 	public void HandleCurrentState(PlayerStateType currentState, GameObject currentInteractable)
@@ -356,7 +355,7 @@ public class PlayerController : MonoBehaviour
 			DropCurrentOrb();
 			playerState.UpdateStateOnStartMoving();
 			//AnimationStates.ChangeToDrop();
-			Debugger.UpdateMessage("Dropped orb walking");
+			//Debugger.UpdateMessage("Dropped orb walking");
 		}
 	}
 
@@ -367,7 +366,7 @@ public class PlayerController : MonoBehaviour
 			print("*** HandleIdleWithOrbState: right click drop orb ");
 			DropCurrentOrb();
 			//playerState.UpdateStateOnStopMoving();
-			Debugger.UpdateMessage("Dropped orb idling");
+			//Debugger.UpdateMessage("Dropped orb idling");
 		}
 	}
 
@@ -376,7 +375,7 @@ public class PlayerController : MonoBehaviour
 		if (currentHeldOrb == null)
 		{
 			print("*** HandlePickupState: currentHeldOrb is null");
-			currentHeldOrbController = currentInteractable.GetComponent<PickUpController>();
+			PickUpController currentHeldOrbController = currentInteractable.GetComponent<PickUpController>();
 			if (currentHeldOrbController != null)
 			{
 				print("*** HandlePickupState: currentOrb is not null");
@@ -385,7 +384,7 @@ public class PlayerController : MonoBehaviour
 				
 				AnimationStates.ChangeToPickUp();
 				
-				Debugger.UpdateMessage("Picked up orb");
+				//Debugger.UpdateMessage("Picked up orb");
 			}
 			playerState.UpdateStateOnStopMoving();
 		}

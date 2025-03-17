@@ -45,7 +45,7 @@ public class PlayerState : MonoBehaviour
             //Debug.Log("current state: walk");
             currentState = PlayerStateType.WalkWithoutOrb;
         }
-        Debugger.UpdateState(currentState.ToString());
+        //Debugger.UpdateState(currentState.ToString());
         AnimationStates.UpdateState(currentState);
     }
 
@@ -140,7 +140,7 @@ public class PlayerState : MonoBehaviour
 
             }
             
-            Debugger.UpdateState(currentState.ToString());
+            //Debugger.UpdateState(currentState.ToString());
         }
     }
 
