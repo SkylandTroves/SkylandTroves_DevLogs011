@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	//private Wheel currentWheel;
 
 	private PlayerState playerState;
+	public PauseMenu pauseMenu;
 	private void Awake()
 	{
 		navAgent = GetComponent<NavMeshAgent>();
@@ -140,14 +141,14 @@ public class PlayerController : MonoBehaviour
 			}
 
 			// Check if clickParticle is not null before instantiating
-			if (clickParticle != null)
+			if (clickParticle != null && !pauseMenu.GetIsPaused())
 			{
 				// instantiate instance of particle effect 
 				Instantiate(clickParticle, hit.point, Quaternion.identity);
 			}
 			else
 			{
-				Debug.LogWarning("Click particle is not assigned!");
+				Debug.LogWarning("Click particle is not assigned or game is paused!");
 			}
 		}
 
@@ -156,10 +157,10 @@ public class PlayerController : MonoBehaviour
 			DropCurrentOrb();
 		}*/
 
-		if (Input.GetKeyDown(KeyCode.Escape))
+		/*if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			QuitGame();
-		}
+		}*/
 
 		// - - - - following is for debugging only - - - - - 
 		Ray ray02 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -378,16 +379,26 @@ public class PlayerController : MonoBehaviour
 			PickUpController currentHeldOrbController = currentInteractable.GetComponent<PickUpController>();
 			if (currentHeldOrbController != null)
 			{
+				AnimationStates.ChangeToPickUp();
 				print("*** HandlePickupState: currentOrb is not null");
-				currentHeldOrbController.PickUpObject();
+				StartCoroutine(WaitFor20Seconds(currentHeldOrbController));
+				
 				SetHeldOrb(currentInteractable);
 				
-				AnimationStates.ChangeToPickUp();
+				
 				
 				//Debugger.UpdateMessage("Picked up orb");
 			}
 			playerState.UpdateStateOnStopMoving();
 		}
+	}
+	
+	IEnumerator WaitFor20Seconds(PickUpController currentHeldOrbController)
+	{
+		Debug.Log("Start waiting...");
+		yield return new WaitForSeconds(.75f); // Wait for 0.20 seconds
+		currentHeldOrbController.PickUpObject();
+		Debug.Log("Finished waiting!");
 	}
 	
 	//TODO: FIX SNAPPING TO PODIUM

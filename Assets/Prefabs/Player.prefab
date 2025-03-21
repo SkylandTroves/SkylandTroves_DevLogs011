@@ -142,6 +142,7 @@ MonoBehaviour:
   AnimationStates: {fileID: 1677122417055758582}
   clickParticle: {fileID: 7081818284377541030, guid: e75ea7f091702434cbca7800b050a052, type: 3}
   stAnimator: {fileID: 2790724665313000117}
+  pauseMenu: {fileID: 7735024104634455072, guid: 8b10cdc62cc025d429f41ef480e3b4e5, type: 3}
 --- !u!114 &6399093907994181243
 MonoBehaviour:
   m_ObjectHideFlags: 0
