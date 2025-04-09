@@ -144,6 +144,15 @@ public class PlayerState : MonoBehaviour
         }
     }
 
+    public void dropOrb()
+    {
+        if (currentState == PlayerStateType.IdleWithOrb)
+        {
+            currentState = PlayerStateType.IdleWithoutOrb;
+        }
+        
+        AnimationStates.UpdateState(currentState);
+}
     private ObjectInformation FindClosestObject()
     {
         
