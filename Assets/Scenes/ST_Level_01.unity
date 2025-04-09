@@ -4800,6 +4800,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: clickSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 299f89e22d85d3f41ba893997daa3a2c, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: dropBallSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d5bc3d025e4e67840913cb5abcc31e32, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: pickUpBallSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 36cfd0461a63cce41ac4f017913ce1a7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
