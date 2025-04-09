@@ -40,6 +40,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+        Debugger.Enable();
         StartCoroutine(PauseBeforeLoadPlayer());
     }
     

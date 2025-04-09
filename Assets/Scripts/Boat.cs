@@ -100,8 +100,10 @@ public class Boat : MonoBehaviour
 
             if (GetComponent<MovingPlatform>() is MovingPlatform movingPlatform)
             {
-                Player.transform.SetParent(movingPlatform.transform);
-                KeepPlayerFromMoving();
+                //Player.transform.SetParent(movingPlatform.transform);
+                //KeepPlayerFromMoving();
+                //movingPlatform.StartMoving();
+                OnMovingPlatformStarted();
                 movingPlatform.StartMoving();
 
                 if (isLevelSwitchCatalyst)

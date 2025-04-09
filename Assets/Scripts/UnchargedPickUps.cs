@@ -28,6 +28,7 @@ public class UnchargedPickUps : PickUpController
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("*** IN AREA W ORB" + other.gameObject.tag);
         if (other.gameObject.CompareTag("ChargeArea"))
         {
             Debug.Log("Orb entered charge area, switching to charged version...");
@@ -62,7 +63,10 @@ public class UnchargedPickUps : PickUpController
            */ // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             
             
-            player.SetHeldOrb(newOrb);
+            if (player.IsCarryingOrb())
+            {
+                player.SetHeldOrb(newOrb);
+            }
             //destroy the uncharged orb (or deactivate it)
             Destroy(gameObject); //ameObject.SetActive(false) //to disable instead
             

@@ -15,14 +15,18 @@ public class UnchargedPodium : PodiumController
 
     public override void OnCollisionEnter(Collision other)
     {
+        print("*** OVERRIDE OnCollisionEnter : UNCHARGED PODIUM SNAPPING ORB");
         bool isCharged = other.gameObject.CompareTag("energyOrbCharged");
         if (other.gameObject == Orb && isCharged)
         {
+            //TODO: podiumcontroller.cs oncollisionenter not being triggered which means snapOrb isnt being called 
+            
+            print(" *** OVERRIDE OnCollisionEnter: SWITCH TO CHARGED PODIUM");
             SwitchToChargedPodium();
         }
         else if (other.gameObject == Orb &&!isCharged)
         {
-            Debug.Log("put uncharged on podium");
+            print(" *** OVERRIDE OnCollisionEnter: put uncharged on podium ");
             PutUnChargedOnPodium();
         }
         

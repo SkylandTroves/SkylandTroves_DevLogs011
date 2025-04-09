@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - movingPlatform
+  - mapGround
+  - energyOrbUncharged
+  - energyOrbCharged
+  - podiumUncharged
+  - podiumCharged
+  - ChargeArea
+  - Wheel
+  - Podium
+  - usedOrb
+  - Boat
   layers:
   - Default
   - TransparentFX
@@ -11,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

@@ -1,10 +1,4 @@
-/*
-Full Name: Aliya Rafei
-Student ID:  2391746
-rafei@chapman.edu
-GAME 340 - 01
-Assignment:  Final Project Submission
-*/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,33 +6,12 @@ using UnityEngine;
 public class Wheel : MonoBehaviour
 {
    [SerializeField] private List<MovingPlatform> movingPlatforms;
-   [SerializeField] private PlayerController player;
    //[SerializeField] private PickUpController pickUps; // use if not using a list 
-   
-   private bool turnRequested = false;
    private bool isTurningObject = false;
-   private float distancePlayerAndWheel;
-   private float distanceToWheel = 2f; // Maximum distance to allow wheel hold
    
-   
-   private void Update()
+   public void HandleWheelScroll()
    {
-      StoreDistanceToWheel();
-      HandleWheelScroll(distancePlayerAndWheel);
-   }
-   
-   private void OnMouseDown()
-   {
-      Debug.Log("You are now clicking on the wheel ");
-      turnRequested = true;
-      //player.AddToMethodsToCallWhenReachDestination(TurnObject);
-      
-   }
-   
-   private void HandleWheelScroll(float checkedDistancePlayerAndWheel)
-   {
-      if (turnRequested && checkedDistancePlayerAndWheel <= distanceToWheel)
-      {
+
          isTurningObject = true; // The player is allowed to turn the wheel
 
          // Detect mouse scroll input
@@ -50,7 +23,7 @@ public class Wheel : MonoBehaviour
             {
                // Adjust wheel progress based on scroll input with speed restriction
                float currentProgress = movingPlatform.GetWheelProgress();
-               float maxChange = 0.01f; // Maximum allowed change per frame
+               float maxChange = 0.03f; // Maximum allowed change per frame
                float clampedScrollInput = Mathf.Clamp(scrollInput, -maxChange, maxChange);
                float newProgress = Mathf.Clamp(currentProgress + clampedScrollInput, 0, 1);
 
@@ -58,8 +31,7 @@ public class Wheel : MonoBehaviour
                movingPlatform.SetWheelProgress(newProgress);
                TurnWheelObject(newProgress);
 
-               Debug.Log("wheel is turning " + newProgress);
-            }
+               //Debug.Log("wheel is turning " + newProgress);
          }
       }
    }
@@ -76,8 +48,4 @@ public class Wheel : MonoBehaviour
       transform.localEulerAngles = new Vector3(currentRotation.x, currentRotation.y, newZRotation);
    }
 
-   public void StoreDistanceToWheel()
-   {
-      distancePlayerAndWheel = Vector3.Distance(player.transform.position, transform.position);
-   }
 }
