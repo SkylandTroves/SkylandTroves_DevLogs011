@@ -5,16 +5,13 @@ using UnityEngine;
 public class SoundController : MonoBehaviour
 {
     public static SoundController instance;
-    [SerializeField] private AudioSource soundFXObject;
-    [SerializeField] private AudioSource loopedSFXObject;
+    [SerializeField] private AudioSource ClickSFXObject;
+    [SerializeField] private AudioSource chargeAreaSFXObject;
     [SerializeField] private AudioClip pickUpBallSFX;
     [SerializeField] private AudioClip dropBallSFX;
-    [SerializeField] private AudioClip clickSFX;
-    
     public AudioClip PickUpBallSFX => pickUpBallSFX;
     public AudioClip DropBallSFX => dropBallSFX;
-    public AudioClip ClickSFX => clickSFX;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -33,7 +30,7 @@ public class SoundController : MonoBehaviour
     {
   
         // spawn in the gameObject
-        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        AudioSource audioSource = Instantiate(ClickSFXObject, spawnTransform.position, Quaternion.identity);
         // assign the clip
         audioSource.clip = audioClip;
         // assign volume
@@ -48,7 +45,7 @@ public class SoundController : MonoBehaviour
     
     public AudioSource PlayLoopingSFXInstance(AudioClip clip, Transform spawnTransform, float volume = 1f)
     {    
-        AudioSource audioSource = Instantiate(loopedSFXObject, spawnTransform.position, Quaternion.identity);
+        AudioSource audioSource = Instantiate(chargeAreaSFXObject, spawnTransform.position, Quaternion.identity);
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.loop = true;
@@ -60,9 +57,9 @@ public class SoundController : MonoBehaviour
     
     public void StopLoopingSFX()
     {
-        if (loopedSFXObject != null)
+        if (chargeAreaSFXObject != null)
         {
-            loopedSFXObject.Stop();
+            chargeAreaSFXObject.Stop();
         }
         else
         {
