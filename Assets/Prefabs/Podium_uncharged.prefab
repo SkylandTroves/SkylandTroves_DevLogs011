@@ -155,5 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Orb: {fileID: 0}
   movingPlatforms: []
+  PowerUpStationIdle: {fileID: 8300000, guid: a1b339906c7414222a502d9da51c1f32, type: 3}
   orbPositionOnPodium: {fileID: 465106980759826104}
   chargedPodiumPrefab: {fileID: 4597947996385094946, guid: 3795891dbd3439e4b81c1345cf8d9ae1, type: 3}

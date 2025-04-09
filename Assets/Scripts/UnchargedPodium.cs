@@ -41,15 +41,15 @@ public class UnchargedPodium : PodiumController
     {
         if (chargedPodiumPrefab != null)
         {
-            // Instantiate the charged podium at the current position and rotation of the uncharged pofium
+            // Instantiate the charged podium at the current position and rotation of the uncharged podium
             GameObject newPodium = Instantiate(chargedPodiumPrefab, transform.position, transform.rotation);
 
             PodiumController podiumController = newPodium.GetComponent<PodiumController>();
             podiumController.SetOrb(GetOrb());
             podiumController.SetMovingPlatforms(GetMovingPlatformsList());
             podiumController.transform.SetParent(transform.parent);
-            
-            
+
+
             GetOrb().GetComponent<Rigidbody>().useGravity = false;
             GetOrb().GetComponentInChildren<Collider>().enabled = false; 
             GetOrb().transform.SetParent(podiumController.GetOrbPositionOnPodium());

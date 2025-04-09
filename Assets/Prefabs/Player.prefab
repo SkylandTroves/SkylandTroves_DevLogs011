@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 5181943425401161848}
   - component: {fileID: 4975260070658855728}
   - component: {fileID: 1677122417055758582}
+  - component: {fileID: 6742040120798337892}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -142,6 +143,7 @@ MonoBehaviour:
   AnimationStates: {fileID: 1677122417055758582}
   clickParticle: {fileID: 7081818284377541030, guid: e75ea7f091702434cbca7800b050a052, type: 3}
   stAnimator: {fileID: 2790724665313000117}
+  OnClickSFX: {fileID: 8300000, guid: d39b15311410c4ac5af61431f1008389, type: 3}
 --- !u!114 &6399093907994181243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +287,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stAnimator: {fileID: 2790724665313000117}
+--- !u!81 &6742040120798337892
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789051471155413835}
+  m_Enabled: 1
 --- !u!1 &6093932992311882126
 GameObject:
   m_ObjectHideFlags: 0

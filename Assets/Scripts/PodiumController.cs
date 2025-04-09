@@ -17,9 +17,9 @@ public class PodiumController : ObservedSubject
     
     [SerializeField] private List<MovingPlatform> movingPlatforms; // List of MovingPlatform objects
     // in the editor say how many platforms are effected then wire up their game objects 
-    
+    [SerializeField] private AudioClip PowerUpStationIdle;
     [SerializeField] private Transform orbPositionOnPodium;
-    
+
     void Start()
     {
         //NotifyObservers();
@@ -40,8 +40,10 @@ public class PodiumController : ObservedSubject
         // Parent the orb to the podium
         Orb.transform.SetParent(orbPositionOnPodium);
         Orb.transform.localPosition = Vector3.zero; // Reset local position to place the orb exactly in the hand's front position
-
         
+        // This SFX must loop
+        var loopInstance = SoundController.instance.PlayLoopingSFXInstance(PowerUpStationIdle, transform, 1f);
+
         // Disable physics on TriggerObject (the orb) while it's held
         Rigidbody orbRB = Orb.GetComponent<Rigidbody>();
         if (orbRB != null)
