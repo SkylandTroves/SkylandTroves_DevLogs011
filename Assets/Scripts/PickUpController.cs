@@ -31,6 +31,7 @@ public class PickUpController : MonoBehaviour
             return;*/
 
         print(" *** PickUpObject: picking up object and setting parent");
+        player.HandlePickUpOrbStart();
 
         // Parent the orb to the player's hand front position
         transform.SetParent(handFrontPosition);
@@ -59,8 +60,11 @@ public class PickUpController : MonoBehaviour
 
     public void DropObject()
     {
+        player.HandlePickUpOrbEnd();
         transform.SetParent(null); // Un-parent the object from the hand
         Rigidbody rb = GetComponent<Rigidbody>();
+       
+
 
         if (rb != null)
         {
