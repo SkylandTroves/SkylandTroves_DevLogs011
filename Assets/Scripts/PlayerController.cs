@@ -382,6 +382,7 @@ public class PlayerController : MonoBehaviour
 				AnimationStates.ChangeToPickUp();
 				print("*** HandlePickupState: currentOrb is not null");
 				StartCoroutine(WaitFor20Seconds(currentHeldOrbController));
+				//currentHeldOrbController.PickUpObject();
 				
 				SetHeldOrb(currentInteractable);
 				
