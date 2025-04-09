@@ -80,7 +80,10 @@ public class PlayerController : MonoBehaviour
 			Debug.LogWarning("Agent is NOT on the NavMesh");
 		}
 		agent.transform.position = endPos; // Ensure final position is accurate
-		agent.CompleteOffMeshLink();
+		if (agent.isOnNavMesh)
+		{
+			agent.CompleteOffMeshLink();
+		}
 	}
 	private void CheckArrivedAtDestination()
 	{
