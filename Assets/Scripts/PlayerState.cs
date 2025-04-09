@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework.Constraints;
 using TMPro;
 using UnityEngine;
 
@@ -23,8 +24,15 @@ public class PlayerState : MonoBehaviour
         playerController = playerObject.GetComponent<PlayerController>();
     }
 
+    public float pickupCooldown = 2f;
+    private const float pickupCooldownDuration = 0.5f;
+
     private void Update()
     {
+        if (pickupCooldown > 0)
+        {
+            pickupCooldown -= Time.deltaTime;
+        }
         playerController.HandleCurrentState(currentState, currentInteractable);
 //        StateDebugText.text = currentState.ToString();
     }
@@ -94,8 +102,9 @@ public class PlayerState : MonoBehaviour
                 }
                 else
                 {
-                    if (closestObject.ObjectType == "Orb")
+                    if (closestObject.ObjectType == "Orb" && pickupCooldown <= 0f)
                     {
+                        
                         Debug.Log("current state set to: pickup");
                         currentInteractable = closestObject.ObjectGameObject;
                         currentState = PlayerStateType.NextToOrb;
@@ -146,9 +155,15 @@ public class PlayerState : MonoBehaviour
 
     public void dropOrb()
     {
+        pickupCooldown = pickupCooldownDuration;
+
         if (currentState == PlayerStateType.IdleWithOrb)
         {
             currentState = PlayerStateType.IdleWithoutOrb;
+        }
+        else
+        {
+            currentState = PlayerStateType.WalkWithoutOrb;
         }
         
         AnimationStates.UpdateState(currentState);
