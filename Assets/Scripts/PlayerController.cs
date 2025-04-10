@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 	//[SerializeField] private PickUpController pickUp;
 	[SerializeField] private GameObject clickParticle;
 	[SerializeField] private Animator stAnimator;
-	[SerializeField] private AudioClip OnClickSFX;
+	//[SerializeField] private AudioClip OnClickSFX;
 
 	private List<PickUpController> pickUps;
 	private NavMeshAgent navAgent;
@@ -147,8 +147,8 @@ public class PlayerController : MonoBehaviour
 			{
 				// instantiate instance of particle effect 
 				Instantiate(clickParticle, hit.point, Quaternion.identity);
-
-				SoundController.instance.PlaySFX(SoundController.instance.ClickSFX, transform, 1f);
+				
+				SoundController.instance.PlaySFX(SoundController.instance.ClickSFX, transform, 1f); //COMMENTED OUT (kevin)
 			}
 			else
 			{

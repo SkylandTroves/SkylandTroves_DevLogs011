@@ -9210,6 +9210,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: dropBallSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 98dd4948e7e789f468ae3a959860a857, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: pickUpBallSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d2ed77dc3c731764182431066300fb80, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: BIGmovingPlatformSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 97dcf6cfce9e77a42ad208407df15259, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: MEDmovingPlatformSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ee98136d971da344b9fb0278f183024c, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: SMALLmovingPlatformSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 14efc0546ba30e74091778384296c212, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9431,7 +9451,7 @@ GameObject:
   - component: {fileID: 1827504502}
   m_Layer: 0
   m_Name: fallingBoatBlock
-  m_TagString: Untagged
+  m_TagString: MediumPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10143,7 +10163,7 @@ GameObject:
   - component: {fileID: 1907572310}
   m_Layer: 0
   m_Name: castleRising
-  m_TagString: Untagged
+  m_TagString: BigPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10232,7 +10252,7 @@ MonoBehaviour:
   UsesWheel: 0
   positionA: {fileID: 1508205306}
   positionB: {fileID: 1268980693}
-  SecondsToMove: 2
+  SecondsToMove: 10
   isBoat: 0
   wheelProgress: 0
   platformProgress: 0

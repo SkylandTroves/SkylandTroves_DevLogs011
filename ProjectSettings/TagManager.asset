@@ -15,6 +15,9 @@ TagManager:
   - Podium
   - usedOrb
   - Boat
+  - MediumPlatform
+  - BigPlatform
+  - SmallPlatform
   layers:
   - Default
   - TransparentFX
