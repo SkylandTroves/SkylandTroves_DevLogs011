@@ -4800,6 +4800,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: clickSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 10047a8091435cc4b9fe7d926ba4b573, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: dropBallSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 60f0f88fcb207ef4ead2327eb11224ca, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: pickUpBallSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ccc81a5d8b4a38e47b594637a7ebcf1e, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: ClickSFXObject
+      value: 
+      objectReference: {fileID: 4347465882957405659, guid: e76a7bebef1abfe4487cdf9fbf928d6c, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: chargeAreaSFXObject
+      value: 
+      objectReference: {fileID: 7676609988541400178, guid: aa99921b94418ca45a3d802f3d0ea0e5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

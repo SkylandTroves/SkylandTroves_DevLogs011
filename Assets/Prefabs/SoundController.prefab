@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abd9e80636f99e47bbcda092a283738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundFXObject: {fileID: 4347465882957405659, guid: e76a7bebef1abfe4487cdf9fbf928d6c, type: 3}
-  loopedSFXObject: {fileID: 7676609988541400178, guid: aa99921b94418ca45a3d802f3d0ea0e5, type: 3}
+  ClickSFXObject: {fileID: 4347465882957405659, guid: e76a7bebef1abfe4487cdf9fbf928d6c, type: 3}
+  chargeAreaSFXObject: {fileID: 7676609988541400178, guid: aa99921b94418ca45a3d802f3d0ea0e5, type: 3}
+  pickUpBallSFX: {fileID: 8300000, guid: 36cfd0461a63cce41ac4f017913ce1a7, type: 3}
+  dropBallSFX: {fileID: 8300000, guid: d5bc3d025e4e67840913cb5abcc31e32, type: 3}

@@ -1866,7 +1866,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: chargeArea
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
