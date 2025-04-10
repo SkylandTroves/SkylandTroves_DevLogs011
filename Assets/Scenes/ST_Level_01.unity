@@ -135,9 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6565ea6141ea34a6f8b1b7ec81398f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &80235591 stripped
+--- !u!4 &39382942 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8650357471234448553, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1667807965015771061, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
   m_PrefabInstance: {fileID: 8272692434163213210}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &88420336
@@ -4258,7 +4258,7 @@ PrefabInstance:
     - target: {fileID: 2878123547465486188, guid: 595fedf8d9ad48345af10a9acbfff5ca, type: 3}
       propertyPath: handFrontPosition
       value: 
-      objectReference: {fileID: 80235591}
+      objectReference: {fileID: 39382942}
     - target: {fileID: 2878123547465486188, guid: 595fedf8d9ad48345af10a9acbfff5ca, type: 3}
       propertyPath: checkWhenToRestOrbValue
       value: -5

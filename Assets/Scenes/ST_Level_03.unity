@@ -2669,7 +2669,7 @@ PrefabInstance:
     - target: {fileID: 2878123547465486188, guid: 595fedf8d9ad48345af10a9acbfff5ca, type: 3}
       propertyPath: handFrontPosition
       value: 
-      objectReference: {fileID: 1754603573}
+      objectReference: {fileID: 1754603574}
     - target: {fileID: 2878123547465486188, guid: 595fedf8d9ad48345af10a9acbfff5ca, type: 3}
       propertyPath: checkWhenToRestOrbValue
       value: -3
@@ -6461,6 +6461,11 @@ MonoBehaviour:
 --- !u!4 &1754603573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8650357471234448553, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+  m_PrefabInstance: {fileID: 1754603570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1754603574 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1667807965015771061, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
   m_PrefabInstance: {fileID: 1754603570}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1754603575 stripped

@@ -1552,6 +1552,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8650357471234448553, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
   m_PrefabInstance: {fileID: 269838980}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &269838984 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1667807965015771061, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+  m_PrefabInstance: {fileID: 269838980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &319816741
 GameObject:
   m_ObjectHideFlags: 0
@@ -7136,7 +7141,7 @@ PrefabInstance:
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: handFrontPosition
       value: 
-      objectReference: {fileID: 269838983}
+      objectReference: {fileID: 269838984}
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: checkWhenToRestOrbValue
       value: -2
@@ -7771,7 +7776,7 @@ PrefabInstance:
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: handFrontPosition
       value: 
-      objectReference: {fileID: 269838983}
+      objectReference: {fileID: 269838984}
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: checkWhenToRestOrbValue
       value: -2

@@ -23,7 +23,6 @@ public class AnimationStates : MonoBehaviour
     
     IEnumerator PlayPickupAnimation(bool isOrbOnPodium)
     {
-        print("ISORBONPODIUM: "+isOrbOnPodium);
         if (isOrbOnPodium)
         {
             print(" *** PlayPickupAnimation: PICKING UP FROM PODIUM");

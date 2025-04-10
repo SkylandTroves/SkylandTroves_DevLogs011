@@ -5,6 +5,8 @@ rafei@chapman.edu
 GAME 340 - 01
 Assignment:  Final Project Submission
 */
+
+using System;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -35,7 +37,7 @@ public class PickUpController : MonoBehaviour
 
         // Parent the orb to the player's hand front position
         transform.SetParent(handFrontPosition);
-        transform.localPosition = Vector3.zero; // Reset local position to place the orb exactly in the hand's front position
+        transform.localPosition = new Vector3(0f, 0f, -.13f); // Reset local position to place the orb exactly in the hand's front position
 
         // Disable physics while holding
         Rigidbody rb = GetComponent<Rigidbody>();

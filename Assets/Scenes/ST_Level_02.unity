@@ -3438,11 +3438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6565ea6141ea34a6f8b1b7ec81398f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1418085251 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8650357471234448553, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
-  m_PrefabInstance: {fileID: 1418085248}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1464289290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3720,7 +3715,7 @@ PrefabInstance:
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: handFrontPosition
       value: 
-      objectReference: {fileID: 1418085251}
+      objectReference: {fileID: 1854440245}
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: checkWhenToRestOrbValue
       value: -3
@@ -4010,6 +4005,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769975415}
   m_Mesh: {fileID: 5546626227350007004, guid: 67d88e77f12c4d04d928e04d1623a0ee, type: 3}
+--- !u!4 &1854440245 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1667807965015771061, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+  m_PrefabInstance: {fileID: 1418085248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1880610198
 GameObject:
   m_ObjectHideFlags: 0
