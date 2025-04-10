@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
 				// instantiate instance of particle effect 
 				Instantiate(clickParticle, hit.point, Quaternion.identity);
 
-				SoundController.instance.PlaySFX(SoundController.instance.ClickSFX, transform, 1f);
+//				SoundController.instance.PlaySFX(SoundController.instance.ClickSFX, transform, 1f);
 			}
 			else
 			{
@@ -387,9 +387,10 @@ public class PlayerController : MonoBehaviour
 			PickUpController currentHeldOrbController = currentInteractable.GetComponent<PickUpController>();
 			if (currentHeldOrbController != null)
 			{
-				AnimationStates.ChangeToPickUp();
+				AnimationStates.ChangeToPickUp(playerState.getIsOrbOnPodium());
 				print("*** HandlePickupState: currentOrb is not null");
-				StartCoroutine(WaitFor20Seconds(currentHeldOrbController));
+				//StartCoroutine(WaitFor20Seconds(currentHeldOrbController));
+				currentHeldOrbController.PickUpObject();
 				
 				SetHeldOrb(currentInteractable);
 				
@@ -399,6 +400,7 @@ public class PlayerController : MonoBehaviour
 			}
 			playerState.UpdateStateOnStopMoving();
 		}
+		playerState.setIsOrbOnPodium(false);
 	}
 	
 	IEnumerator WaitFor20Seconds(PickUpController currentHeldOrbController)
