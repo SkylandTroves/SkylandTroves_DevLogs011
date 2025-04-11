@@ -10,10 +10,10 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioSource chargeAreaSFXObject;
     [SerializeField] private AudioClip pickUpBallSFX;
     [SerializeField] private AudioClip dropBallSFX;
-    
+
     public AudioClip PickUpBallSFX => pickUpBallSFX;
     public AudioClip DropBallSFX => dropBallSFX;
-    
+
     private void Awake()
     {
         if (instance == null)

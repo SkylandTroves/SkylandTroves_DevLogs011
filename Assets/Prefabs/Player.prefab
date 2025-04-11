@@ -144,7 +144,7 @@ MonoBehaviour:
   AnimationStates: {fileID: 1677122417055758582}
   clickParticle: {fileID: 7081818284377541030, guid: e75ea7f091702434cbca7800b050a052, type: 3}
   stAnimator: {fileID: 2790724665313000117}
-  OnClickSFX: {fileID: 0}
+  OnClickSFX: {fileID: 8300000, guid: 10047a8091435cc4b9fe7d926ba4b573, type: 3}
   pauseMenu: {fileID: 0}
 --- !u!114 &6399093907994181243
 MonoBehaviour:

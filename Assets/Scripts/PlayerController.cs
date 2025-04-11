@@ -147,8 +147,8 @@ public class PlayerController : MonoBehaviour
 			{
 				// instantiate instance of particle effect 
 				Instantiate(clickParticle, hit.point, Quaternion.identity);
-
-				SoundController.instance.PlaySFX(OnClickSFX, transform, 1f);			}
+				SoundController.instance.PlaySFX(OnClickSFX, transform, 1f);
+			}
 			else
 			{
 				Debug.LogWarning("Click particle is not assigned or game is paused!");

@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClickSFXObject: {fileID: 4347465882957405659, guid: e76a7bebef1abfe4487cdf9fbf928d6c, type: 3}
   chargeAreaSFXObject: {fileID: 7676609988541400178, guid: aa99921b94418ca45a3d802f3d0ea0e5, type: 3}
-  pickUpBallSFX: {fileID: 8300000, guid: ccc81a5d8b4a38e47b594637a7ebcf1e, type: 3}
-  dropBallSFX: {fileID: 8300000, guid: 60f0f88fcb207ef4ead2327eb11224ca, type: 3}
+  pickUpBallSFX: {fileID: 8300000, guid: 36cfd0461a63cce41ac4f017913ce1a7, type: 3}
+  dropBallSFX: {fileID: 8300000, guid: d5bc3d025e4e67840913cb5abcc31e32, type: 3}
