@@ -18,15 +18,19 @@ public class PlayerState : MonoBehaviour
     private GameObject playerObject;
     public PlayerController playerController;
     public GameObject currentInteractable;
+    public float pickupCooldown;
+    private const float pickupCooldownDuration = 0.5f;
+    private bool isOrbOnPodium;
+    
     public void Start()
     {
         playerObject = GameObject.FindWithTag("Player");
         playerController = playerObject.GetComponent<PlayerController>();
+        pickupCooldown = 0f;
+        isOrbOnPodium = false;
     }
 
-    public float pickupCooldown = 2f;
-    private const float pickupCooldownDuration = 0.5f;
-
+    
     private void Update()
     {
         if (pickupCooldown > 0)
@@ -102,12 +106,17 @@ public class PlayerState : MonoBehaviour
                 }
                 else
                 {
+                    print("*** PRINT COOLDOWN: " + pickupCooldown);
                     if (closestObject.ObjectType == "Orb" && pickupCooldown <= 0f)
                     {
-                        
                         Debug.Log("current state set to: pickup");
                         currentInteractable = closestObject.ObjectGameObject;
                         currentState = PlayerStateType.NextToOrb;
+                        if (currentInteractable.transform.parent != null &&
+                            currentInteractable.transform.parent.name == "OrbPositionOnPodium")
+                        {
+                            isOrbOnPodium = true;
+                        }
                     }
                     else if (closestObject.ObjectType == "Wheel")
                     {
@@ -161,13 +170,8 @@ public class PlayerState : MonoBehaviour
         {
             currentState = PlayerStateType.IdleWithoutOrb;
         }
-        else
-        {
-            currentState = PlayerStateType.WalkWithoutOrb;
-        }
-        
         AnimationStates.UpdateState(currentState);
-}
+    }
     private ObjectInformation FindClosestObject()
     {
         
@@ -211,8 +215,8 @@ public class PlayerState : MonoBehaviour
             .OrderBy(obj => obj.Distance) // Order by Distance
             .FirstOrDefault(); // Get the closest one or null if empty
         
-        Debug.Log("*** FindClosestObject: closest object is "+ closestObject.ObjectType);
-
+        Debug.Log("*** FindClosestObject: closest object is "+ closestObject.ObjectType + " " +closestObject.ObjectGameObject.tag);
+        
         if (!playerController.IsCarryingOrb())
         {
             print("*** FindClosestObject: We're NOT carrying an orb");
@@ -227,10 +231,21 @@ public class PlayerState : MonoBehaviour
                     .SelectMany(kv => kv.Value) // Flatten the lists
                     .OrderBy(obj => obj.Distance) // Order by Distance
                     .FirstOrDefault();
+                isOrbOnPodium = true;
             }
         }
         
         return closestObject;
+    }
+
+    public bool getIsOrbOnPodium()
+    {
+        return isOrbOnPodium;
+    }
+
+    public void setIsOrbOnPodium(bool setOrb)
+    {
+        isOrbOnPodium = setOrb;
     }
 
     private bool PodiumHasOrb(GameObject podiumObject)
