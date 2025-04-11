@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SoundController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioSource chargeAreaSFXObject;
     [SerializeField] private AudioClip pickUpBallSFX;
     [SerializeField] private AudioClip dropBallSFX;
+
     public AudioClip PickUpBallSFX => pickUpBallSFX;
     public AudioClip DropBallSFX => dropBallSFX;
 
