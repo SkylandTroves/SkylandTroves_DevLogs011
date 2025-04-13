@@ -31,9 +31,9 @@ public class PickUpController : MonoBehaviour
         Debug.Log("player is  " + distancePlayerAndOrb + " units away from orb");
         if (distancePlayerAndOrb > maxDistanceToOrb)
             return;*/
-
-        print(" *** PickUpObject: picking up object and setting parent");
         player.HandlePickUpOrbStart();
+        print(" *** PickUpObject: picking up object and setting parent");
+        
 
         // Parent the orb to the player's hand front position
         transform.SetParent(handFrontPosition);

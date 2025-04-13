@@ -2540,7 +2540,7 @@ GameObject:
   - component: {fileID: 1312570189}
   m_Layer: 0
   m_Name: movingPieceStair_01
-  m_TagString: movingPlatform
+  m_TagString: SmallPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4803,19 +4803,47 @@ PrefabInstance:
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: clickSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 10047a8091435cc4b9fe7d926ba4b573, type: 3}
+      objectReference: {fileID: 8300000, guid: 2402c023789d20b4bb01a744698ac299, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: dropBallSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 60f0f88fcb207ef4ead2327eb11224ca, type: 3}
+      objectReference: {fileID: 8300000, guid: 98dd4948e7e789f468ae3a959860a857, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: pickUpBallSFX
       value: 
-      objectReference: {fileID: 8300000, guid: ccc81a5d8b4a38e47b594637a7ebcf1e, type: 3}
+      objectReference: {fileID: 8300000, guid: d2ed77dc3c731764182431066300fb80, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
-      propertyPath: chargeAreaSFXObject
+      propertyPath: clickSFXs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: 'clickSFXs.Array.data[0]'
       value: 
-      objectReference: {fileID: 7676609988541400178, guid: aa99921b94418ca45a3d802f3d0ea0e5, type: 3}
+      objectReference: {fileID: 8300000, guid: 98dd4948e7e789f468ae3a959860a857, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: 'clickSFXs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ec0e6ee72bad54944a48f13c1ad31096, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: 'clickSFXs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2402c023789d20b4bb01a744698ac299, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: 'clickSFXs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 337003b248bd7054ca3b6c906eb5c3a7, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: 'clickSFXs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 38681a58aa6dd6d4286a4f924c3e6bc4, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: 'clickSFXs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d2ed77dc3c731764182431066300fb80, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: 'clickSFXs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d2ed77dc3c731764182431066300fb80, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5238,6 +5266,14 @@ PrefabInstance:
       propertyPath: OnClickSFX
       value: 
       objectReference: {fileID: 8300000, guid: 10047a8091435cc4b9fe7d926ba4b573, type: 3}
+    - target: {fileID: 6917668786559360460, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+      propertyPath: DropBallSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 60f0f88fcb207ef4ead2327eb11224ca, type: 3}
+    - target: {fileID: 6917668786559360460, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+      propertyPath: PickUpBallSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ccc81a5d8b4a38e47b594637a7ebcf1e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

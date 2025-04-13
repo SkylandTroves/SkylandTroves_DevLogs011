@@ -3562,7 +3562,7 @@ GameObject:
   - component: {fileID: 1066411100}
   m_Layer: 0
   m_Name: stairs
-  m_TagString: Untagged
+  m_TagString: MediumPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3582,7 +3582,7 @@ MonoBehaviour:
   UsesWheel: 0
   positionA: {fileID: 299049572}
   positionB: {fileID: 1808244789}
-  SecondsToMove: 2
+  SecondsToMove: 3
   isBoat: 0
   wheelProgress: 0
   platformProgress: 0
@@ -3709,7 +3709,7 @@ GameObject:
   - component: {fileID: 1070638596}
   m_Layer: 0
   m_Name: ramp
-  m_TagString: Untagged
+  m_TagString: SmallPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
