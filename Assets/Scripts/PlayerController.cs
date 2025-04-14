@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 	//[SerializeField] private PickUpController pickUp;
 	[SerializeField] private GameObject clickParticle;
 	[SerializeField] private Animator stAnimator;
-	//[SerializeField] private AudioClip OnClickSFX;
+	[SerializeField] private AudioClip OnClickSFX;
 
 	private List<PickUpController> pickUps;
 	private NavMeshAgent navAgent;
