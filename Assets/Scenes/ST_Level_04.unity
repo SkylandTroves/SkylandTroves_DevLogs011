@@ -1556,6 +1556,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8650357471234448553, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
   m_PrefabInstance: {fileID: 269838980}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &269838984 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3474533114257842203, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+  m_PrefabInstance: {fileID: 269838980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &319816741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,6 +1670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 1122300316}
   positionB: {fileID: 422194612}
@@ -1673,7 +1679,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!54 &348606380
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2111,6 +2116,14 @@ PrefabInstance:
     - target: {fileID: 4581023344822177187, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.13800049
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
+      propertyPath: m_Volume
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7399116611103708658, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
       propertyPath: m_Name
@@ -2909,6 +2922,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
+      propertyPath: m_Volume
+      value: 0.205
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7399116611103708658, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
       propertyPath: m_Name
       value: chargeArea (1)
@@ -3233,6 +3258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 371364447}
   positionB: {fileID: 1289234642}
@@ -3241,7 +3267,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!4 &601612266
 Transform:
   m_ObjectHideFlags: 0
@@ -3776,6 +3801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 1472273580}
   positionB: {fileID: 1275076773}
@@ -3784,7 +3810,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!4 &670678789
 Transform:
   m_ObjectHideFlags: 0
@@ -5336,6 +5361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas-levelNum
       objectReference: {fileID: 0}
+    - target: {fileID: 3084775535013871041, guid: a4a96b7e6cee6ab47ab8ffd0f23402b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -9.099976
+      objectReference: {fileID: 0}
     - target: {fileID: 5624015048697799943, guid: a4a96b7e6cee6ab47ab8ffd0f23402b2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5765,6 +5794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 408447414}
   positionB: {fileID: 1488003727}
@@ -5773,7 +5803,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!54 &1177119027
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6792,7 +6821,7 @@ Transform:
   m_GameObject: {fileID: 1292600854}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -40.5, y: 29.7, z: -31.5}
+  m_LocalPosition: {x: -40.5, y: 29.7, z: -31.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8590,6 +8619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 655510912}
   positionB: {fileID: 1749086907}
@@ -8598,7 +8628,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!4 &1648508019
 Transform:
   m_ObjectHideFlags: 0
@@ -9215,6 +9244,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: clickSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: c6b48849ce1dba148a32c83396d8503c, type: 3}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: dropBallSFX
       value: 
       objectReference: {fileID: 8300000, guid: 98dd4948e7e789f468ae3a959860a857, type: 3}
@@ -9223,17 +9256,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: d2ed77dc3c731764182431066300fb80, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 269838984}
+    - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: BIGmovingPlatformSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 97dcf6cfce9e77a42ad208407df15259, type: 3}
+      objectReference: {fileID: 7676609988541400178, guid: e74851dafd0b2be4b9709b8f0af85447, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: MEDmovingPlatformSFX
       value: 
-      objectReference: {fileID: 8300000, guid: ee98136d971da344b9fb0278f183024c, type: 3}
+      objectReference: {fileID: 7676609988541400178, guid: 82cd1a0b5d0821946ba0a1cb98d2ccc4, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: SMALLmovingPlatformSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 14efc0546ba30e74091778384296c212, type: 3}
+      objectReference: {fileID: 7676609988541400178, guid: f9c34f054696d9340adcfa5e52572f96, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9487,6 +9524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 1300400688}
   positionB: {fileID: 145968382}
@@ -9495,7 +9533,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!33 &1827504503
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9974,6 +10011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 2049171863}
   positionB: {fileID: 716761348}
@@ -9982,7 +10020,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!208 &1865385759
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -10253,6 +10290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 1508205306}
   positionB: {fileID: 1268980693}
@@ -10261,7 +10299,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!114 &1907572306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11669,6 +11706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141e48c219298cc4ab633076d71ec213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 1936781545}
   positionB: {fileID: 151162076}
@@ -11677,7 +11715,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
   blockerPlatform: {fileID: 1827504502}
   maxBlockerProgress: 0
   maxBlockedProgress: 0.3

@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 690834529}
   positionB: {fileID: 1817028444}
@@ -409,7 +410,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!114 &123194684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,6 +2290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 96962833}
   positionB: {fileID: 508914900}
@@ -2298,7 +2299,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!1 &1283798378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,6 +2662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 695619575}
   positionB: {fileID: 1598346793}
@@ -2670,7 +2671,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!1 &1332046687
 GameObject:
   m_ObjectHideFlags: 0
@@ -4803,15 +4803,15 @@ PrefabInstance:
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: clickSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 2402c023789d20b4bb01a744698ac299, type: 3}
+      objectReference: {fileID: 8300000, guid: c6b48849ce1dba148a32c83396d8503c, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: dropBallSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 98dd4948e7e789f468ae3a959860a857, type: 3}
+      objectReference: {fileID: 8300000, guid: dbcb7204a1eaf4842b03c741719f93a1, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: pickUpBallSFX
       value: 
-      objectReference: {fileID: 8300000, guid: d2ed77dc3c731764182431066300fb80, type: 3}
+      objectReference: {fileID: 8300000, guid: ad2219b2caf7c6e498b3f4078f30b841, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: clickSFXs.Array.size
       value: 0

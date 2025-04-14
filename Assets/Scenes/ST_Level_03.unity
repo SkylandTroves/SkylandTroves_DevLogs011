@@ -2616,6 +2616,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7399116611103708658, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
       propertyPath: m_Name
       value: chargeArea
@@ -3574,6 +3578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 299049572}
   positionB: {fileID: 1808244789}
@@ -3582,7 +3587,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!4 &1066411096
 Transform:
   m_ObjectHideFlags: 0
@@ -3736,6 +3740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 2096197932}
   positionB: {fileID: 332869550}
@@ -3744,7 +3749,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!114 &1070638597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3973,6 +3977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141e48c219298cc4ab633076d71ec213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 1633824580}
   positionB: {fileID: 2121000732}
@@ -3981,7 +3986,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
   blockerPlatform: {fileID: 1770182287}
   maxBlockerProgress: 0.48
   maxBlockedProgress: 0
@@ -6578,6 +6582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141e48c219298cc4ab633076d71ec213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 1425711533}
   positionB: {fileID: 393050941}
@@ -6586,7 +6591,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
   blockerPlatform: {fileID: 1126153679}
   maxBlockerProgress: 0.1
   maxBlockedProgress: 0.4
