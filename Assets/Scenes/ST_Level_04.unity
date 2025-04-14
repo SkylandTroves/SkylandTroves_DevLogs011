@@ -3215,6 +3215,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3367241217091891326, guid: a2a2938d8a976b840a8fb6a5e21a54bc, type: 3}
   m_PrefabInstance: {fileID: 551566033}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &592085843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592085844}
+  - component: {fileID: 592085845}
+  m_Layer: 0
+  m_Name: NavMesh Link01 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &592085844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592085843}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.01572162, z: -0, w: 0.9998765}
+  m_LocalPosition: {x: 1.52, y: 5.6685, z: 33.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1622775684}
+  m_LocalEulerAnglesHint: {x: 0, y: -1.802, z: 0}
+--- !u!114 &592085845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592085843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 3.110714, y: -0.93979037, z: 1.0865989}
+  m_EndPoint: {x: -0.30895668, y: -0.9738884, z: -0.50978947}
+  m_StartTransform: {fileID: 592085844}
+  m_EndTransform: {fileID: 592085844}
+  m_Activated: 1
+  m_Width: 2.2910466
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &601612264
 GameObject:
   m_ObjectHideFlags: 0
@@ -8309,6 +8364,7 @@ Transform:
   - {fileID: 1779967296}
   - {fileID: 1858554965}
   - {fileID: 1471177202}
+  - {fileID: 592085844}
   m_Father: {fileID: 684286234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1622775685
@@ -10182,7 +10238,6 @@ GameObject:
   - component: {fileID: 1907572300}
   - component: {fileID: 1907572304}
   - component: {fileID: 1907572306}
-  - component: {fileID: 1907572308}
   - component: {fileID: 1907572309}
   - component: {fileID: 1907572310}
   m_Layer: 0
@@ -10298,33 +10353,6 @@ MonoBehaviour:
   m_Center: {x: 3.79, y: -6.85, z: -5.58}
   m_Area: 1
   m_AffectedAgents: ffffffff
---- !u!54 &1907572308
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907572298}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!208 &1907572309
 NavMeshObstacle:
   m_ObjectHideFlags: 0
