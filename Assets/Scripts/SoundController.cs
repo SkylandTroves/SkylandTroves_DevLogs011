@@ -27,7 +27,7 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioClip WindTWOSFX;
     [SerializeField] private AudioClip WindTHREESFX;
     
-    //getters
+    // Getters
     public AudioClip PickUpBallSFX => pickUpBallSFX;
     public AudioClip DropBallSFX => dropBallSFX;
     public AudioClip ClickSFX => clickSFX; 
@@ -90,9 +90,7 @@ public class SoundController : MonoBehaviour
         }
         
         AudioSource source = Instantiate(prefab, platformTransform.position, Quaternion.identity);
-        
-        source.transform.SetParent(platformTransform);
-        
+        source.transform.SetParent(platformTransform);       
         source.Play();
         
         string soundID = platformType + "_" + platformTransform.GetInstanceID();
@@ -136,7 +134,6 @@ public class SoundController : MonoBehaviour
         {
             audioSource.transform.SetParent(sourceTransform);
         }
-        
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.loop = true;

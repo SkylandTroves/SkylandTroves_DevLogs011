@@ -1530,10 +1530,21 @@ PrefabInstance:
       propertyPath: OnClickSFX
       value: 
       objectReference: {fileID: 8300000, guid: 10047a8091435cc4b9fe7d926ba4b573, type: 3}
+    - target: {fileID: 6917668786559360460, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917668786559360460, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+      propertyPath: footstepClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 10047a8091435cc4b9fe7d926ba4b573, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6511899788640041120, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2044813936}
   m_SourcePrefab: {fileID: 100100000, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
 --- !u!1 &269838981 stripped
 GameObject:
@@ -7169,7 +7180,7 @@ PrefabInstance:
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: handFrontPosition
       value: 
-      objectReference: {fileID: 269838983}
+      objectReference: {fileID: 269838984}
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: checkWhenToRestOrbValue
       value: -2
@@ -7804,7 +7815,7 @@ PrefabInstance:
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: handFrontPosition
       value: 
-      objectReference: {fileID: 269838983}
+      objectReference: {fileID: 269838984}
     - target: {fileID: 4495568085694456129, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
       propertyPath: checkWhenToRestOrbValue
       value: -2
@@ -9250,11 +9261,11 @@ PrefabInstance:
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: dropBallSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 98dd4948e7e789f468ae3a959860a857, type: 3}
+      objectReference: {fileID: 8300000, guid: dbcb7204a1eaf4842b03c741719f93a1, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: pickUpBallSFX
       value: 
-      objectReference: {fileID: 8300000, guid: d2ed77dc3c731764182431066300fb80, type: 3}
+      objectReference: {fileID: 8300000, guid: ad2219b2caf7c6e498b3f4078f30b841, type: 3}
     - target: {fileID: 8857002986612736677, guid: 82e04e80d1e7cf044a677dc1dce0cd2f, type: 3}
       propertyPath: playerTransform
       value: 
@@ -11052,6 +11063,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3367241217091891326, guid: a2a2938d8a976b840a8fb6a5e21a54bc, type: 3}
   m_PrefabInstance: {fileID: 1229348951}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2044813933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6511899788640041120, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+  m_PrefabInstance: {fileID: 269838980}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2044813936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044813933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76468137ce33c4d459e43880b6123b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  footstepClip: {fileID: 0}
 --- !u!1 &2049171862
 GameObject:
   m_ObjectHideFlags: 0
