@@ -62,9 +62,35 @@ public class MovingPlatform : MonoBehaviour
             // do nothing if platform is not a boat
         }
         
+        PlayPlatformSoundEffect();
+        
         StartCoroutine(Move());
     }
-    
+
+    private void PlayPlatformSoundEffect()
+    {
+        AudioClip soundToPlay = null;
+        
+        //get audio clip based on tag
+        if (gameObject.CompareTag("SmallPlatform"))
+        {
+            soundToPlay = SoundController.instance.SmallMovingPlatformSFX;
+        }
+        else if (gameObject.CompareTag("MediumPlatform"))
+        {
+            soundToPlay = SoundController.instance.MediumMovingPlatformSFX;
+        }
+        else if (gameObject.CompareTag("BigPlatform"))
+        {
+            soundToPlay = SoundController.instance.BigMovingPlatformSFX;
+        }
+
+        if (soundToPlay != null && SoundController.instance != null)
+        {
+            SoundController.instance.PlaySFX(soundToPlay, transform, 1f);
+        }
+    }
+        
     public float maxSpeed = 2f;
 
     IEnumerator Move()

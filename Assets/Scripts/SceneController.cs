@@ -28,6 +28,7 @@ public class SceneController : MonoBehaviour
         if (CurrentLevel >= 1)
         {
             SkipButtonCanvas.gameObject.SetActive(true);
+            StartWindEffectsForCurrentLevel();
         }
         else
         {
@@ -43,7 +44,57 @@ public class SceneController : MonoBehaviour
     private void OnSceneChanged(Scene oldScene, Scene newScene)
     {
         UpdateCurrentLevel();
+        StartWindEffectsForCurrentLevel();
     }
+
+    private void StartWindEffectsForCurrentLevel()
+    {
+        if (SoundController.instance != null)
+        {
+            SoundController.instance.StopLoopingSound("LevelWind");
+        }
+        
+        if (CurrentLevel >= 1 && CurrentLevel <= 6)
+        {
+            PlayWindSoundForLevel(CurrentLevel);
+        }
+    }
+
+    private void PlayWindSoundForLevel(int level)
+    {
+        if (SoundController.instance == null) return;
+        
+        AudioClip windClip;
+        float volume = 0.8f; 
+       
+        switch (level)
+        {
+            case 1:
+            case 2:
+                windClip = SoundController.instance.WindOneSFX;
+                break;
+            case 3:
+            case 4:
+                windClip = SoundController.instance.WindTwoSFX;
+                volume = 0.9f;
+                break;
+            case 5:
+            case 6:
+                windClip = SoundController.instance.WindThreeSFX;
+                volume = 1.0f; 
+                break;
+            default:
+                windClip = SoundController.instance.WindOneSFX;
+                break;
+        }
+        
+       
+        SoundController.instance.PlayLoopingSound(windClip, transform, "LevelWind", volume);
+    }
+
+
+
+    
 
     private void UpdateCurrentLevel()
     {
@@ -185,6 +236,10 @@ public class SceneController : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        if (SoundController.instance != null)
+        {
+            SoundController.instance.StopLoopingSound("LevelWind");
+        }
         GoToNewScene("StartEndMenus");
     }
 
@@ -225,6 +280,10 @@ public class SceneController : MonoBehaviour
 
     public static void QuitGame()
     {
+        if (SoundController.instance != null)
+        {
+            SoundController.instance.StopAllLoopingSounds();
+        }
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
