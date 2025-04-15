@@ -41,6 +41,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 29230751403519443}
     m_Modifications:
+    - target: {fileID: 4253184034111962211, guid: 767f9fefc25b9e64ca4a1235fa518438, type: 3}
+      propertyPath: m_Shape
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5081861377224588866, guid: 767f9fefc25b9e64ca4a1235fa518438, type: 3}
       propertyPath: m_Name
       value: WheelBase
