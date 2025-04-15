@@ -12,6 +12,8 @@ using UnityEngine.InputSystem; // new input system
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 using Object = System.Object;
 
 public class PlayerController : MonoBehaviour
@@ -21,6 +23,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject clickParticle;
 	[SerializeField] private Animator stAnimator;
 	[SerializeField] private AudioClip OnClickSFX;
+	[SerializeField] private float faceDelay = 0.5f;
+	[SerializeField] private float rotationSpeed = 1000f;
 
 	private List<PickUpController> pickUps;
 	private NavMeshAgent navAgent;
@@ -28,6 +32,12 @@ public class PlayerController : MonoBehaviour
 	private GameObject currentHeldOrb;
 	//private PickUpController currentHeldOrbController;
 	private bool isMoving = false;
+	
+	private float wheelInteractionTimer = 0f;
+	private float wheelInteractionDuration = 0.2f;
+	private bool isFacingWheel = false;
+
+	private bool hasStartedTurning = false;
 
 	private const string isWalking = "IsWalking";
 	private const string pickedUpOrb = "PickedUpOrb";
@@ -299,6 +309,7 @@ public class PlayerController : MonoBehaviour
 
 	public void StartWalking(Vector3 destination)
 	{
+		isFacingWheel = false;
 		//stAnimator.SetBool(isWalking, true);
 		navAgent.SetDestination(destination);
 		
@@ -335,8 +346,11 @@ public class PlayerController : MonoBehaviour
 			case PlayerStateType.NextToPodiumWithOrb:
 				HandleNextToPodiumWithOrbState(currentInteractable);
 				break;
-			case PlayerStateType.NextToWheel:
-				HandleTurnWheelState(currentInteractable);
+			case PlayerStateType.NextToWheelWithoutOrb:
+				HandleTurnWheelState(currentState, currentInteractable);
+				break;
+			case PlayerStateType.NextToWheelWithOrb:
+				HandleTurnWheelState(currentState, currentInteractable);
 				break;
 			default:
 				Debug.Log("need handle");
@@ -424,13 +438,99 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 	}
-
-	private void HandleTurnWheelState(GameObject currentInteractable)
+	
+	private void HandleTurnWheelState(PlayerStateType currentState, GameObject currentInteractable)
 	{
-		if (Input.GetAxis("Mouse ScrollWheel") != 0)
+		float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+		Wheel currentWheel = currentInteractable.GetComponent<Wheel>();
+		if (!isFacingWheel)
 		{
-			Wheel currentWheel = currentInteractable.GetComponent<Wheel>();
-			currentWheel.HandleWheelScroll();
+			
+			StartCoroutine(FaceThenInteract(currentWheel));
 		}
+		if (scrollInput != 0f)
+		{
+			hasStartedTurning = true;
+			wheelInteractionTimer = wheelInteractionDuration;
+
+			//Wheel currentWheelScroll = currentInteractable.GetComponent<Wheel>();
+			currentWheel.HandleWheelScroll();
+			AnimationStates.resumeAnimation();
+		}
+		else if (wheelInteractionTimer > 0f)
+		{
+			wheelInteractionTimer -= Time.deltaTime;
+			if(hasStartedTurning)
+			{
+				AnimationStates.pauseAnimation();
+			}
+		}
+
+		if (wheelInteractionTimer > 0f)
+		{
+			AnimationStates.resumeAnimation();
+		}
+		else
+		{
+			hasStartedTurning = false;
+			if(hasStartedTurning)
+			{
+				AnimationStates.pauseAnimation();
+			}
+		}
+		if (hasStartedTurning)
+		{
+			AnimationStates.UpdateState(currentState);
+		}
+	}
+
+	private IEnumerator FaceThenInteract(Wheel wheel)
+	{
+		Vector3 wheelPos = wheel.transform.position;
+		Vector3 toWheel = (wheelPos - transform.position);
+		toWheel.y = 0f;
+
+		Quaternion targetRot = Quaternion.LookRotation(toWheel.normalized);
+
+		// Have player face wheel
+		while (Quaternion.Angle(transform.rotation, targetRot) > 0.5f)
+		{
+			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+			yield return null;
+		}
+		transform.rotation = targetRot;
+
+		// Put player just outside the NavMeshObstacle
+		NavMeshObstacle obstacle = wheel.GetComponent<NavMeshObstacle>();
+		float bufferDistance = 1f; // small offset to avoid touching
+
+		float obstacleRadius = 0.5f; // Default fallback radius
+
+		Collider obstacleCollider = wheel.GetComponent<Collider>();
+		if (obstacleCollider != null)
+		{
+			obstacleRadius = obstacleCollider.bounds.extents.magnitude;
+		}
+
+		Vector3 offsetDirection = -toWheel.normalized;
+		Vector3 targetPosition = wheelPos + offsetDirection * (obstacleRadius + bufferDistance);
+
+		float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
+
+		if (distanceToTarget > 0.25f && !isFacingWheel)
+		{
+			navAgent.isStopped = true;
+			navAgent.ResetPath();
+
+			if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, 0.5f, NavMesh.AllAreas))
+			{
+				navAgent.Warp(hit.position);
+				navAgent.nextPosition = hit.position;
+			}
+		}
+		
+		yield return new WaitForSeconds(faceDelay);
+
+		isFacingWheel = true;
 	}
 }
