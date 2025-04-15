@@ -517,15 +517,21 @@ public class PlayerController : MonoBehaviour
 
 		targetPosition.y = transform.position.y;
 
+		// Move player towards the target position manually
 		float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
-
 		if (distanceToTarget > 0.25f && !isFacingWheel)
 		{
-			navAgent.isStopped = false;
-			navAgent.SetDestination(targetPosition);
+			navAgent.isStopped = true;
+			navAgent.ResetPath();
+
+			float moveSpeed = 3f;
 
 			while (Vector3.Distance(transform.position, targetPosition) > 0.25f)
 			{
+				Vector3 newPosition = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+				newPosition.y = transform.position.y;
+				transform.position = newPosition;
+
 				yield return null;
 			}
 		}
