@@ -42,10 +42,10 @@ public class Wheel : MonoBehaviour
       Vector3 currentRotation = transform.localEulerAngles;
 
       // Add to the Z-axis based on scroll amount
-      float newZRotation = currentRotation.z + scrollAmount * 20f; // Scale scroll amount
+      float newYRotation = currentRotation.y + scrollAmount * 20f; // Scale scroll amount
 
       // Apply the new rotation
-      transform.localEulerAngles = new Vector3(currentRotation.x, currentRotation.y, newZRotation);
+      transform.localEulerAngles = new Vector3(currentRotation.x, newYRotation, currentRotation.z);
    }
 
 }
