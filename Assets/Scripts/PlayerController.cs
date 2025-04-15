@@ -435,6 +435,7 @@ public class PlayerController : MonoBehaviour
 			if (currentHeldOrb != null)
 			{
 				DropCurrentOrb();
+				playerState.dropOrb();
 			}
 		}
 	}

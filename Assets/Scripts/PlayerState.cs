@@ -181,10 +181,11 @@ public class PlayerState : MonoBehaviour
     {
         pickupCooldown = pickupCooldownDuration;
 
-        if (currentState == PlayerStateType.IdleWithOrb)
+        if (currentState == PlayerStateType.IdleWithOrb || currentState == PlayerStateType.NextToPodiumWithOrb)
         {
             currentState = PlayerStateType.IdleWithoutOrb;
         }
+        print("*** DROPORB UPDATING: " + currentState);
         AnimationStates.UpdateState(currentState);
     }
     private ObjectInformation FindClosestObject()
