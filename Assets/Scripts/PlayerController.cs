@@ -515,17 +515,18 @@ public class PlayerController : MonoBehaviour
 		Vector3 offsetDirection = -toWheel.normalized;
 		Vector3 targetPosition = wheelPos + offsetDirection * (obstacleRadius + bufferDistance);
 
+		targetPosition.y = transform.position.y;
+
 		float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
 
 		if (distanceToTarget > 0.25f && !isFacingWheel)
 		{
-			navAgent.isStopped = true;
-			navAgent.ResetPath();
+			navAgent.isStopped = false;
+			navAgent.SetDestination(targetPosition);
 
-			if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, 0.5f, NavMesh.AllAreas))
+			while (Vector3.Distance(transform.position, targetPosition) > 0.25f)
 			{
-				navAgent.Warp(hit.position);
-				navAgent.nextPosition = hit.position;
+				yield return null;
 			}
 		}
 		
