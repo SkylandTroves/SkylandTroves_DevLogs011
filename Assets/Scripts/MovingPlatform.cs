@@ -14,6 +14,7 @@ using UnityEngine.AI;
 
 public class MovingPlatform : MonoBehaviour
 {
+    public float maxSpeed = 2f;
     public bool UsesWheel = false;
     public Transform positionA;
     public Transform positionB;
@@ -26,6 +27,36 @@ public class MovingPlatform : MonoBehaviour
     public bool WasActivated = false;
     // - - - - - - - - - - - - - - - - - - -
     
+    private string platformType;
+    
+    private void Awake()
+    {
+        if (gameObject.CompareTag("SmallPlatform"))
+        {
+            platformType = "SmallPlatform";
+        }
+        else if (gameObject.CompareTag("MediumPlatform"))
+        {
+            platformType = "MediumPlatform";
+        }
+        else if (gameObject.CompareTag("BigPlatform"))
+        {
+            platformType = "BigPlatform";
+        }
+        else
+        {
+            platformType = "Unknown";
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        if (SoundController.instance != null)
+        {
+            SoundController.instance.StopPlatformSound(platformType, gameObject.GetInstanceID());
+        }
+    }
+
     private void Update()
     {
         //UpdateMyPositionWithWheel();
@@ -42,12 +73,10 @@ public class MovingPlatform : MonoBehaviour
             return;
         
         float smoothedProgress = Mathf.Lerp(platformProgress,wheelProgress,0.2f);
-        // go from this number (a) to this number(b), amount per frame (per times we call it)
         
         platformProgress = smoothedProgress;
         Vector3 positionC =  Vector3.Lerp(positionA.position, positionB.position, smoothedProgress);
         transform.position = positionC;
-        
     }
 
     public void StartMoving()
@@ -69,30 +98,12 @@ public class MovingPlatform : MonoBehaviour
 
     private void PlayPlatformSoundEffect()
     {
-        AudioClip soundToPlay = null;
-        
-        //get audio clip based on tag
-        if (gameObject.CompareTag("SmallPlatform"))
+        if (SoundController.instance != null && platformType != "Unknown")
         {
-            soundToPlay = SoundController.instance.SmallMovingPlatformSFX;
-        }
-        else if (gameObject.CompareTag("MediumPlatform"))
-        {
-            soundToPlay = SoundController.instance.MediumMovingPlatformSFX;
-        }
-        else if (gameObject.CompareTag("BigPlatform"))
-        {
-            soundToPlay = SoundController.instance.BigMovingPlatformSFX;
-        }
-
-        if (soundToPlay != null && SoundController.instance != null)
-        {
-            SoundController.instance.PlaySFX(soundToPlay, transform, 1f);
+            SoundController.instance.PlayPlatformSound(platformType, transform);
         }
     }
         
-    public float maxSpeed = 2f;
-
     IEnumerator Move()
     {
         float timeElapsed = 0f;
@@ -108,11 +119,14 @@ public class MovingPlatform : MonoBehaviour
         }
 
         transform.position = positionB.position;
+        
+        if (SoundController.instance != null)
+        {
+            SoundController.instance.StopPlatformSound(platformType, gameObject.GetInstanceID());
+        }
     }
     
-    
-    // GETTERS + SETTERS
-
+    //getters and setters
     public float GetWheelProgress()
     {
         return wheelProgress;
@@ -132,15 +146,4 @@ public class MovingPlatform : MonoBehaviour
     {
         return positionB.transform.position;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFXObject: {fileID: 4347465882957405659, guid: e76a7bebef1abfe4487cdf9fbf928d6c, type: 3}
-  loopedSFXObject: {fileID: 7676609988541400178, guid: aa99921b94418ca45a3d802f3d0ea0e5, type: 3}
-  pickUpBallSFX: {fileID: 8300000, guid: d2ed77dc3c731764182431066300fb80, type: 3}
-  dropBallSFX: {fileID: 8300000, guid: 98dd4948e7e789f468ae3a959860a857, type: 3}
-  clickSFX: {fileID: 8300000, guid: 2402c023789d20b4bb01a744698ac299, type: 3}
-  SMALLmovingPlatformSFX: {fileID: 8300000, guid: 14efc0546ba30e74091778384296c212, type: 3}
-  MEDmovingPlatformSFX: {fileID: 8300000, guid: ee98136d971da344b9fb0278f183024c, type: 3}
-  BIGmovingPlatformSFX: {fileID: 8300000, guid: 97dcf6cfce9e77a42ad208407df15259, type: 3}
+  playerTransform: {fileID: 3474533114257842203, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+  pickUpBallSFX: {fileID: 8300000, guid: ad2219b2caf7c6e498b3f4078f30b841, type: 3}
+  dropBallSFX: {fileID: 8300000, guid: dbcb7204a1eaf4842b03c741719f93a1, type: 3}
+  clickSFX: {fileID: 8300000, guid: c6b48849ce1dba148a32c83396d8503c, type: 3}
+  SMALLmovingPlatformSFX: {fileID: 7676609988541400178, guid: f9c34f054696d9340adcfa5e52572f96, type: 3}
+  MEDmovingPlatformSFX: {fileID: 7676609988541400178, guid: 82cd1a0b5d0821946ba0a1cb98d2ccc4, type: 3}
+  BIGmovingPlatformSFX: {fileID: 7676609988541400178, guid: e74851dafd0b2be4b9709b8f0af85447, type: 3}
   WindONESFX: {fileID: 8300000, guid: 36cfd0461a63cce41ac4f017913ce1a7, type: 3}
   WindTWOSFX: {fileID: 8300000, guid: d5bc3d025e4e67840913cb5abcc31e32, type: 3}
   WindTHREESFX: {fileID: 8300000, guid: 299f89e22d85d3f41ba893997daa3a2c, type: 3}

@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class SoundController : MonoBehaviour
 {
     public static SoundController instance;
     private Dictionary<string, AudioSource> activeLoopingSounds = new Dictionary<string, AudioSource>();
     [SerializeField] private AudioSource soundFXObject;
-    [SerializeField] private AudioSource loopedSFXObject;
-
+    
+    [SerializeField] private Transform playerTransform;
+    
     //balls
     [SerializeField] private AudioClip pickUpBallSFX;
     [SerializeField] private AudioClip dropBallSFX;
@@ -17,33 +17,33 @@ public class SoundController : MonoBehaviour
     //click
     [SerializeField] private AudioClip clickSFX;
 
-    //moving platforms
-    [SerializeField] private AudioClip SMALLmovingPlatformSFX;
-    [SerializeField] private AudioClip MEDmovingPlatformSFX;
-    [SerializeField] private AudioClip BIGmovingPlatformSFX;
+    //moving platforms - these are now just references to prefabs you'll assign in inspector
+    [SerializeField] private AudioSource SMALLmovingPlatformSFX;
+    [SerializeField] private AudioSource MEDmovingPlatformSFX;
+    [SerializeField] private AudioSource BIGmovingPlatformSFX;
 
     //wind
     [SerializeField] private AudioClip WindONESFX;
     [SerializeField] private AudioClip WindTWOSFX;
     [SerializeField] private AudioClip WindTHREESFX;
+    [SerializeField] private AudioClip WindFOURSFX;
     
-    // [SerializeField] private AudioClip[] randomSoundsList;
+    
 
-    //getters
-
+    
+    // Getters
     public AudioClip PickUpBallSFX => pickUpBallSFX;
     public AudioClip DropBallSFX => dropBallSFX;
     public AudioClip ClickSFX => clickSFX; 
     
-    
-    public AudioClip SmallMovingPlatformSFX => SMALLmovingPlatformSFX;
-    public AudioClip MediumMovingPlatformSFX => MEDmovingPlatformSFX;
-    public AudioClip BigMovingPlatformSFX => BIGmovingPlatformSFX;
-
+    public AudioSource SmallMovingPlatformSFX => SMALLmovingPlatformSFX;
+    public AudioSource MediumMovingPlatformSFX => MEDmovingPlatformSFX;
+    public AudioSource BigMovingPlatformSFX => BIGmovingPlatformSFX;
     
     public AudioClip WindOneSFX => WindONESFX;
     public AudioClip WindTwoSFX => WindTWOSFX;
     public AudioClip WindThreeSFX => WindTHREESFX;
+    public AudioClip WindFourSFX => WindFOURSFX;
     
     private void Awake()
     {
@@ -57,25 +57,6 @@ public class SoundController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    // Future implementation (random sound from bucket)
-    /*
-    private AudioClip GetRandomSound(AudioClip[] soundArray, AudioClip fallback)
-    {
-        if (soundArray != null && soundArray.Length > 0)
-        {
-            int randomIndex = Random.Range(0, soundArray.Length);
-            return soundArray[randomIndex];
-        }
-        return fallback;
-    }
-    
-    public void PlayRandomSound(AudioClip[] soundArray, AudioClip fallback, Transform spawnTransform, float volume = 1f)
-    {
-        AudioClip soundToPlay = GetRandomSound(soundArray, fallback);
-        PlaySFX(soundToPlay, spawnTransform, volume);
-    }
-    */
 
     public void PlaySFX(AudioClip audioClip, Transform spawnTransform, float volume = 1f)
     {
@@ -93,41 +74,48 @@ public class SoundController : MonoBehaviour
         Destroy(audioSource.gameObject, clipLength);
     }
 
-    //NEW (kevin)
-    public AudioSource PlayLoopingSound(AudioClip clip, Transform spawnTransform, string soundID, float volume = 1f)
+    public void PlayPlatformSound(string platformType, Transform platformTransform)
     {
-        // If this soundID is already playing, stop it first
-        StopLoopingSound(soundID);
+        AudioSource prefab = null;
         
-        // Create and configure the new looping sound
-        AudioSource audioSource = Instantiate(loopedSFXObject, spawnTransform.position, Quaternion.identity);
-        audioSource.clip = clip;
-        audioSource.volume = volume;
-        audioSource.loop = true;
-        audioSource.Play();
-        
-        // Store it in our active sounds dictionary
-        activeLoopingSounds[soundID] = audioSource;
-        DontDestroyOnLoad(audioSource.gameObject);
-        
-        return audioSource;
-    }
-
-    //NEW (Kevin)
-    public void StopLoopingSound(string soundID)
-    {
-        if (activeLoopingSounds.TryGetValue(soundID, out AudioSource audioSource))
+        switch (platformType)
         {
-            if (audioSource != null)
+            case "SmallPlatform":
+                prefab = SMALLmovingPlatformSFX;
+                break;
+            case "MediumPlatform":
+                prefab = MEDmovingPlatformSFX;
+                break;
+            case "BigPlatform":
+                prefab = BIGmovingPlatformSFX;
+                break;
+            default:
+                Debug.LogWarning("Unknown platform type: " + platformType);
+                return;
+        }
+        
+        AudioSource source = Instantiate(prefab, platformTransform.position, Quaternion.identity);
+        source.transform.SetParent(platformTransform);       
+        source.Play();
+        
+        string soundID = platformType + "_" + platformTransform.GetInstanceID();
+        activeLoopingSounds[soundID] = source;
+    }
+    
+    public void StopPlatformSound(string platformType, int platformID)
+    {
+        string soundID = platformType + "_" + platformID;
+        if (activeLoopingSounds.TryGetValue(soundID, out AudioSource source))
+        {
+            if (source != null)
             {
-                audioSource.Stop();
-                Destroy(audioSource.gameObject);
+                source.Stop();
+                Destroy(source.gameObject);
             }
             activeLoopingSounds.Remove(soundID);
         }
     }
     
-    //NEW (Kevin)
     public void StopAllLoopingSounds()
     {
         foreach (var audioSource in activeLoopingSounds.Values)
@@ -140,28 +128,38 @@ public class SoundController : MonoBehaviour
         }
         activeLoopingSounds.Clear();
     }
-    
-    public AudioSource PlayLoopingSFXInstance(AudioClip clip, Transform spawnTransform, float volume = 1f)
-    {    
-        AudioSource audioSource = Instantiate(loopedSFXObject, spawnTransform.position, Quaternion.identity);
+
+    public AudioSource PlayLoopingSound(AudioClip clip, Transform sourceTransform, string soundID, float volume = 1f)
+    {
+        StopLoopingSound(soundID);
+        
+        AudioSource audioSource = Instantiate(soundFXObject, sourceTransform.position, Quaternion.identity);
+        
+        if (sourceTransform != null)
+        {
+            audioSource.transform.SetParent(sourceTransform);
+        }
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.loop = true;
+        
         audioSource.Play();
-        DontDestroyOnLoad(audioSource.gameObject);
+        
+        activeLoopingSounds[soundID] = audioSource;
         
         return audioSource;
     }
-    
-    public void StopLoopingSFX()
+
+    public void StopLoopingSound(string soundID)
     {
-        if (loopedSFXObject != null)
+        if (activeLoopingSounds.TryGetValue(soundID, out AudioSource audioSource))
         {
-            loopedSFXObject.Stop();
-        }
-        else
-        {
-            Debug.LogError("LoopedSFXObject is not assigned.");
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+                Destroy(audioSource.gameObject);
+            }
+            activeLoopingSounds.Remove(soundID);
         }
     }
 }
