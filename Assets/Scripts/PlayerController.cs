@@ -517,7 +517,6 @@ public class PlayerController : MonoBehaviour
 
 		targetPosition.y = transform.position.y;
 
-		// Move player towards the target position manually
 		float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
 		if (distanceToTarget > 0.25f && !isFacingWheel)
 		{
