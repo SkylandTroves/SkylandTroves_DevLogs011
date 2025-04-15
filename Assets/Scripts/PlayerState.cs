@@ -45,6 +45,10 @@ public class PlayerState : MonoBehaviour
     // also needs to know if the player is carrying an orb
     public void UpdateStateOnStartMoving()
     {
+        if (AnimationStates.isPaused())
+        {
+            AnimationStates.resumeAnimation();
+        }
         //Debug.Log("update state start moving");
 
         if (playerController.IsCarryingOrb())
@@ -63,6 +67,10 @@ public class PlayerState : MonoBehaviour
 
     public void UpdateStateOnStopMoving()
     {
+        if (AnimationStates.isPaused())
+        {
+            AnimationStates.resumeAnimation();
+        }
         if (currentState == PlayerStateType.WalkWithOrb || currentState == PlayerStateType.WalkWithoutOrb 
                                                         || currentState == PlayerStateType.IdleWithOrb)
         {
@@ -122,7 +130,14 @@ public class PlayerState : MonoBehaviour
                     {
                         Debug.Log("current state set to: next to wheel");
                         currentInteractable = closestObject.ObjectGameObject;
-                        currentState = PlayerStateType.NextToWheel;
+                        if (playerController.IsCarryingOrb())
+                        {
+                            currentState = PlayerStateType.NextToWheelWithOrb;
+                        }
+                        else
+                        {
+                            currentState = PlayerStateType.NextToWheelWithoutOrb;
+                        }
                     }
 
                     else if (closestObject.ObjectType == "Podium")

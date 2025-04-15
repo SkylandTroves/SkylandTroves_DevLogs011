@@ -10,7 +10,9 @@ public enum PlayerStateType
     PushWallButton,          // 7
     PushFloorButton,         // 8
     PullLever,               // 9
-    NextToWheel,             // 10
+    NextToWheelWithoutOrb,             // 10
     PickupOrb,               // 11
     PutDownOrb,              // 12
+    NextToWheelWithOrb       // 13
+    , None,
 }

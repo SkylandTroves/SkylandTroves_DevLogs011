@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,12 @@ public class AnimationStates : MonoBehaviour
     [SerializeField] private Animator stAnimator;
     private int currentState;
     private const string stateTagAnimator = "currentState";
+    private float animSpeed;
+
+    private void Start()
+    {
+        animSpeed = stAnimator.speed;
+    }
 
     public void UpdateState(PlayerStateType stateType)
     {
@@ -37,6 +44,32 @@ public class AnimationStates : MonoBehaviour
         
         UpdateState(PlayerStateType.IdleWithOrb);
         
+    }
+
+    public void pauseAnimation()
+    {
+        stAnimator.speed = 0f;
+    }
+
+    public void resumeAnimation()
+    {
+        stAnimator.speed = animSpeed;
+    }
+
+    public void setPauseAnimation(bool isPaused)
+    {
+        if (isPaused)
+        {
+            stAnimator.speed = 0f;
+        }
+        else
+        {
+            stAnimator.speed = animSpeed;
+        }
+    }
+    public bool isPaused()
+    {
+        return (animSpeed != 0);
     }
     
 }
