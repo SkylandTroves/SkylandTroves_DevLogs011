@@ -121,4 +121,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingPlatforms: []
-  player: {fileID: 0}
