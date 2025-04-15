@@ -66,7 +66,7 @@ public class SceneController : MonoBehaviour
         
         AudioClip windClip;
         float volume = 0.8f; 
-       
+    
         switch (level)
         {
             case 1:
@@ -74,12 +74,16 @@ public class SceneController : MonoBehaviour
                 windClip = SoundController.instance.WindOneSFX;
                 break;
             case 3:
-            case 4:
                 windClip = SoundController.instance.WindTwoSFX;
                 volume = 0.9f;
                 break;
+            case 4:
+                windClip = SoundController.instance.WindFourSFX;
+                volume = 0.95f; 
+                break;
             case 5:
             case 6:
+            case 7:
                 windClip = SoundController.instance.WindThreeSFX;
                 volume = 1.0f; 
                 break;
@@ -88,7 +92,7 @@ public class SceneController : MonoBehaviour
                 break;
         }
         
-       
+    
         SoundController.instance.PlayLoopingSound(windClip, transform, "LevelWind", volume);
     }
 

@@ -26,6 +26,10 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioClip WindONESFX;
     [SerializeField] private AudioClip WindTWOSFX;
     [SerializeField] private AudioClip WindTHREESFX;
+    [SerializeField] private AudioClip WindFOURSFX;
+    
+    
+
     
     // Getters
     public AudioClip PickUpBallSFX => pickUpBallSFX;
@@ -39,6 +43,7 @@ public class SoundController : MonoBehaviour
     public AudioClip WindOneSFX => WindONESFX;
     public AudioClip WindTwoSFX => WindTWOSFX;
     public AudioClip WindThreeSFX => WindTHREESFX;
+    public AudioClip WindFourSFX => WindFOURSFX;
     
     private void Awake()
     {

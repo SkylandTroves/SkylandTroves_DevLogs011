@@ -589,6 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 1789657175}
   positionB: {fileID: 961053120}
@@ -597,7 +598,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!23 &83938317
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -865,6 +865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 1423671967}
   positionB: {fileID: 1555898896}
@@ -873,7 +874,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!208 &173739630
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -924,6 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 680036476}
   positionB: {fileID: 765396851}
@@ -932,7 +933,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!4 &229291456
 Transform:
   m_ObjectHideFlags: 0
@@ -3306,6 +3306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 128069894}
   positionB: {fileID: 60234121}
@@ -3314,7 +3315,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!4 &707219591
 Transform:
   m_ObjectHideFlags: 0
@@ -4004,6 +4004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 1969099420}
   positionB: {fileID: 1183250895}
@@ -4012,7 +4013,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!65 &832414089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5782,6 +5782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 793917149}
   positionB: {fileID: 813161417}
@@ -5790,7 +5791,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!4 &1379735418
 Transform:
   m_ObjectHideFlags: 0
@@ -6473,6 +6473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 678023639}
   positionB: {fileID: 575523706}
@@ -6481,7 +6482,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!208 &1516809869
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -6774,6 +6774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 1223647374}
   positionB: {fileID: 1930394686}
@@ -6782,7 +6783,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!23 &1582520976
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6973,6 +6973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 0
   positionA: {fileID: 389527676}
   positionB: {fileID: 1533912685}
@@ -6981,7 +6982,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!208 &1592718795
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -18237,6 +18237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd9ad46614d5647b0c9dcae56b77a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   UsesWheel: 1
   positionA: {fileID: 1122357783}
   positionB: {fileID: 893973982}
@@ -18245,7 +18246,6 @@ MonoBehaviour:
   wheelProgress: 0
   platformProgress: 0
   WasActivated: 0
-  maxSpeed: 2
 --- !u!1001 &6520764753605123135
 PrefabInstance:
   m_ObjectHideFlags: 0
