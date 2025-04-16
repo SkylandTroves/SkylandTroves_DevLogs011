@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1994148194106984349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5179381217151278066}
+  - component: {fileID: 8857002986612736677}
+  m_Layer: 0
+  m_Name: SoundController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5179381217151278066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994148194106984349}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3100013, y: 3.709999, z: 32.690002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8857002986612736677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994148194106984349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abd9e80636f99e47bbcda092a283738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 4347465882957405659, guid: e76a7bebef1abfe4487cdf9fbf928d6c, type: 3}
+  playerTransform: {fileID: 3474533114257842203, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
+  pickUpBallSFX: {fileID: 8300000, guid: ad2219b2caf7c6e498b3f4078f30b841, type: 3}
+  dropBallSFX: {fileID: 8300000, guid: dbcb7204a1eaf4842b03c741719f93a1, type: 3}
+  clickSFX: {fileID: 8300000, guid: c6b48849ce1dba148a32c83396d8503c, type: 3}
+  SMALLmovingPlatformSFX: {fileID: 7676609988541400178, guid: f9c34f054696d9340adcfa5e52572f96, type: 3}
+  MEDmovingPlatformSFX: {fileID: 7676609988541400178, guid: 82cd1a0b5d0821946ba0a1cb98d2ccc4, type: 3}
+  BIGmovingPlatformSFX: {fileID: 7676609988541400178, guid: e74851dafd0b2be4b9709b8f0af85447, type: 3}
+  WindONESFX: {fileID: 8300000, guid: 36cfd0461a63cce41ac4f017913ce1a7, type: 3}
+  WindTWOSFX: {fileID: 8300000, guid: d5bc3d025e4e67840913cb5abcc31e32, type: 3}
+  WindTHREESFX: {fileID: 8300000, guid: 299f89e22d85d3f41ba893997daa3a2c, type: 3}
