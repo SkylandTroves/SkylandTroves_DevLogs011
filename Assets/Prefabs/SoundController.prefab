@@ -55,3 +55,4 @@ MonoBehaviour:
   WindONESFX: {fileID: 8300000, guid: 36cfd0461a63cce41ac4f017913ce1a7, type: 3}
   WindTWOSFX: {fileID: 8300000, guid: d5bc3d025e4e67840913cb5abcc31e32, type: 3}
   WindTHREESFX: {fileID: 8300000, guid: 299f89e22d85d3f41ba893997daa3a2c, type: 3}
+  WindFOURSFX: {fileID: 8300000, guid: 2a5785f400ab4f94d8d89a5e0fa7e5db, type: 3}
