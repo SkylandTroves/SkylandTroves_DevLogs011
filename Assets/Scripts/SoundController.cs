@@ -27,9 +27,15 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioClip WindTWOSFX;
     [SerializeField] private AudioClip WindTHREESFX;
     [SerializeField] private AudioClip WindFOURSFX;
-    
-    
+    [SerializeField] private AudioClip WindFIVESFX;
 
+    //wheel
+    [SerializeField] private AudioClip WHEELSFX;
+    [SerializeField] private AudioClip isBoatWHEELSFX;
+    
+    // Fade duration for wheel sounds (in seconds)
+    [SerializeField] private float wheelSoundFadeDuration = 0.5f;
+    private Dictionary<string, Coroutine> activeFadeoutCoroutines = new Dictionary<string, Coroutine>();
     
     // Getters
     public AudioClip PickUpBallSFX => pickUpBallSFX;
@@ -44,6 +50,10 @@ public class SoundController : MonoBehaviour
     public AudioClip WindTwoSFX => WindTWOSFX;
     public AudioClip WindThreeSFX => WindTHREESFX;
     public AudioClip WindFourSFX => WindFOURSFX;
+    public AudioClip WindFiveSFX => WindFIVESFX;
+
+    public AudioClip WheelSFX => WHEELSFX;
+    public AudioClip BoatWheelSFX => isBoatWHEELSFX;
     
     private void Awake()
     {
@@ -118,6 +128,15 @@ public class SoundController : MonoBehaviour
     
     public void StopAllLoopingSounds()
     {
+        foreach (var coroutine in activeFadeoutCoroutines.Values)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+        }
+        activeFadeoutCoroutines.Clear();
+        
         foreach (var audioSource in activeLoopingSounds.Values)
         {
             if (audioSource != null)
@@ -161,5 +180,86 @@ public class SoundController : MonoBehaviour
             }
             activeLoopingSounds.Remove(soundID);
         }
+        
+        if (activeFadeoutCoroutines.TryGetValue(soundID, out Coroutine coroutine))
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+            activeFadeoutCoroutines.Remove(soundID);
+        }
+    }
+
+    public void PlayWheelTurningSound(Transform wheelTransform, float volume = 1f)
+    {
+        string soundID = "wheel_" + wheelTransform.GetInstanceID();
+        
+        if (activeFadeoutCoroutines.TryGetValue(soundID, out Coroutine fadeCoroutine))
+        {
+            StopCoroutine(fadeCoroutine);
+            activeFadeoutCoroutines.Remove(soundID);
+        }
+        
+        if (activeLoopingSounds.TryGetValue(soundID, out AudioSource existingSource) && existingSource != null)
+        {
+            existingSource.volume = volume;
+            return;
+        }
+
+        Wheel wheelComponent = wheelTransform.GetComponent<Wheel>();
+        AudioClip clipToPlay = WHEELSFX;
+        
+        if (wheelComponent != null && wheelComponent.IsBoatWheel())
+        {
+            clipToPlay = isBoatWHEELSFX;
+        }
+        
+        AudioSource audioSource = PlayLoopingSound(clipToPlay, wheelTransform, soundID, volume);
+        
+        if (audioSource != null && audioSource.clip != null) 
+        {
+            float randomStartTime = UnityEngine.Random.Range(0f, audioSource.clip.length * 0.8f);
+            audioSource.time = randomStartTime;
+        }
+    }
+
+    public void StopWheelTurningSound(Transform wheelTransform)
+    {
+        string soundID = "wheel_" + wheelTransform.GetInstanceID();
+        
+        if (activeLoopingSounds.TryGetValue(soundID, out AudioSource audioSource) && audioSource != null)
+        {
+            if (activeFadeoutCoroutines.TryGetValue(soundID, out Coroutine coroutine))
+            {
+                StopCoroutine(coroutine);
+            }
+            
+            Coroutine fadeoutCoroutine = StartCoroutine(FadeOutWheelSound(soundID, audioSource));
+            activeFadeoutCoroutines[soundID] = fadeoutCoroutine;
+        }
+    }
+    
+    private IEnumerator FadeOutWheelSound(string soundID, AudioSource audioSource)
+    {
+        float startVolume = audioSource.volume;
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < wheelSoundFadeDuration && audioSource != null)
+        {
+            elapsedTime += Time.deltaTime;
+            float newVolume = Mathf.Lerp(startVolume, 0f, elapsedTime / wheelSoundFadeDuration);
+            audioSource.volume = newVolume;
+            yield return null;
+        }
+        
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+            Destroy(audioSource.gameObject);
+        }
+        
+        activeLoopingSounds.Remove(soundID);
+        activeFadeoutCoroutines.Remove(soundID);
     }
 }

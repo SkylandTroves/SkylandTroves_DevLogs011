@@ -107,4 +107,33 @@ public class PodiumController : ObservedSubject
     {
         this.orbPositionOnPodium = orbPosition;
     }
+    public float GetShakeIntensity()
+    {
+        return shakeIntensity;
+    }
+
+    public float GetShakeDuration()
+    {
+        return shakeDuration;
+    }
+
+    public float GetActivationDelay()
+    {
+        return activationDelay;
+    }
+
+    public void SetShakeIntensity(float intensity)
+    {
+        shakeIntensity = intensity;
+    }
+
+    public void SetShakeDuration(float duration)
+    {
+        shakeDuration = duration;
+    }
+
+    public void SetActivationDelay(float delay)
+    {
+        activationDelay = delay;
+    }
 }

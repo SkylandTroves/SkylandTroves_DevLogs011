@@ -8,7 +8,21 @@ public class Wheel : MonoBehaviour
    [SerializeField] private List<MovingPlatform> movingPlatforms;
    //[SerializeField] private PickUpController pickUps; // use if not using a list 
    private bool isTurningObject = false;
-   
+   public bool IsBoatWheel()
+   {
+       if (movingPlatforms == null || movingPlatforms.Count == 0)
+           return false;
+           
+       foreach (MovingPlatform platform in movingPlatforms)
+       {
+           if (platform != null && platform.gameObject.CompareTag("Boat"))
+           {
+               return true;
+           }
+       }
+       
+       return false;
+   }
    public void HandleWheelScroll()
    {
 
