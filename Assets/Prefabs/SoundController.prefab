@@ -54,9 +54,19 @@ MonoBehaviour:
   BIGmovingPlatformSFX: {fileID: 7676609988541400178, guid: e74851dafd0b2be4b9709b8f0af85447, type: 3}
   WindONESFX: {fileID: 8300000, guid: 36cfd0461a63cce41ac4f017913ce1a7, type: 3}
   WindTWOSFX: {fileID: 8300000, guid: d5bc3d025e4e67840913cb5abcc31e32, type: 3}
-  WindTHREESFX: {fileID: 8300000, guid: 299f89e22d85d3f41ba893997daa3a2c, type: 3}
-  WindFOURSFX: {fileID: 8300000, guid: 2a5785f400ab4f94d8d89a5e0fa7e5db, type: 3}
-  WindFIVESFX: {fileID: 8300000, guid: 501b6dcde6a4d854e9fb98e3e510fb16, type: 3}
+  WindTHREESFX: {fileID: 8300000, guid: 522b5e07a1876f34fb24ce775cb14d5b, type: 3}
+  WindFOURSFX: {fileID: 8300000, guid: 30898c409c163f34388a36137c61e6b6, type: 3}
+  WindFIVESFX: {fileID: 8300000, guid: 1da4f52505a9d1d4ea0c705b3745960b, type: 3}
   WHEELSFX: {fileID: 8300000, guid: ffae8b28391b9c943a81538ca1f62595, type: 3}
   isBoatWHEELSFX: {fileID: 8300000, guid: 556ae11e1c5686946bf04bfcfe639283, type: 3}
+  titleScreenMusic: {fileID: 8300000, guid: 9eeb9de1477b6304a81ade193304ab19, type: 3}
+  level1Music: {fileID: 8300000, guid: f252ae047e1ef9046b1f84a05086cac1, type: 3}
+  level2Music: {fileID: 8300000, guid: df7f089741e96b44da39a46027868edd, type: 3}
+  level3Music: {fileID: 8300000, guid: 9622c7f53125e1045b84b13074306f2c, type: 3}
+  level4Music: {fileID: 8300000, guid: 86a004e4a52b48640a4a449634fd11f1, type: 3}
+  level5Music: {fileID: 8300000, guid: 53770246f8c2e9342b96ffa98e3936a8, type: 3}
+  levelTransitionSFX: {fileID: 8300000, guid: 634987de908d8554099104fdac8198c7, type: 3}
+  musicSource: {fileID: 0}
+  musicVolume: 0.7
   wheelSoundFadeDuration: 0.5
+  musicFadeDuration: 1.5

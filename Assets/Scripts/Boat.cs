@@ -14,6 +14,7 @@ using UnityEngine.AI;
 public class Boat : MonoBehaviour
 {
     public GameObject Player;
+    [SerializeField] private float boardDelay = 1.0f;
     public Game Game;
     [SerializeField] private bool isLevelSwitchCatalyst;
 
@@ -72,6 +73,15 @@ public class Boat : MonoBehaviour
         RemoveNavMeshAgentAndParentPlayer();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        if (SoundController.instance != null)
+        {
+            if (isLevelSwitchCatalyst)
+            {
+                SoundController.instance.StopLevelMusicWithFade();
+            }
+        }
+        
         if (isLevelSwitchCatalyst)
         {
             GoToNextLevel();
@@ -100,21 +110,30 @@ public class Boat : MonoBehaviour
 
             if (GetComponent<MovingPlatform>() is MovingPlatform movingPlatform)
             {
-                //Player.transform.SetParent(movingPlatform.transform);
-                //KeepPlayerFromMoving();
-                //movingPlatform.StartMoving();
+                // First parent the player and disable navigation
                 OnMovingPlatformStarted();
-                movingPlatform.StartMoving();
-
-                if (isLevelSwitchCatalyst)
-                {
-                    GoToNextLevel();
-                }
+                
+                // Start a delay before moving
+                StartCoroutine(DelayedBoatStart(movingPlatform));
             }
             else
             {
                 Debug.LogError("MovingPlatform is not found on the boat object.");
             }
+        }
+    }
+    private IEnumerator DelayedBoatStart(MovingPlatform movingPlatform)
+    {
+        // Wait for specified delay
+        yield return new WaitForSeconds(boardDelay);
+        
+        // Then start moving
+        movingPlatform.StartMoving();
+        
+        // Handle level transition if needed
+        if (isLevelSwitchCatalyst)
+        {
+            GoToNextLevel();
         }
     }
 

@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField] private Game gameController;
+    [SerializeField] private float startButtonDelay = 1f;
     public Canvas SkipButtonCanvas;
     private static SceneController instance = null;
     private static int CurrentLevel;
@@ -34,6 +36,7 @@ public class SceneController : MonoBehaviour
         {
             SkipButtonCanvas.gameObject.SetActive(false);
         }
+        PlayMusicForCurrentLevel();
     }
 
     private void OnDestroy()
@@ -45,6 +48,57 @@ public class SceneController : MonoBehaviour
     {
         UpdateCurrentLevel();
         StartWindEffectsForCurrentLevel();
+        PlayMusicForCurrentLevel();
+    }
+
+    private IEnumerator DelayedStartGame()
+    {
+        if (gameController != null && gameController.crossFade != null)
+        {
+            gameController.crossFade.SetTrigger("Start");
+        }
+        
+        yield return new WaitForSeconds(startButtonDelay);
+        
+        GoToNewScene("ST_Level_01");
+        SkipButtonCanvas.gameObject.SetActive(true);
+    }
+
+    private void PlayMusicForCurrentLevel()
+    {
+        if (SoundController.instance == null) return;
+        
+        bool withTransition = CurrentLevel >= 1 && SceneManager.GetActiveScene().name != "StartEndMenus";
+        bool withFadeIn = true; 
+        
+        switch (CurrentLevel)
+        {
+            case 0: 
+                SoundController.instance.PlayTitleScreenMusic(1.0f, withFadeIn);
+                break;
+            case 1:
+                SoundController.instance.PlayLevel1Music(1.0f, withTransition, withFadeIn);
+                break;
+            case 2:
+                SoundController.instance.PlayLevel2Music(1.0f, withTransition, withFadeIn);
+                break;
+            case 3:
+                SoundController.instance.PlayLevel3Music(1.0f, withTransition, withFadeIn);
+                break;
+            case 4:
+                SoundController.instance.PlayLevel4Music(1.0f, withTransition, withFadeIn);
+                break;
+            case 5:
+                SoundController.instance.PlayLevel5Music(1.0f, withTransition, withFadeIn);
+                break;
+            case 6:
+                SoundController.instance.PlayLevel5Music(1.0f, withTransition, withFadeIn);
+                break;
+            default:
+               
+                SoundController.instance.StopLevelMusic();
+                break;
+        }
     }
 
     private void StartWindEffectsForCurrentLevel()
@@ -131,12 +185,40 @@ public class SceneController : MonoBehaviour
 
     public void GoToNewScene(string sceneName)
     {
-        LoadNewScene(sceneName);
+        if (gameController != null && gameController.crossFade != null)
+        {
+            StartCoroutine(CrossfadeAndLoadScene(sceneName));
+        }
+        else
+        {
+            LoadNewScene(sceneName);
+        }
     }
-
+    
     public void GoToNewScene(int buildIndex)
     { 
-        LoadNewScene(buildIndex);
+        if (gameController != null && gameController.crossFade != null)
+        {
+            StartCoroutine(CrossfadeAndLoadScene(buildIndex));
+        }
+        else
+        {
+            LoadNewScene(buildIndex);
+        }
+    }
+
+    private IEnumerator CrossfadeAndLoadScene(string sceneName)
+    {
+        gameController.crossFade.SetTrigger("Start");
+        yield return new WaitForSeconds(gameController.crossFadeTime);
+        SceneManager.LoadScene(sceneName);
+    }
+    
+    private IEnumerator CrossfadeAndLoadScene(int buildIndex)
+    {
+        gameController.crossFade.SetTrigger("Start");
+        yield return new WaitForSeconds(gameController.crossFadeTime);
+        SceneManager.LoadScene(buildIndex);
     }
     
     public void LoadNewScene(int buildIndex)
@@ -232,8 +314,18 @@ public class SceneController : MonoBehaviour
 
     public void OnClickStartGame()
     {
-        GoToNewScene("ST_Level_01");
-        SkipButtonCanvas.gameObject.SetActive(true);
+        if (SoundController.instance != null)
+        {
+            SoundController.instance.StopLevelMusicWithFade(() => {
+                GoToNewScene("ST_Level_01");
+                SkipButtonCanvas.gameObject.SetActive(true);
+            });
+        }
+        else
+        {
+            GoToNewScene("ST_Level_01");
+            SkipButtonCanvas.gameObject.SetActive(true);
+        }
     }
 
     public void GoToMainMenu()
@@ -285,6 +377,7 @@ public class SceneController : MonoBehaviour
         if (SoundController.instance != null)
         {
             SoundController.instance.StopAllLoopingSounds();
+            SoundController.instance.StopLevelMusic(); // Add this line
         }
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
