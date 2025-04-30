@@ -377,7 +377,7 @@ public class SceneController : MonoBehaviour
 
     public void GoToEndScreen()
     {
-        GoToNewScene("EndScreen");
+        GoToNewScene("ST_EndScreen");
     }
 
     public void OnQuitButtonQuitGame()
