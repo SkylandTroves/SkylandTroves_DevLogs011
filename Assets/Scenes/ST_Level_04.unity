@@ -3210,7 +3210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
       propertyPath: rolloffMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
@@ -4826,6 +4826,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1392193086}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeDuration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeIntensity
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: activationDelay
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: movingPlatforms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -5096,6 +5108,14 @@ PrefabInstance:
       propertyPath: Orb
       value: 
       objectReference: {fileID: 412041506}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeIntensity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: activationDelay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: movingPlatforms.Array.size
       value: 1
@@ -7395,6 +7415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 269838981}
+  followDuringShake: 1
 --- !u!114 &1292600861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8008,6 +8029,18 @@ PrefabInstance:
       propertyPath: Orb
       value: 
       objectReference: {fileID: 1032306274}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeIntensity
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: activationDelay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: movingPlatforms.Array.size
       value: 1
@@ -12480,7 +12513,7 @@ GameObject:
   - component: {fileID: 7719376750755947302}
   m_Layer: 0
   m_Name: Boat_01
-  m_TagString: Untagged
+  m_TagString: Boat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

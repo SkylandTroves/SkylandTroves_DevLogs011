@@ -1583,6 +1583,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1178611234}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeIntensity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: activationDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: movingPlatforms.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -3460,6 +3468,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1759484328}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeIntensity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: activationDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: movingPlatforms.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -4080,6 +4096,14 @@ PrefabInstance:
       propertyPath: Orb
       value: 
       objectReference: {fileID: 1520852182}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeIntensity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: activationDelay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: movingPlatforms.Array.size
       value: 1
@@ -6472,6 +6496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 7703432}
+  followDuringShake: 1
 --- !u!114 &1292600861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6877,6 +6902,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1225480549909004529, guid: 1546001170e0e3b4580d77142d785f01, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651831967017336738, guid: 1546001170e0e3b4580d77142d785f01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651831967017336738, guid: 1546001170e0e3b4580d77142d785f01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651831967017336738, guid: 1546001170e0e3b4580d77142d785f01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1719648578520594807, guid: 1546001170e0e3b4580d77142d785f01, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4
@@ -6971,15 +7012,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885575544040523520, guid: 1546001170e0e3b4580d77142d785f01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 5.96
       objectReference: {fileID: 0}
     - target: {fileID: 8885575544040523520, guid: 1546001170e0e3b4580d77142d785f01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4
+      value: -4.88
       objectReference: {fileID: 0}
     - target: {fileID: 8885575544040523520, guid: 1546001170e0e3b4580d77142d785f01, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.7
+      value: 20.99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8799,6 +8840,14 @@ PrefabInstance:
       propertyPath: Orb
       value: 
       objectReference: {fileID: 693993277}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: shakeIntensity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: activationDelay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: movingPlatforms.Array.size
       value: 1
