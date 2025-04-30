@@ -7,10 +7,23 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Game gameController;
     [SerializeField] private float startButtonDelay = 1f;
     [SerializeField] private float musicVolumeFactor = 0.25f;
-    public Canvas SkipButtonCanvas;
+    //public Canvas SkipButtonCanvas;
     private static SceneController instance = null;
     private static int CurrentLevel;
 
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GoToNextLevel(CurrentLevel);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GoToPreviousLevel(CurrentLevel);
+        }
+    }
     private void Awake()
     {
         if (instance == null)
@@ -30,13 +43,13 @@ public class SceneController : MonoBehaviour
         UpdateCurrentLevel();
         if (CurrentLevel >= 1)
         {
-            SkipButtonCanvas.gameObject.SetActive(true);
+            //SkipButtonCanvas.gameObject.SetActive(false);
             StartWindEffectsForCurrentLevel();
         }
         else
         {
-            SkipButtonCanvas.gameObject.SetActive(false);
             StartWindEffectsForCurrentLevel();
+            //SkipButtonCanvas.gameObject.SetActive(false);
         }
         PlayMusicForCurrentLevel();
     }
@@ -63,7 +76,7 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(startButtonDelay);
         
         GoToNewScene("ST_Level_01");
-        SkipButtonCanvas.gameObject.SetActive(true);
+        //SkipButtonCanvas.gameObject.SetActive(true);
     }
 
     private void PlayMusicForCurrentLevel()
@@ -336,18 +349,19 @@ public class SceneController : MonoBehaviour
         {
             SoundController.instance.StopLevelMusicWithFade(() => {
                 GoToNewScene("ST_Level_01");
-                SkipButtonCanvas.gameObject.SetActive(true);
+                //SkipButtonCanvas.gameObject.SetActive(true);
             });
         }
         else
         {
             GoToNewScene("ST_Level_01");
-            SkipButtonCanvas.gameObject.SetActive(true);
+            //SkipButtonCanvas.gameObject.SetActive(true);
         }
     }
 
     public void GoToMainMenu()
     {
+        print("***clicking button");
         if (SoundController.instance != null)
         {
             SoundController.instance.StopLoopingSound("LevelWind");
