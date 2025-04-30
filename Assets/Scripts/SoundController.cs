@@ -354,7 +354,7 @@ public class SoundController : MonoBehaviour
             }
             
             transitionSFXSource.clip = levelTransitionSFX;
-            transitionSFXSource.volume = 1.0f;
+            transitionSFXSource.volume = .25f;
             transitionSFXSource.Play();
             
         }

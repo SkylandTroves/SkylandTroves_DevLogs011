@@ -6,6 +6,7 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField] private Game gameController;
     [SerializeField] private float startButtonDelay = 1f;
+    [SerializeField] private float musicVolumeFactor = 0.25f;
     public Canvas SkipButtonCanvas;
     private static SceneController instance = null;
     private static int CurrentLevel;
@@ -70,29 +71,30 @@ public class SceneController : MonoBehaviour
         
         bool withTransition = CurrentLevel >= 1 && SceneManager.GetActiveScene().name != "StartEndMenus";
         bool withFadeIn = true; 
+        float volume = 1.0f * musicVolumeFactor;
         
         switch (CurrentLevel)
         {
             case 0: 
-                SoundController.instance.PlayTitleScreenMusic(1.0f, withFadeIn);
+                SoundController.instance.PlayTitleScreenMusic(volume, withFadeIn);
                 break;
             case 1:
-                SoundController.instance.PlayLevel1Music(1.0f, withTransition, withFadeIn);
+                SoundController.instance.PlayLevel1Music(volume, withTransition, withFadeIn);
                 break;
             case 2:
-                SoundController.instance.PlayLevel2Music(1.0f, withTransition, withFadeIn);
+                SoundController.instance.PlayLevel2Music(volume, withTransition, withFadeIn);
                 break;
             case 3:
-                SoundController.instance.PlayLevel3Music(1.0f, withTransition, withFadeIn);
+                SoundController.instance.PlayLevel3Music(volume, withTransition, withFadeIn);
                 break;
             case 4:
-                SoundController.instance.PlayLevel4Music(1.0f, withTransition, withFadeIn);
+                SoundController.instance.PlayLevel4Music(volume, withTransition, withFadeIn);
                 break;
             case 5:
-                SoundController.instance.PlayLevel5Music(1.0f, withTransition, withFadeIn);
+                SoundController.instance.PlayLevel5Music(volume, withTransition, withFadeIn);
                 break;
             case 6:
-                SoundController.instance.PlayLevel5Music(1.0f, withTransition, withFadeIn);
+                SoundController.instance.PlayLevel5Music(volume, withTransition, withFadeIn);
                 break;
             default:
                

@@ -611,6 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
   startButtonDelay: 1
+  musicVolumeFactor: 0.25
   SkipButtonCanvas: {fileID: 1033667905}
 --- !u!1 &980517256
 GameObject:
