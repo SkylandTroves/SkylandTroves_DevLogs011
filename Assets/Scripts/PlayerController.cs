@@ -11,6 +11,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem; // new input system 
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -48,6 +49,9 @@ public class PlayerController : MonoBehaviour
 
 	private PlayerState playerState;
 	public PauseMenu pauseMenu;
+	private Collider wristCollider;
+
+	private Rigidbody rb;
 	private void Awake()
 	{
 		navAgent = GetComponent<NavMeshAgent>();
@@ -58,7 +62,9 @@ public class PlayerController : MonoBehaviour
 		playerState = GetComponent<PlayerState>();
 		navAgent = GetComponent<NavMeshAgent>();
 		navAgent.autoTraverseOffMeshLink = false;
-
+		rb = GetComponent<Rigidbody>();
+		/*wristCollider = GameObject.FindGameObjectWithTag("Wrist").GetComponent<Collider>();
+		wristCollider.enabled = true;*/
 	}
 
 	void Update()
@@ -253,10 +259,18 @@ public class PlayerController : MonoBehaviour
 			PickUpController orbController = currentHeldOrb.GetComponent<PickUpController>();
 			if (currentHeldOrb != null)
 			{
+				print("*** DropCurrentOrb DROPPING, CURRENTHELD IS NOT NULL");
 				orbController.DropObject();
 				currentHeldOrb = null;
 			}
 		}
+	}
+
+	public void ToggleWristCollider()
+	{
+		
+		wristCollider.enabled = !wristCollider.enabled;
+		print("WRIST IS "+wristCollider.enabled);
 	}
 
 	private void SetAnimatorIsMoving()
@@ -398,6 +412,7 @@ public class PlayerController : MonoBehaviour
 		{
 			print("*** HandlePickupState: currentHeldOrb is null");
 			PickUpController currentHeldOrbController = currentInteractable.GetComponent<PickUpController>();
+			print("*** CURRINTER" + currentHeldOrbController.gameObject.name);
 			if (currentHeldOrbController != null)
 			{
 				AnimationStates.ChangeToPickUp(playerState.getIsOrbOnPodium());
@@ -414,6 +429,14 @@ public class PlayerController : MonoBehaviour
 			playerState.UpdateStateOnStopMoving();
 		}
 		playerState.setIsOrbOnPodium(false);
+		if (Input.GetMouseButtonDown(1))
+		{
+			print("*** HandleIdleWithOrbState: right click drop orb ");
+			DropCurrentOrb();
+			playerState.dropOrb();
+			//playerState.UpdateStateOnStopMoving();
+			//Debugger.UpdateMessage("Dropped orb idling");
+		}
 	}
 	
 	IEnumerator WaitFor20Seconds(PickUpController currentHeldOrbController)
@@ -539,5 +562,31 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(faceDelay);
 
 		isFacingWheel = true;
+	}
+
+	public void ResetOrbAfterDrop()
+	{
+		AnimationStates.UpdateState(PlayerStateType.PickupOrb);
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.CompareTag("test"))
+		{
+			print("***PARENTING");
+			transform.parent = other.gameObject.transform;
+			rb.constraints = RigidbodyConstraints.FreezePosition;
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		transform.parent = null;
+		rb.constraints = RigidbodyConstraints.None;
+	}
+
+	public void HandleResetOrb(GameObject resetOrb)
+	{
+		HandlePickupState(resetOrb);
 	}
 }

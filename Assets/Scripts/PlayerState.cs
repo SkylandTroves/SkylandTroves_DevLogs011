@@ -181,7 +181,8 @@ public class PlayerState : MonoBehaviour
     {
         pickupCooldown = pickupCooldownDuration;
 
-        if (currentState == PlayerStateType.IdleWithOrb || currentState == PlayerStateType.NextToPodiumWithOrb)
+        if (currentState == PlayerStateType.IdleWithOrb || currentState == PlayerStateType.NextToPodiumWithOrb ||
+            currentState == PlayerStateType.NextToOrb) 
         {
             currentState = PlayerStateType.IdleWithoutOrb;
         }

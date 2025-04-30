@@ -125,6 +125,35 @@ public class MovingPlatform : MonoBehaviour
             SoundController.instance.StopPlatformSound(platformType, gameObject.GetInstanceID());
         }
     }
+
+    public void StartMovingBackwards()
+    {
+        PlayPlatformSoundEffect();
+        
+        StartCoroutine(MoveBackwards());
+    }
+
+    IEnumerator MoveBackwards()
+    {
+        float timeElapsed = 0f;
+
+        while (timeElapsed < SecondsToMove)
+        {
+            Vector3 newPosition = Vector3.Lerp(positionB.position, positionA.position, timeElapsed / SecondsToMove);
+            transform.position = newPosition;
+
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.position = positionA.position;
+        
+        if (SoundController.instance != null)
+        {
+            SoundController.instance.StopPlatformSound(platformType, gameObject.GetInstanceID());
+        }
+    }
     
     //getters and setters
     public float GetWheelProgress()
@@ -146,4 +175,44 @@ public class MovingPlatform : MonoBehaviour
     {
         return positionB.transform.position;
     }
+
+    private Rigidbody orbRigidBody;
+    private FixedJoint joint;
+    public void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "energyOrbCharged" || other.gameObject.tag == "energyOrbUncharged")
+        {
+            if(transform.tag == "Mover")
+            {
+                other.gameObject.transform.parent = transform;
+            }
+
+            if (transform.tag == "Pusher")
+            {
+                joint = transform.AddComponent<FixedJoint>();
+                orbRigidBody = other.gameObject.GetComponent<Rigidbody>();
+                joint.connectedBody = orbRigidBody;
+                joint.breakForce = 100f;     // Tweak this value
+                joint.breakTorque = 100f;
+
+            }
+        }
+    }
+    
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.rigidbody == orbRigidBody && joint != null)
+        {
+            Destroy(joint);
+            joint = null;
+            Debug.Log("Orb detached from platform.");
+        }
+    }
+    
+    void OnJointBreak(float breakForce)
+    {
+        Debug.Log("Joint broke! Force: " + breakForce);
+        joint = null;
+    }
+
 }
