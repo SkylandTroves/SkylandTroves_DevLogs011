@@ -29,10 +29,10 @@ public class PodiumController : ObservedSubject
     private IEnumerator ActivatePlatformsWithDelay()
     {
         // Apply screen shake
-        if (cameraController != null)
+        /*if (cameraController != null)
         {
             cameraController.ShakeCamera(shakeIntensity, shakeDuration);
-        }
+        }*/
         
         yield return new WaitForSeconds(activationDelay);
         

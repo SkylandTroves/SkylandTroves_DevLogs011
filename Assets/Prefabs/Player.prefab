@@ -537,7 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepSource: {fileID: 6851590839146184806}
   footstepClips:
-  - {fileID: 8300000, guid: 7141a904e1615194691e6198b21d8f19, type: 3}
-  - {fileID: 8300000, guid: 2037b0badc133844aa9f7ce77a08f5d3, type: 3}
-  - {fileID: 8300000, guid: d01ace1f09404044bb71e57af9816fb7, type: 3}
-  - {fileID: 8300000, guid: 7a2cb741741e4e644850237db252d0ef, type: 3}
+  - {fileID: 8300000, guid: 8946732da2b2a5e489f2a0bdde226857, type: 3}
+  - {fileID: 8300000, guid: 31a7519dae995744087e5b70dafbd414, type: 3}
+  - {fileID: 8300000, guid: 4fc590e2b77437146b9aea903c3409a4, type: 3}
+  - {fileID: 8300000, guid: 5dabc84fea48c4e4fa0a8de8ddcd29e8, type: 3}

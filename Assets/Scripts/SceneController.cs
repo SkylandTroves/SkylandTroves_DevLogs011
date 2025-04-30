@@ -119,13 +119,15 @@ public class SceneController : MonoBehaviour
     private void PlayWindSoundForLevel(int level)
     {
         if (SoundController.instance == null) return;
-        
+
         AudioClip windClip;
         float volume = 0.8f; 
-    
+
         switch (level)
         {
             case 1:
+                windClip = SoundController.instance.WindOneSFX;
+                break;
             case 2:
                 windClip = SoundController.instance.WindOneSFX;
                 break;
@@ -134,19 +136,23 @@ public class SceneController : MonoBehaviour
                 volume = 0.9f;
                 break;
             case 4:
-                windClip = SoundController.instance.WindFourSFX;
+                windClip = SoundController.instance.WindThreeSFX;
                 volume = 0.95f; 
                 break;
             case 5:
-                windClip = SoundController.instance.WindFiveSFX;
+                windClip = SoundController.instance.WindFourSFX;
                 volume = 0.95f; 
+                break;
+            case 6:
+                windClip = SoundController.instance.WindFiveSFX;
+                volume = 0.95f;
                 break;
             default:
                 windClip = SoundController.instance.WindOneSFX;
                 break;
         }
-        
-    
+
+
         SoundController.instance.PlayLoopingSound(windClip, transform, "LevelWind", volume);
     }
 
