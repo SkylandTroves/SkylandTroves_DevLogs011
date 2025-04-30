@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ST_Level_05.unity
     guid: 2f21a01384e5bb94a8f276df4e5bd89a
+  - enabled: 1
+    path: Assets/Scenes/ST_EndScreen.unity
+    guid: 318ca5af6c732b04f9ccef06e5c728ee
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
