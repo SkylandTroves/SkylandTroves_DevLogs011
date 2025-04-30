@@ -2409,6 +2409,7 @@ GameObject:
   - component: {fileID: 1292600860}
   - component: {fileID: 1292600862}
   - component: {fileID: 1292600861}
+  - component: {fileID: 1292600863}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2467,7 +2468,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2511,6 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 7703432}
+  followDuringShake: 1
 --- !u!114 &1292600861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2588,6 +2590,22 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1292600863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292600854}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d63c2b9dda3e14a993934dc052c447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  zoomSpeed: 3
+  minZoom: 5
+  maxZoom: 50
 --- !u!1 &1312570183
 GameObject:
   m_ObjectHideFlags: 0
@@ -2970,7 +2988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048891866000749579, guid: a4a96b7e6cee6ab47ab8ffd0f23402b2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3084775535013871041, guid: a4a96b7e6cee6ab47ab8ffd0f23402b2, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4659,6 +4677,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 395233698}
     - target: {fileID: 1458290777332173911, guid: 3795891dbd3439e4b81c1345cf8d9ae1, type: 3}
+      propertyPath: shakeDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458290777332173911, guid: 3795891dbd3439e4b81c1345cf8d9ae1, type: 3}
+      propertyPath: shakeIntensity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458290777332173911, guid: 3795891dbd3439e4b81c1345cf8d9ae1, type: 3}
+      propertyPath: activationDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458290777332173911, guid: 3795891dbd3439e4b81c1345cf8d9ae1, type: 3}
       propertyPath: movingPlatforms.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -5248,7 +5278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048891866000749579, guid: a4a96b7e6cee6ab47ab8ffd0f23402b2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3084775535013871041, guid: a4a96b7e6cee6ab47ab8ffd0f23402b2, type: 3}
       propertyPath: m_SizeDelta.y

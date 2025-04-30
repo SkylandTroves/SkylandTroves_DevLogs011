@@ -361,7 +361,7 @@ public class PlayerController : MonoBehaviour
 				HandleNextToPodiumWithOrbState(currentInteractable);
 				break;
 			case PlayerStateType.NextToWheelWithoutOrb:
-				HandleTurnWheelState(currentState, currentInteractable);
+				HandleTurnWheelState(currentState, currentInteractable); //kevin
 				break;
 			case PlayerStateType.NextToWheelWithOrb:
 				HandleTurnWheelState(currentState, currentInteractable);
@@ -467,41 +467,35 @@ public class PlayerController : MonoBehaviour
 	{
 		float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 		Wheel currentWheel = currentInteractable.GetComponent<Wheel>();
+		
 		if (!isFacingWheel)
 		{
-			
 			StartCoroutine(FaceThenInteract(currentWheel));
 		}
+		
 		if (scrollInput != 0f)
 		{
-			hasStartedTurning = true;
+			if (!hasStartedTurning)
+			{
+				hasStartedTurning = true;
+				SoundController.instance.PlayWheelTurningSound(currentInteractable.transform);
+			}
+			
 			wheelInteractionTimer = wheelInteractionDuration;
-
-			//Wheel currentWheelScroll = currentInteractable.GetComponent<Wheel>();
 			currentWheel.HandleWheelScroll();
 			AnimationStates.resumeAnimation();
 		}
 		else if (wheelInteractionTimer > 0f)
 		{
 			wheelInteractionTimer -= Time.deltaTime;
-			if(hasStartedTurning)
-			{
-				AnimationStates.pauseAnimation();
-			}
 		}
-
-		if (wheelInteractionTimer > 0f)
+		if (wheelInteractionTimer <= 0f && hasStartedTurning)
 		{
-			AnimationStates.resumeAnimation();
-		}
-		else
-		{
+			SoundController.instance.StopWheelTurningSound(currentInteractable.transform);
 			hasStartedTurning = false;
-			if(hasStartedTurning)
-			{
-				AnimationStates.pauseAnimation();
-			}
+			AnimationStates.pauseAnimation();
 		}
+		
 		if (hasStartedTurning)
 		{
 			AnimationStates.UpdateState(currentState);

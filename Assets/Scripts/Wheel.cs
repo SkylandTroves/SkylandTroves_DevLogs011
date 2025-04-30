@@ -8,7 +8,21 @@ public class Wheel : MonoBehaviour
    [SerializeField] private List<MovingPlatform> movingPlatforms;
    //[SerializeField] private PickUpController pickUps; // use if not using a list 
    private bool isTurningObject = false;
-   
+   public bool IsBoatWheel()
+   {
+       if (movingPlatforms == null || movingPlatforms.Count == 0)
+           return false;
+           
+       foreach (MovingPlatform platform in movingPlatforms)
+       {
+           if (platform != null && platform.gameObject.CompareTag("Boat"))
+           {
+               return true;
+           }
+       }
+       
+       return false;
+   }
    public void HandleWheelScroll()
    {
 
@@ -23,7 +37,7 @@ public class Wheel : MonoBehaviour
             {
                // Adjust wheel progress based on scroll input with speed restriction
                float currentProgress = movingPlatform.GetWheelProgress();
-               float maxChange = 0.03f; // Maximum allowed change per frame
+               float maxChange = 0.02f; // Maximum allowed change per frame
                float clampedScrollInput = Mathf.Clamp(scrollInput, -maxChange, maxChange);
                float newProgress = Mathf.Clamp(currentProgress + clampedScrollInput, 0, 1);
 

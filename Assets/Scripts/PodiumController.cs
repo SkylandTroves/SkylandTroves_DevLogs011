@@ -7,14 +7,35 @@ public class PodiumController : ObservedSubject
 {
     public GameObject Orb;
     [SerializeField] private List<MovingPlatform> movingPlatforms; // List of MovingPlatform objects
-    // in the editor say how many platforms are effected then wire up their game objects
     [SerializeField] private Transform orbPositionOnPodium;
+    [SerializeField] private float shakeIntensity = 0.5f;
+    [SerializeField] private float shakeDuration = 0.5f;
+    [SerializeField] private float activationDelay = 1.0f;
+    
+    private CameraController cameraController;
     void Start()
     {
-        //NotifyObservers();
+       cameraController = Camera.main.GetComponent<CameraController>();
     }
     private void MessageTargetObjects()
     {
+        // foreach (MovingPlatform targetObject in movingPlatforms)
+        // {
+        //     targetObject.WasActivated = true;
+        //     targetObject.StartMoving();
+        // }
+        StartCoroutine(ActivatePlatformsWithDelay());
+    }
+    private IEnumerator ActivatePlatformsWithDelay()
+    {
+        // Apply screen shake
+        if (cameraController != null)
+        {
+            cameraController.ShakeCamera(shakeIntensity, shakeDuration);
+        }
+        
+        yield return new WaitForSeconds(activationDelay);
+        
         foreach (MovingPlatform targetObject in movingPlatforms)
         {
             targetObject.WasActivated = true;
@@ -85,5 +106,34 @@ public class PodiumController : ObservedSubject
     public void SetOrbPositionOnPodium(Transform orbPosition)
     {
         this.orbPositionOnPodium = orbPosition;
+    }
+    public float GetShakeIntensity()
+    {
+        return shakeIntensity;
+    }
+
+    public float GetShakeDuration()
+    {
+        return shakeDuration;
+    }
+
+    public float GetActivationDelay()
+    {
+        return activationDelay;
+    }
+
+    public void SetShakeIntensity(float intensity)
+    {
+        shakeIntensity = intensity;
+    }
+
+    public void SetShakeDuration(float duration)
+    {
+        shakeDuration = duration;
+    }
+
+    public void SetActivationDelay(float delay)
+    {
+        activationDelay = delay;
     }
 }

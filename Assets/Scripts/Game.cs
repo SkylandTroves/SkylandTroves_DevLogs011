@@ -14,7 +14,7 @@ public class Game : MonoBehaviour
 {
     public Animator crossFade;
     public GameObject player;
-    [SerializeField] private float crossFadeTime = 1f;
+    [SerializeField] public float crossFadeTime = 1f;
     [SerializeField] private SceneController sceneController;  // Add [SerializeField]
 
     public void LoadNextLevel()

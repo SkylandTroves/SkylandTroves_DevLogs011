@@ -11,23 +11,92 @@ using System.Collections;
 // NOTE: class is from ROLLER BALL PROJECT FROM PRATE - Aliya did not make changes 
 public class CameraController : MonoBehaviour 
 {
-	public GameObject Player;
-	private Vector3 offset; // offset between player and cam 
-	
-	void Start ()
-	{
-		// Create an offset by subtracting the Camera's position from the player's position
-		offset = transform.position - Player.transform.position;
-	}
+    public GameObject Player;
+    
+    [Header("Camera Shake Settings")]
+    [Tooltip("When checked, camera will continue following player during shake")]
+    [SerializeField] private bool followDuringShake = false;
+    
+    private Vector3 offset; // offset between player and cam 
+    private bool isShaking = false;
+    private Vector3 originalPosition;
+    private Vector3 currentShakeOffset = Vector3.zero;
+    private Coroutine shakeCoroutine;
+    
+    void Start()
+    {
+        offset = transform.position - Player.transform.position;
+    }
 
-	// late update is after the standard 'Update()' loop runs, and just before each frame is rendered..
-	void LateUpdate ()
-	{
-		// Set the position of the Camera (the game object this script is attached to)
-		// to the player's position, plus the offset amount
-		transform.position = Player.transform.position + offset;
-	}
-	
-	
+    void LateUpdate()
+    {
+        if (isShaking)
+        {
+            if (followDuringShake)
+            {
+                transform.position = Player.transform.position + offset + currentShakeOffset;
+            }
+        }
+        else
+        {
+            transform.position = Player.transform.position + offset;
+        }
+    }
+
+    public void SetShaking(bool shaking)
+    {
+        isShaking = shaking;
+        
+        if (!shaking)
+        {
+            currentShakeOffset = Vector3.zero;
+        }
+    }
+    
+    public void ShakeCamera(float intensity, float duration)
+    {
+        Debug.Log($"ShakeCamera called with intensity={intensity}, duration={duration}");
+        if (shakeCoroutine != null)
+        {
+            StopCoroutine(shakeCoroutine);
+        }
+        
+        originalPosition = transform.position;
+        
+        shakeCoroutine = StartCoroutine(ShakeRoutine(intensity, duration));
+    }
+
+    private IEnumerator ShakeRoutine(float intensity, float duration)
+    {
+        SetShaking(true);
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float remainingTime = duration - elapsed;
+            float shakeFactor = intensity * (remainingTime / duration);
+            
+            currentShakeOffset = new Vector3(
+                Random.Range(-1f, 1f) * shakeFactor,
+                Random.Range(-1f, 1f) * shakeFactor,
+                Random.Range(-1f, 1f) * shakeFactor * 0.5f 
+            );
+            
+            if (!followDuringShake)
+            {
+                transform.position = originalPosition + currentShakeOffset;
+            }
+            
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        if (!followDuringShake)
+        {
+            transform.position = originalPosition;
+        }
+        
+        SetShaking(false);
+        shakeCoroutine = null;
+    }
 }
-

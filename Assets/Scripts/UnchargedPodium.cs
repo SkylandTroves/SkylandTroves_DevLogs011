@@ -30,10 +30,11 @@ public class UnchargedPodium : PodiumController
         {
             // Instantiate the charged podium at the current position and rotation of the uncharged podium
             GameObject newPodium = Instantiate(chargedPodiumPrefab, transform.position, transform.rotation);
-            print("*** new pod" + newPodium.gameObject.name);
-            PodiumController podiumController = newPodium.GetComponent<PodiumController>();
+            PodiumController podiumController = newPodium.GetComponent<PodiumController>();    
             podiumController.SetOrb(GetOrb());
-            podiumController.SetMovingPlatforms(GetMovingPlatformsList());
+            podiumController.SetMovingPlatforms(GetMovingPlatformsList());          
+            PodiumController thisController = GetComponent<PodiumController>();
+            CopyShakeParameters(thisController, podiumController);
             podiumController.transform.SetParent(transform.parent);
             GetOrb().GetComponent<Rigidbody>().useGravity = false;
             GetOrb().GetComponentInChildren<Collider>().enabled = false;
@@ -46,6 +47,12 @@ public class UnchargedPodium : PodiumController
         {
             Debug.LogError("Charged podium prefab is not assigned!");
         }
+    }
+    private void CopyShakeParameters(PodiumController source, PodiumController target)
+    {
+        target.SetShakeIntensity(source.GetShakeIntensity());
+        target.SetShakeDuration(source.GetShakeDuration());
+        target.SetActivationDelay(source.GetActivationDelay());
     }
     private void PutUnChargedOnPodium()
     {
