@@ -48,6 +48,7 @@ public class SceneController : MonoBehaviour
         }
         else
         {
+            StartWindEffectsForCurrentLevel();
             //SkipButtonCanvas.gameObject.SetActive(false);
         }
         PlayMusicForCurrentLevel();
@@ -123,7 +124,7 @@ public class SceneController : MonoBehaviour
             SoundController.instance.StopLoopingSound("LevelWind");
         }
         
-        if (CurrentLevel >= 1 && CurrentLevel <= 6)
+        if (CurrentLevel >= 0 && CurrentLevel <= 7)
         {
             PlayWindSoundForLevel(CurrentLevel);
         }
@@ -138,6 +139,10 @@ public class SceneController : MonoBehaviour
 
         switch (level)
         {
+             case 0: 
+                windClip = SoundController.instance.WindOneSFX;
+                volume = 0.6f;
+                break;
             case 1:
                 windClip = SoundController.instance.WindOneSFX;
                 break;
@@ -150,7 +155,7 @@ public class SceneController : MonoBehaviour
                 break;
             case 4:
                 windClip = SoundController.instance.WindThreeSFX;
-                volume = 0.95f; 
+                volume = 1.2f; 
                 break;
             case 5:
                 windClip = SoundController.instance.WindFourSFX;
@@ -160,9 +165,14 @@ public class SceneController : MonoBehaviour
                 windClip = SoundController.instance.WindFiveSFX;
                 volume = 0.95f;
                 break;
+             case 7:  
+                windClip = SoundController.instance.WindTwoSFX;
+                volume = 0.95f;
+                break;
             default:
                 windClip = SoundController.instance.WindOneSFX;
                 break;
+    
         }
 
 
