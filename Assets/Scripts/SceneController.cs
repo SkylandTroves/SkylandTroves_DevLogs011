@@ -264,7 +264,7 @@ public class SceneController : MonoBehaviour
             case 5:
                 if (CurrentLevel == 5)
                 {
-                    GoToLevelSix();
+                    GoToEndScreen();
                 }
                 break;
                     
@@ -367,6 +367,11 @@ public class SceneController : MonoBehaviour
     public void GoToLevelSix()
     {
         GoToNewScene("ST_Level_06");
+    }
+
+    public void GoToEndScreen()
+    {
+        GoToNewScene("EndScreen");
     }
 
     public void OnQuitButtonQuitGame()

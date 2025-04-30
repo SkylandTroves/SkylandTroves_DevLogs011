@@ -18,6 +18,12 @@ TagManager:
   - MediumPlatform
   - BigPlatform
   - SmallPlatform
+  - Wrist
+  - Mover
+  - Pusher
+  - MoveWhenLeave
+  - test
+  - NoLerp
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7774377481393891402}
   - component: {fileID: 8388021287139072746}
   - component: {fileID: 2224541384760574994}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: innerCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4855,7 +4855,7 @@ GameObject:
   - component: {fileID: 8358009743166201501}
   - component: {fileID: 7535926104585746102}
   - component: {fileID: 5894641876859544524}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: chargeArea
   m_TagString: ChargeArea
   m_Icon: {fileID: 0}
@@ -9715,7 +9715,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7399116611103708658}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8788a4323ba80224aaa9032e6bfb0298, type: 3}

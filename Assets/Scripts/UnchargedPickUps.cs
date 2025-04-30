@@ -13,6 +13,8 @@ public class UnchargedPickUps : PickUpController
 {
     [SerializeField] private GameObject chargedOrbPrefab; // Reference to the charged orb prefab
     private bool isOrbCharged = false;
+    public GameObject assignedPodium;
+
 
     // Override the PickUpObject method from the base class if needed
     public override void PickUpObject()
@@ -34,6 +36,7 @@ public class UnchargedPickUps : PickUpController
             Debug.Log("Orb entered charge area, switching to charged version...");
             SwitchToChargedOrb(); // Switch to the charged orb version when in the charge area
         }
+
     }
 
     private void SwitchToChargedOrb()
@@ -65,6 +68,7 @@ public class UnchargedPickUps : PickUpController
             
             if (player.IsCarryingOrb())
             {
+                print("*** YES CARRYING ORB ");
                 player.SetHeldOrb(newOrb);
             }
             //destroy the uncharged orb (or deactivate it)
@@ -81,6 +85,7 @@ public class UnchargedPickUps : PickUpController
             // Check if the uncharged orb was being held before calling PickUpObject
             if (GetIsHoldingObject())
             {
+                print("*** GET ISHOLDING OBJECT");
                 pickUpController.PickUpObject();
             }
             
@@ -109,6 +114,13 @@ public class UnchargedPickUps : PickUpController
                 podiumController.SetOrb(newOrb);
             }
         }
+        
+        /*if (assignedPodium != null)
+        {
+            PodiumController podiumController = assignedPodium.GetComponent<PodiumController>();
+            podiumController.SetOrb(newOrb);
+        }*/
+
         
     }
 
