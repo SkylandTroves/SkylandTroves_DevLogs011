@@ -14,34 +14,59 @@ public class Game : MonoBehaviour
 {
     public Animator crossFade;
     public GameObject player;
-    [SerializeField] public float crossFadeTime = 1f;
-    [SerializeField] private SceneController sceneController;  // Add [SerializeField]
-
+    [SerializeField] public float crossFadeTime = 2.0f;
+    [SerializeField] private SceneController sceneController;
+    
+    private void Awake()
+    {
+        if (crossFade == null)
+        {
+            Debug.LogError("CrossFade animator is not assigned in Game controller!");
+        }
+    }
+    
+    void Start()
+    {
+        Debugger.Enable();
+        
+        if (player != null)
+        {
+            StartCoroutine(PauseBeforeLoadPlayer());
+        }
+        
+    }
+    
     public void LoadNextLevel()
     {
-        StartCoroutine(PauseBeforeLoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        
+        if (sceneController != null)
+        {
+            sceneController.GoToNextLevel(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            StartCoroutine(PauseBeforeLoadLevel(nextLevelIndex));
+        }
     }
 
     IEnumerator PauseBeforeLoadLevel(int levelIndex)
     {
-        // play animation
         crossFade.SetTrigger("Start");
         
-        // wait for animation to finish
         yield return new WaitForSeconds(crossFadeTime);
 
-        // load scene
-        sceneController.GoToNewScene(levelIndex);
-
+        if (sceneController != null)
+        {
+            sceneController.GoToNewScene(levelIndex);
+        }
+        else
+        {
+            SceneManager.LoadScene(levelIndex);
+        }
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-    }
-
-    void Start()
-    {
-        Debugger.Enable();
-        StartCoroutine(PauseBeforeLoadPlayer());
     }
     
     IEnumerator PauseBeforeLoadPlayer()
@@ -49,6 +74,4 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         player.SetActive(true);
     }
-
-
 }

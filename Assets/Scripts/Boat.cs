@@ -74,17 +74,10 @@ public class Boat : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
+        // Always play transition sound effect when a boat (level-switching platform) starts moving
         if (SoundController.instance != null)
         {
-            if (isLevelSwitchCatalyst)
-            {
-                SoundController.instance.StopLevelMusicWithFade();
-            }
-        }
-        
-        if (isLevelSwitchCatalyst)
-        {
-            GoToNextLevel();
+            SoundController.instance.StopLevelMusicWithFade(null, true);
         }
     }
 

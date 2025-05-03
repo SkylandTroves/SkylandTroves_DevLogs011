@@ -48,6 +48,15 @@ MonoBehaviour:
   playerTransform: {fileID: 3474533114257842203, guid: 8dba6bf4e4b4e0e478a1bd84fe3f648e, type: 3}
   pickUpBallSFX: {fileID: 8300000, guid: ad2219b2caf7c6e498b3f4078f30b841, type: 3}
   dropBallSFX: {fileID: 8300000, guid: dbcb7204a1eaf4842b03c741719f93a1, type: 3}
+  titleScreenMusic: {fileID: 8300000, guid: 9eeb9de1477b6304a81ade193304ab19, type: 3}
+  level1Music: {fileID: 8300000, guid: f252ae047e1ef9046b1f84a05086cac1, type: 3}
+  level2Music: {fileID: 8300000, guid: df7f089741e96b44da39a46027868edd, type: 3}
+  level3Music: {fileID: 8300000, guid: 9622c7f53125e1045b84b13074306f2c, type: 3}
+  level4Music: {fileID: 8300000, guid: 86a004e4a52b48640a4a449634fd11f1, type: 3}
+  level5Music: {fileID: 8300000, guid: 53770246f8c2e9342b96ffa98e3936a8, type: 3}
+  levelTransitionSFX: {fileID: 8300000, guid: 634987de908d8554099104fdac8198c7, type: 3}
+  transitionSFXSource: {fileID: 0}
+  musicFadeDuration: 1.5
   clickSFX: {fileID: 8300000, guid: c6b48849ce1dba148a32c83396d8503c, type: 3}
   SMALLmovingPlatformSFX: {fileID: 7676609988541400178, guid: f9c34f054696d9340adcfa5e52572f96, type: 3}
   MEDmovingPlatformSFX: {fileID: 7676609988541400178, guid: 82cd1a0b5d0821946ba0a1cb98d2ccc4, type: 3}
@@ -59,14 +68,4 @@ MonoBehaviour:
   WindFIVESFX: {fileID: 8300000, guid: 1da4f52505a9d1d4ea0c705b3745960b, type: 3}
   WHEELSFX: {fileID: 8300000, guid: ffae8b28391b9c943a81538ca1f62595, type: 3}
   isBoatWHEELSFX: {fileID: 8300000, guid: 556ae11e1c5686946bf04bfcfe639283, type: 3}
-  titleScreenMusic: {fileID: 8300000, guid: 9eeb9de1477b6304a81ade193304ab19, type: 3}
-  level1Music: {fileID: 8300000, guid: f252ae047e1ef9046b1f84a05086cac1, type: 3}
-  level2Music: {fileID: 8300000, guid: df7f089741e96b44da39a46027868edd, type: 3}
-  level3Music: {fileID: 8300000, guid: 9622c7f53125e1045b84b13074306f2c, type: 3}
-  level4Music: {fileID: 8300000, guid: 86a004e4a52b48640a4a449634fd11f1, type: 3}
-  level5Music: {fileID: 8300000, guid: 53770246f8c2e9342b96ffa98e3936a8, type: 3}
-  levelTransitionSFX: {fileID: 8300000, guid: 634987de908d8554099104fdac8198c7, type: 3}
-  musicSource: {fileID: 0}
-  musicVolume: 0.7
   wheelSoundFadeDuration: 0.5
-  musicFadeDuration: 1.5
