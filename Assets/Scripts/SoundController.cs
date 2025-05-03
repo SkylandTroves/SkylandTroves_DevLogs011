@@ -49,7 +49,6 @@ public class SoundController : MonoBehaviour
     [SerializeField] private float wheelSoundFadeDuration = 0.5f;
     private Dictionary<string, Coroutine> activeFadeoutCoroutines = new Dictionary<string, Coroutine>();
     
-    // Flag to track if we're already in a transition
     private bool isInTransition = false;
     
     // Getters
@@ -295,7 +294,6 @@ public class SoundController : MonoBehaviour
         {
             if (withTransition)
             {
-                // Play transition SFX when requested
                 StopLevelMusicWithFade(() => {
                     if (withFadeIn)
                         PlayLevelMusicWithFadeIn(musicClip, volume, musicFadeDuration);
@@ -346,7 +344,6 @@ public class SoundController : MonoBehaviour
     
     public void StopLevelMusicWithFade(System.Action onComplete = null, bool playTransitionSFX = false)
     {
-        // Always play transition sound if explicitly requested
         if (playTransitionSFX && levelTransitionSFX != null)
         {
             if (transitionSFXSource == null)
@@ -354,15 +351,12 @@ public class SoundController : MonoBehaviour
                 InitializeTransitionSource();
             }
             
-            // Stop any currently playing transition sound
             transitionSFXSource.Stop();
             
-            // Play the transition sound at appropriate volume
             transitionSFXSource.clip = levelTransitionSFX;
             transitionSFXSource.volume = 0.25f;
             transitionSFXSource.Play();
             
-            // Clean up the transition source after it's done playing
             StartCoroutine(CleanupTransitionSource(levelTransitionSFX.length + 0.5f));
         }
         
@@ -387,7 +381,6 @@ public class SoundController : MonoBehaviour
         
         if (transitionSFXSource != null && !transitionSFXSource.isPlaying)
         {
-            // Don't destroy the object, just reset its state
             transitionSFXSource.Stop();
             transitionSFXSource.clip = null;
         }
