@@ -30,7 +30,7 @@ public class SoundController : MonoBehaviour
     //click
     [SerializeField] private AudioClip clickSFX;
 
-    //moving platforms - these are now just references to prefabs you'll assign in inspector
+    //moving platforms
     [SerializeField] private AudioSource SMALLmovingPlatformSFX;
     [SerializeField] private AudioSource MEDmovingPlatformSFX;
     [SerializeField] private AudioSource BIGmovingPlatformSFX;
@@ -46,9 +46,11 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioClip WHEELSFX;
     [SerializeField] private AudioClip isBoatWHEELSFX;
     
-    // Fade duration for wheel sounds (in seconds)
     [SerializeField] private float wheelSoundFadeDuration = 0.5f;
     private Dictionary<string, Coroutine> activeFadeoutCoroutines = new Dictionary<string, Coroutine>();
+    
+    // Flag to track if we're already in a transition
+    private bool isInTransition = false;
     
     // Getters
     public AudioClip PickUpBallSFX => pickUpBallSFX;
@@ -291,16 +293,15 @@ public class SoundController : MonoBehaviour
     {
         if (currentLevelMusicSource != null)
         {
-            if (withTransition && levelTransitionSFX != null)
+            if (withTransition)
             {
-                PlaySFX(levelTransitionSFX, transform, volume);
-                
+                // Play transition SFX when requested
                 StopLevelMusicWithFade(() => {
                     if (withFadeIn)
                         PlayLevelMusicWithFadeIn(musicClip, volume, musicFadeDuration);
                     else
                         StartNewLevelMusic(musicClip, volume);
-                });
+                }, withTransition);
                 return;
             }
             else
@@ -314,7 +315,6 @@ public class SoundController : MonoBehaviour
         else
             StartNewLevelMusic(musicClip, volume);
     }
-    
     private void StartNewLevelMusic(AudioClip musicClip, float volume)
     {
         if (musicClip == null) return;
@@ -344,19 +344,26 @@ public class SoundController : MonoBehaviour
         }
     }
     
-    public void StopLevelMusicWithFade(System.Action onComplete = null)
+    public void StopLevelMusicWithFade(System.Action onComplete = null, bool playTransitionSFX = false)
     {
-        if (levelTransitionSFX != null)
+        // Always play transition sound if explicitly requested
+        if (playTransitionSFX && levelTransitionSFX != null)
         {
             if (transitionSFXSource == null)
             {
                 InitializeTransitionSource();
             }
             
+            // Stop any currently playing transition sound
+            transitionSFXSource.Stop();
+            
+            // Play the transition sound at appropriate volume
             transitionSFXSource.clip = levelTransitionSFX;
-            transitionSFXSource.volume = .25f;
+            transitionSFXSource.volume = 0.25f;
             transitionSFXSource.Play();
             
+            // Clean up the transition source after it's done playing
+            StartCoroutine(CleanupTransitionSource(levelTransitionSFX.length + 0.5f));
         }
         
         if (currentLevelMusicSource != null)
@@ -380,10 +387,12 @@ public class SoundController : MonoBehaviour
         
         if (transitionSFXSource != null && !transitionSFXSource.isPlaying)
         {
-            Destroy(transitionSFXSource.gameObject);
-            transitionSFXSource = null;
+            // Don't destroy the object, just reset its state
+            transitionSFXSource.Stop();
+            transitionSFXSource.clip = null;
         }
     }
+
     private IEnumerator FadeOutLevelMusic(System.Action onComplete)
     {
         if (currentLevelMusicSource == null) yield break;

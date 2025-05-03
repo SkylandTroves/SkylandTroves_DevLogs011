@@ -5003,6 +5003,10 @@ PrefabInstance:
       propertyPath: positionB
       value: 
       objectReference: {fileID: 1048817302}
+    - target: {fileID: 4809548030395195385, guid: b1b5946a8f24883459dda78e743b2e95, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 76434707b4106b840a34d9be4869131d, type: 2}
     - target: {fileID: 7689956343959415300, guid: b1b5946a8f24883459dda78e743b2e95, type: 3}
       propertyPath: m_Name
       value: Boat_01
@@ -6175,6 +6179,10 @@ PrefabInstance:
     - target: {fileID: 9105689093995271434, guid: 7fad4328e9dce40398e4dd458de4ab05, type: 3}
       propertyPath: m_Name
       value: SceneController
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105689093995271434, guid: 7fad4328e9dce40398e4dd458de4ab05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
