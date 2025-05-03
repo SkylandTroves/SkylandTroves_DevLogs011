@@ -108,7 +108,7 @@ public class SceneController : MonoBehaviour
                 SoundController.instance.PlayLevel5Music(volume, withTransition, withFadeIn);
                 break;
             case 6:
-                SoundController.instance.PlayLevel5Music(volume, withTransition, withFadeIn);
+                SoundController.instance.PlayEndScreenMusic(volume, withTransition, withFadeIn);
                 break;
             default:
                
@@ -418,7 +418,8 @@ public class SceneController : MonoBehaviour
         }
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+        #else
         Application.Quit();
+        #endif
     }
 }
