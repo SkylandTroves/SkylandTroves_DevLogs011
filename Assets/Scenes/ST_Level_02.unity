@@ -2033,7 +2033,7 @@ AudioSource:
   Priority: 123
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -2043,50 +2043,50 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0013443008
-      value: 0.99596405
-      inSlope: -2.3370614
-      outSlope: -2.3370614
+      time: 0
+      value: 0.25535583
+      inSlope: 0.21352616
+      outSlope: 0.21352616
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.48144814
+      outWeight: 0.8378171
     - serializedVersion: 3
-      time: 0.121006206
-      value: 0.72946095
-      inSlope: -5.041987
-      outSlope: -5.041987
+      time: 0.16840762
+      value: 0.20883107
+      inSlope: -0.1853472
+      outSlope: -0.1853472
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.35781923
+      outWeight: 0.4583568
     - serializedVersion: 3
-      time: 0.3068344
-      value: 0.32671356
-      inSlope: -1.6509601
-      outSlope: -1.6509601
+      time: 0.3720047
+      value: 0.17201996
+      inSlope: -0.28849396
+      outSlope: -0.28849396
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.34098178
-      outWeight: 0
+      inWeight: 0.3888289
+      outWeight: 0.42874035
     - serializedVersion: 3
-      time: 0.45750275
-      value: 0.1976242
-      inSlope: -0.62524897
-      outSlope: -0.62524897
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.7643631
-      value: 0.060508728
-      inSlope: -0.33476624
-      outSlope: -0.33476624
+      time: 0.55824125
+      value: 0.12575531
+      inSlope: -0.108272016
+      outSlope: -0.108272016
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.51167005
+      outWeight: 0.4164033
+    - serializedVersion: 3
+      time: 0.8695877
+      value: 0.053977966
+      inSlope: -0.29927638
+      outSlope: -0.29927638
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.38412142
     - serializedVersion: 3
       time: 1
       value: 0
@@ -2465,6 +2465,10 @@ PrefabInstance:
     - target: {fileID: 9105689093995271434, guid: 7fad4328e9dce40398e4dd458de4ab05, type: 3}
       propertyPath: m_Name
       value: SceneController
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105689093995271434, guid: 7fad4328e9dce40398e4dd458de4ab05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3233,8 +3237,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 573032757}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: nextSceneName
+      value: ST_Level_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: shakeDuration
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: nextLevelDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: shakeIntensity
@@ -3249,8 +3261,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1287813346}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: loadNextSceneOnCharge
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: loadNextLevelOnCharged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: unchargedShakeDuration
       value: 7.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      propertyPath: isLevelTransitionPodium
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: unchargedShakeIntensity

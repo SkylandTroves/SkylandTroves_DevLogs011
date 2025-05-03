@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
 			{
 				// instantiate instance of particle effect 
 				Instantiate(clickParticle, hit.point, Quaternion.identity);
-				SoundController.instance.PlaySFX(SoundController.instance.ClickSFX, transform, 1f);
+				SoundController.instance.PlaySFX(SoundController.instance.ClickSFX, transform, .25f);
 			}
 			else
 			{
