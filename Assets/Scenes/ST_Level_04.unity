@@ -3203,7 +3203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
       propertyPath: m_Volume
-      value: 0.205
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 5894641876859544524, guid: 63d97ae1984b9344c940bb54028596e5, type: 3}
       propertyPath: rolloffMode
@@ -4911,7 +4911,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3342003834808744263, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1392193085}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4597947996385094946, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1428581243}
   m_SourcePrefab: {fileID: 100100000, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
 --- !u!4 &802539331 stripped
 Transform:
@@ -5114,7 +5117,7 @@ PrefabInstance:
       objectReference: {fileID: 412041506}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: shakeIntensity
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: activationDelay
@@ -7517,6 +7520,11 @@ MonoBehaviour:
   zoomSpeed: 10
   minZoom: 5
   maxZoom: 50
+--- !u!4 &1298734509 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 465106980759826104, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+  m_PrefabInstance: {fileID: 802539330}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1299269050
 GameObject:
   m_ObjectHideFlags: 0
@@ -8043,7 +8051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: shakeIntensity
-      value: 0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: activationDelay
@@ -8536,6 +8544,29 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5aa5cb6e8805814288709bed4996a0e, type: 3}
+--- !u!1 &1428581238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4597947996385094946, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
+  m_PrefabInstance: {fileID: 802539330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1428581243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428581238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23eec6dab853f5498a8e83aa2cdd196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Orb: {fileID: 1392193086}
+  movingPlatforms: []
+  orbPositionOnPodium: {fileID: 1298734509}
+  shakeIntensity: 0.1
+  shakeDuration: 8
+  activationDelay: 2
 --- !u!1001 &1449040462
 PrefabInstance:
   m_ObjectHideFlags: 0

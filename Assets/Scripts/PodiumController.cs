@@ -8,7 +8,7 @@ public class PodiumController : ObservedSubject
     public GameObject Orb;
     [SerializeField] private List<MovingPlatform> movingPlatforms; // List of MovingPlatform objects
     [SerializeField] private Transform orbPositionOnPodium;
-    [SerializeField] private float shakeIntensity = 0.5f;
+    [SerializeField] private float shakeIntensity = 0f;
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float activationDelay = 1.0f;
     
@@ -29,10 +29,10 @@ public class PodiumController : ObservedSubject
     private IEnumerator ActivatePlatformsWithDelay()
     {
         // Apply screen shake
-        /*if (cameraController != null)
+        if (cameraController != null)
         {
             cameraController.ShakeCamera(shakeIntensity, shakeDuration);
-        }*/
+        }
         
         yield return new WaitForSeconds(activationDelay);
         

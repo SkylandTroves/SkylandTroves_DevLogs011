@@ -282,13 +282,13 @@ public class PlayerController : MonoBehaviour
 
 	public void HandlePickUpOrbStart()
 	{
-		SoundController.instance.PlaySFX(SoundController.instance.PickUpBallSFX, transform, 1f);
+		SoundController.instance.PlaySFX(SoundController.instance.PickUpBallSFX, transform, .5f);
 		//stAnimator.SetTrigger(pickedUpOrb);
 	}
 
 	public void HandlePickUpOrbEnd()
 	{
-		SoundController.instance.PlaySFX(SoundController.instance.DropBallSFX, transform, 1f);
+		SoundController.instance.PlaySFX(SoundController.instance.DropBallSFX, transform, .5f);
 		//stAnimator.SetTrigger(droppedOrb);
 	}
 
