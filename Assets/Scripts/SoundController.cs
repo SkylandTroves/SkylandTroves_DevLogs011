@@ -445,6 +445,11 @@ public class SoundController : MonoBehaviour
     {
         PlayLevelMusic(level5Music, volume, withTransition, withFadeIn);
     }
+    
+    public void PlayEndScreenMusic(float volume = 1f, bool withTransition = false, bool withFadeIn = true)
+    {
+        PlayLevelMusic(titleScreenMusic, volume, withTransition, withFadeIn);
+    }
 
     public void PlayLevelMusicWithFadeIn(AudioClip musicClip, float targetVolume = 1f, float fadeDuration = 0.5f)
     {

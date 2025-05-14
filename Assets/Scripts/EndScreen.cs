@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour
 {
+    private SceneController sc;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,8 @@ public class EndScreen : MonoBehaviour
         {
             SoundController.instance.StopLoopingSound("LevelWind");
         }
-        SceneManager.LoadScene("ST_StartScreen");
+        
+        Application.Quit();
+        
     }
 }
