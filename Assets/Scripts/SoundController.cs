@@ -216,7 +216,7 @@ public class SoundController : MonoBehaviour
         }
     }
 
-    public void PlayWheelTurningSound(Transform wheelTransform, float volume = 1f)
+    public void PlayWheelTurningSound(Transform wheelTransform, float volume = .4f)
     {
         string soundID = "wheel_" + wheelTransform.GetInstanceID();
         

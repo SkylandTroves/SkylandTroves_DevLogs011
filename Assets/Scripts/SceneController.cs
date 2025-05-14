@@ -31,12 +31,12 @@ public class SceneController : MonoBehaviour
         UpdateCurrentLevel();
         if (CurrentLevel >= 1)
         {
-            SkipButtonCanvas.gameObject.SetActive(true);
+  //          SkipButtonCanvas.gameObject.SetActive(true);
             StartWindEffectsForCurrentLevel();
         }
         else
         {
-            SkipButtonCanvas.gameObject.SetActive(false);
+//            SkipButtonCanvas.gameObject.SetActive(false);
             StartWindEffectsForCurrentLevel();
         }
         PlayMusicForCurrentLevel(false); // Don't play transition sound when initializing a scene
@@ -382,13 +382,13 @@ public class SceneController : MonoBehaviour
             // Play transition sound when explicitly exiting menu to first level
             SoundController.instance.StopLevelMusicWithFade(() => {
                 GoToNewScene("ST_Level_01");
-                SkipButtonCanvas.gameObject.SetActive(true);
+  //              SkipButtonCanvas.gameObject.SetActive(true);
             }, true); // true = play transition SFX
         }
         else
         {
             GoToNewScene("ST_Level_01");
-            SkipButtonCanvas.gameObject.SetActive(true);
+//            SkipButtonCanvas.gameObject.SetActive(true);
         }
     }
 

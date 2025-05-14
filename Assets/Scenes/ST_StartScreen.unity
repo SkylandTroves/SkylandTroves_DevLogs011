@@ -762,6 +762,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   startButtonDelay: 1
   musicVolumeFactor: 0.25
+  SkipButtonCanvas: {fileID: 0}
 --- !u!1 &980517256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &1033667905
 Canvas:
   m_ObjectHideFlags: 0
