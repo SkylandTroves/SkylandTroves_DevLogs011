@@ -1932,13 +1932,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2477659967840294103, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481599886678451848, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401532462256109418, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3657082390049005270, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078203690243264423, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287688046259101238, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4287688046259101238, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 961928339}
+    - target: {fileID: 4287688046259101238, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToLevelFive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539910344756991491, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921530366030528308, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7419541162312920219, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
       propertyPath: m_Name
       value: Canvas-Persistent
+      objectReference: {fileID: 0}
+    - target: {fileID: 7419541162312920219, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8576917670099034609, guid: ba54239619c283c4ead80794bf6785a6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
