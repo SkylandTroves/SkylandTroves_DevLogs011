@@ -23,6 +23,7 @@ public class SceneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
@@ -32,13 +33,12 @@ public class SceneController : MonoBehaviour
         if (CurrentLevel >= 1)
         {
             SkipButtonCanvas.gameObject.SetActive(true);
-            StartWindEffectsForCurrentLevel();
         }
         else
         {
             SkipButtonCanvas.gameObject.SetActive(false);
-            StartWindEffectsForCurrentLevel();
         }
+        StartWindEffectsForCurrentLevel();
         PlayMusicForCurrentLevel(false); 
         
         StartCoroutine(InitialFadeIn());
@@ -66,15 +66,28 @@ public class SceneController : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.activeSceneChanged -= OnSceneChanged;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateCurrentLevel();
+        StartCoroutine(DelayedWindAndMusic());
+    }
+
+    private IEnumerator DelayedWindAndMusic()
+    {
+        yield return new WaitForEndOfFrame();
+        StartWindEffectsForCurrentLevel();
+        PlayMusicForCurrentLevel(true); 
     }
 
     private void OnSceneChanged(Scene oldScene, Scene newScene)
     {
         UpdateCurrentLevel();
         StartWindEffectsForCurrentLevel();
-        bool playTransitionSound = oldScene.buildIndex >= 1 && oldScene.buildIndex <= 6 &&
-                                    newScene.buildIndex >= 1 && newScene.buildIndex <= 6;
-        PlayMusicForCurrentLevel(playTransitionSound);
+        PlayMusicForCurrentLevel(false);
     }
 
     private IEnumerator DelayedStartGame()
@@ -95,7 +108,7 @@ public class SceneController : MonoBehaviour
     {
         if (SoundController.instance == null) return;
         
-        bool withTransition = playTransitionSound && CurrentLevel >= 1 && SceneManager.GetActiveScene().name != "StartEndMenus";
+        bool withTransition = false;
         bool withFadeIn = true; 
         float volume = 1.0f * musicVolumeFactor;
         
@@ -123,7 +136,7 @@ public class SceneController : MonoBehaviour
                 SoundController.instance.PlayEndScreenMusic(volume, withTransition, withFadeIn);
                 break;
             default:
-               
+            
                 SoundController.instance.StopLevelMusic();
                 break;
         }
@@ -134,17 +147,21 @@ public class SceneController : MonoBehaviour
         if (SoundController.instance != null)
         {
             SoundController.instance.StopLoopingSound("LevelWind");
-        }
-        
-        if (CurrentLevel >= 0 && CurrentLevel <= 7)
-        {
-            PlayWindSoundForLevel(CurrentLevel);
+            
+            if (CurrentLevel >= 0 && CurrentLevel <= 7)
+            {
+                PlayWindSoundForLevel(CurrentLevel);
+            }
         }
     }
 
     private void PlayWindSoundForLevel(int level)
     {
-        if (SoundController.instance == null) return;
+        if (SoundController.instance == null) 
+        {
+            Debug.LogWarning("SoundController instance is null when attempting to play wind sound");
+            return;
+        }
 
         AudioClip windClip;
         float volume = 0.8f; 
@@ -180,6 +197,13 @@ public class SceneController : MonoBehaviour
             default:
                 windClip = SoundController.instance.WindOneSFX;
                 break;
+        }
+
+        Debug.Log("Playing wind sound for level " + level + " with volume " + volume);
+        if (windClip == null)
+        {
+            Debug.LogError("Wind clip is null for level " + level);
+            return;
         }
 
         SoundController.instance.PlayLoopingSound(windClip, transform, "LevelWind", volume);
