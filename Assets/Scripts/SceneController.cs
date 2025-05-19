@@ -8,10 +8,21 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Game gameController;
     [SerializeField] private float startButtonDelay = 1f;
     [SerializeField] private float musicVolumeFactor = 0.25f;
-    public Canvas SkipButtonCanvas;
     private static SceneController instance = null;
     private static int CurrentLevel;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GoToNextLevel(CurrentLevel);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GoToPreviousLevel(CurrentLevel);
+        }
+    }
     private void Awake()
     {
         if (instance == null)
@@ -30,14 +41,6 @@ public class SceneController : MonoBehaviour
     private void Start()
     {
         UpdateCurrentLevel();
-        if (CurrentLevel >= 1)
-        {
-            SkipButtonCanvas.gameObject.SetActive(true);
-        }
-        else
-        {
-            SkipButtonCanvas.gameObject.SetActive(false);
-        }
         StartWindEffectsForCurrentLevel();
         PlayMusicForCurrentLevel(false); 
         
@@ -101,7 +104,6 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(startButtonDelay);
         
         GoToNewScene("ST_Level_01");
-        SkipButtonCanvas.gameObject.SetActive(true);
     }
 
     private void PlayMusicForCurrentLevel(bool playTransitionSound = true)
@@ -191,19 +193,12 @@ public class SceneController : MonoBehaviour
                 volume = 0.95f; 
                 break;
             case 6:
-                windClip = SoundController.instance.WindFiveSFX;
+                windClip = SoundController.instance.WindTwoSFX;
                 volume = 0.95f;
                 break;
             default:
                 windClip = SoundController.instance.WindOneSFX;
                 break;
-        }
-
-        Debug.Log("Playing wind sound for level " + level + " with volume " + volume);
-        if (windClip == null)
-        {
-            Debug.LogError("Wind clip is null for level " + level);
-            return;
         }
 
         SoundController.instance.PlayLoopingSound(windClip, transform, "LevelWind", volume);
@@ -212,7 +207,6 @@ public class SceneController : MonoBehaviour
     private void UpdateCurrentLevel()
     {
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Current Scene Index: " + CurrentLevel);
     }
 
     public void GoToNewScene(string sceneName)
@@ -245,17 +239,14 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator CrossfadeAndLoadScene(string sceneName, Game currentGameController)
     {
+        
         currentGameController.crossFade.SetTrigger("Start");
         
         yield return new WaitForSeconds(currentGameController.crossFadeTime);
         
-        if (sceneName == "ST_Level_03")
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        
         SceneManager.LoadScene(sceneName);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     
     private IEnumerator CrossfadeAndLoadScene(int buildIndex, Game currentGameController)
@@ -323,6 +314,7 @@ public class SceneController : MonoBehaviour
                     break;
             }
         }
+        
     }
 
     public void GoToPreviousLevel(int currentLevel)
@@ -385,13 +377,11 @@ public class SceneController : MonoBehaviour
         {
             SoundController.instance.StopLevelMusicWithFade(() => {
                 GoToNewScene("ST_Level_01");
-                SkipButtonCanvas.gameObject.SetActive(true);
             }, true);
         }
         else
         {
             GoToNewScene("ST_Level_01");
-            SkipButtonCanvas.gameObject.SetActive(true);
         }
     }
 

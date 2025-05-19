@@ -9,22 +9,21 @@ public class AnimationStates : MonoBehaviour
     private int currentState;
     private const string stateTagAnimator = "currentState";
     private float animSpeed;
+    private PlayerState playerState;
 
     private void Start()
     {
+        playerState = GetComponent<PlayerState>();
         animSpeed = stAnimator.speed;
     }
 
     public void UpdateState(PlayerStateType stateType)
     {
         stAnimator.SetInteger(stateTagAnimator, (int)stateType);
-        //Debug.Log(" *** UpdateState: INT " + (int)stateType);
     }
 
     public void ChangeToPickUp(bool isOrbOnPodium)
     {
-        //stAnimator.SetInteger(stateTagAnimator, (int)PlayerStateType.PickupOrb);
-        print(" *** ChangeToPickUp: pick up anim");
         StartCoroutine(PlayPickupAnimation(isOrbOnPodium));
     }
     
@@ -32,18 +31,22 @@ public class AnimationStates : MonoBehaviour
     {
         if (isOrbOnPodium)
         {
-            print(" *** PlayPickupAnimation: PICKING UP FROM PODIUM");
             UpdateState(PlayerStateType.NextToPodiumWithoutOrb);
         }
         else
         {
-            print(" *** PlayPickupAnimation: PICKING UP FROM GROUND");
             UpdateState(PlayerStateType.PickupOrb);
         }
         yield return new WaitForSeconds(1f); // Adjust this to match the pick-up animation duration
-        
-        UpdateState(PlayerStateType.IdleWithOrb);
-        
+
+        if (playerState.getCurrentState() == PlayerStateType.NextToWheelWithoutOrb)
+        {
+            playerState.setCurrentState(PlayerStateType.NextToWheelWithOrb);
+        }
+        else
+        {
+            UpdateState(PlayerStateType.IdleWithOrb);
+        }
     }
 
     public void pauseAnimation()
@@ -55,18 +58,7 @@ public class AnimationStates : MonoBehaviour
     {
         stAnimator.speed = animSpeed;
     }
-
-    public void setPauseAnimation(bool isPaused)
-    {
-        if (isPaused)
-        {
-            stAnimator.speed = 0f;
-        }
-        else
-        {
-            stAnimator.speed = animSpeed;
-        }
-    }
+    
     public bool isPaused()
     {
         return (animSpeed != 0);

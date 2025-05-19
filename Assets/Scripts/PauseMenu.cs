@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;  // To handle scene loading (e.g., quitting)
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI; // Reference to the pause menu UI
+    public GameObject pauseMenuUI;
     public bool isPaused = false;
     public Canvas mainCanvas;
     private GraphicRaycaster graphicRaycaster;
@@ -13,7 +13,6 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         graphicRaycaster = mainCanvas.GetComponent<GraphicRaycaster>();
-        
     }
 
     void Update()
@@ -39,7 +38,7 @@ public class PauseMenu : MonoBehaviour
         allColliders = FindObjectsOfType<Collider>();
         foreach (Collider col in allColliders)
         {
-            col.enabled = false;  // Disable the collider
+            col.enabled = false;
         }
         pauseMenuUI.SetActive(true);
     }
@@ -51,7 +50,7 @@ public class PauseMenu : MonoBehaviour
         graphicRaycaster.enabled = true;
         foreach (Collider col in allColliders)
         {
-            col.enabled = true;  // Enable the collider
+            col.enabled = true;
         }
         pauseMenuUI.SetActive(false);
     }

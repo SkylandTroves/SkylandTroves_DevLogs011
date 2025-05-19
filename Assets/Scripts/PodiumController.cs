@@ -19,11 +19,6 @@ public class PodiumController : ObservedSubject
     }
     private void MessageTargetObjects()
     {
-        // foreach (MovingPlatform targetObject in movingPlatforms)
-        // {
-        //     targetObject.WasActivated = true;
-        //     targetObject.StartMoving();
-        // }
         StartCoroutine(ActivatePlatformsWithDelay());
     }
     private IEnumerator ActivatePlatformsWithDelay()
@@ -44,11 +39,10 @@ public class PodiumController : ObservedSubject
     }
     public virtual void SnapOrb()
     {
-        print("*** SnapOrb: PODIUM CONTROLLER SNAPPING ORB");
         // Parent the orb to the podium
         Orb.transform.SetParent(orbPositionOnPodium);
         Orb.transform.localPosition = Vector3.zero; // Reset local position to place the orb exactly in the hand's front position
-        // Disable physics on TriggerObject (the orb) while it's held
+        // Disable physics on orb while it's held
         Rigidbody orbRB = Orb.GetComponent<Rigidbody>();
         if (orbRB != null)
         {
@@ -68,11 +62,7 @@ public class PodiumController : ObservedSubject
             SnapOrb();
         }
     }
-    /*public virtual void CollisionWithOrb(GameObject other)
-    {
-        MessageTargetObjects();
-        SnapOrb(other);
-    }*/
+
     // GETTERS AND SETTERS
     public GameObject GetOrb()
     {

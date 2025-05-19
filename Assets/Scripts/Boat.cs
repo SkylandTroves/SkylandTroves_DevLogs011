@@ -99,7 +99,6 @@ public class Boat : MonoBehaviour
     {
         if (other.gameObject == Player)
         {
-            Debug.Log("Player is on the boat");
 
             if (GetComponent<MovingPlatform>() is MovingPlatform movingPlatform)
             {

@@ -205,13 +205,11 @@ public class MovingPlatform : MonoBehaviour
         {
             Destroy(joint);
             joint = null;
-            Debug.Log("Orb detached from platform.");
         }
     }
     
     void OnJointBreak(float breakForce)
     {
-        Debug.Log("Joint broke! Force: " + breakForce);
         joint = null;
     }
 

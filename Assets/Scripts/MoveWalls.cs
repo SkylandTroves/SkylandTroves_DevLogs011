@@ -17,10 +17,8 @@ public class MoveWalls : MonoBehaviour
     
     public void OnTriggerEnter(Collider other)
     {
-        print("DEBUG COLLIS" + other.gameObject.tag);
         if (other.gameObject.CompareTag("Player"))
         {
-            print("MOVING BACWARDS");
             MessageTargetObjects();
         }
     }

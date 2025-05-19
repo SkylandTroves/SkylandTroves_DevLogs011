@@ -23,17 +23,12 @@ public class UnchargedPickUps : PickUpController
         // You can add additional behavior here if needed
     }
 
-    public bool GetIsChargedVar()
-    {
-        return isOrbCharged;
-    }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("*** IN AREA W ORB" + other.gameObject.tag);
         if (other.gameObject.CompareTag("ChargeArea"))
         {
-            Debug.Log("Orb entered charge area, switching to charged version...");
             SwitchToChargedOrb(); // Switch to the charged orb version when in the charge area
         }
 
@@ -68,7 +63,6 @@ public class UnchargedPickUps : PickUpController
             
             if (player.IsCarryingOrb())
             {
-                print("*** YES CARRYING ORB ");
                 player.SetHeldOrb(newOrb);
             }
             //destroy the uncharged orb (or deactivate it)
@@ -85,14 +79,9 @@ public class UnchargedPickUps : PickUpController
             // Check if the uncharged orb was being held before calling PickUpObject
             if (GetIsHoldingObject())
             {
-                print("*** GET ISHOLDING OBJECT");
                 pickUpController.PickUpObject();
             }
             
-        }
-        else
-        {
-            Debug.LogError("Charged orb prefab is not assigned!");
         }
     }
 

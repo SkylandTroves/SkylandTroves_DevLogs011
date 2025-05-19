@@ -32,11 +32,6 @@ public class GameController : MonoBehaviour
         gameState = GameStates.GamePlaying;
     }
     
-    void Update()
-    {
-        CheckForUserInput();
-    }
-    
     private void OnGameWon()
     {
         gameState = GameStates.GameWon;
