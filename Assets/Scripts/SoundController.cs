@@ -22,7 +22,6 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioClip level4Music;
     [SerializeField] private AudioClip level5Music;
     [SerializeField] private AudioClip levelTransitionSFX;
-    [SerializeField] private AudioSource transitionSFXSource;
     
     [SerializeField] private float musicFadeDuration = 0.5f;
     private AudioSource currentLevelMusicSource;
@@ -85,7 +84,6 @@ public class SoundController : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             
-            InitializeTransitionSource();
         }
         else if (instance != this)
         {
@@ -346,18 +344,14 @@ public class SoundController : MonoBehaviour
     {
         if (playTransitionSFX && levelTransitionSFX != null)
         {
-            if (transitionSFXSource == null)
-            {
-                InitializeTransitionSource();
-            }
+            AudioSource transitionSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
+            transitionSource.transform.SetParent(transform);
+            transitionSource.clip = levelTransitionSFX;
+            transitionSource.volume = 0.25f;
+            transitionSource.loop = false;
+            transitionSource.Play();
             
-            transitionSFXSource.Stop();
-            
-            transitionSFXSource.clip = levelTransitionSFX;
-            transitionSFXSource.volume = 0.25f;
-            transitionSFXSource.Play();
-            
-            StartCoroutine(CleanupTransitionSource(levelTransitionSFX.length + 0.5f));
+            Destroy(transitionSource.gameObject, levelTransitionSFX.length + 0.5f);
         }
         
         if (currentLevelMusicSource != null)
@@ -375,17 +369,6 @@ public class SoundController : MonoBehaviour
         }
     }
     
-    private IEnumerator CleanupTransitionSource(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        
-        if (transitionSFXSource != null && !transitionSFXSource.isPlaying)
-        {
-            transitionSFXSource.Stop();
-            transitionSFXSource.clip = null;
-        }
-    }
-
     private IEnumerator FadeOutLevelMusic(System.Action onComplete)
     {
         if (currentLevelMusicSource == null) yield break;
@@ -483,21 +466,6 @@ public class SoundController : MonoBehaviour
         if (currentLevelMusicSource != null)
         {
             currentLevelMusicSource.volume = targetVolume;
-        }
-    }
-
-    private void InitializeTransitionSource()
-    {
-        if (transitionSFXSource == null)
-        {
-            GameObject transitionSourceObj = new GameObject("TransitionSFXSource");
-            transitionSFXSource = transitionSourceObj.AddComponent<AudioSource>();
-            transitionSFXSource.playOnAwake = false;
-            transitionSFXSource.loop = false;
-            transitionSFXSource.spatialBlend = 0f; 
-            transitionSFXSource.priority = 0;
-            DontDestroyOnLoad(transitionSourceObj);
-            transitionSourceObj.transform.SetParent(transform);
         }
     }
 }
