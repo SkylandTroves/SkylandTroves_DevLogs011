@@ -193,7 +193,7 @@ public class SceneController : MonoBehaviour
                 volume = 0.95f; 
                 break;
             case 6:
-                windClip = SoundController.instance.WindFiveSFX;
+                windClip = SoundController.instance.WindTwoSFX;
                 volume = 0.95f;
                 break;
             default:
