@@ -20,34 +20,28 @@ public class AnimationStates : MonoBehaviour
     public void UpdateState(PlayerStateType stateType)
     {
         stAnimator.SetInteger(stateTagAnimator, (int)stateType);
-        //Debug.Log(" *** UpdateState: INT " + (int)stateType);
     }
 
-    public void ChangeToPickUp(bool isOrbOnPodium, PlayerStateType stateBefore)
+    public void ChangeToPickUp(bool isOrbOnPodium)
     {
-        //stAnimator.SetInteger(stateTagAnimator, (int)PlayerStateType.PickupOrb);
-        print(" *** ChangeToPickUp: pick up anim");
-        StartCoroutine(PlayPickupAnimation(isOrbOnPodium, stateBefore));
+        StartCoroutine(PlayPickupAnimation(isOrbOnPodium));
     }
     
-    IEnumerator PlayPickupAnimation(bool isOrbOnPodium, PlayerStateType stateBefore)
+    IEnumerator PlayPickupAnimation(bool isOrbOnPodium)
     {
         if (isOrbOnPodium)
         {
-            print(" *** PlayPickupAnimation: PICKING UP FROM PODIUM");
             UpdateState(PlayerStateType.NextToPodiumWithoutOrb);
         }
         else
         {
-            print(" *** PlayPickupAnimation: PICKING UP FROM GROUND");
             UpdateState(PlayerStateType.PickupOrb);
         }
         yield return new WaitForSeconds(1f); // Adjust this to match the pick-up animation duration
 
         if (playerState.getCurrentState() == PlayerStateType.NextToWheelWithoutOrb)
         {
-            UpdateState(PlayerStateType.NextToWheelWithOrb);
-            //playerState.UpdateStateOnStopMoving();
+            playerState.setCurrentState(PlayerStateType.NextToWheelWithOrb);
         }
         else
         {
@@ -64,18 +58,7 @@ public class AnimationStates : MonoBehaviour
     {
         stAnimator.speed = animSpeed;
     }
-
-    public void setPauseAnimation(bool isPaused)
-    {
-        if (isPaused)
-        {
-            stAnimator.speed = 0f;
-        }
-        else
-        {
-            stAnimator.speed = animSpeed;
-        }
-    }
+    
     public bool isPaused()
     {
         return (animSpeed != 0);

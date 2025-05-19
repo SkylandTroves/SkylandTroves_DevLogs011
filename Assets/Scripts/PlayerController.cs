@@ -20,7 +20,6 @@ using Object = System.Object;
 public class PlayerController : MonoBehaviour
 {
 	public AnimationStates AnimationStates;
-	//[SerializeField] private PickUpController pickUp;
 	[SerializeField] private GameObject clickParticle;
 	[SerializeField] private Animator stAnimator;
 	[SerializeField] private AudioClip OnClickSFX;
@@ -31,21 +30,15 @@ public class PlayerController : MonoBehaviour
 	private NavMeshAgent navAgent;
 	private Action onDestinationReached;
 	private GameObject currentHeldOrb;
-	//private PickUpController currentHeldOrbController;
-	private bool isMoving = false;
 	
 	private float wheelInteractionTimer = 0f;
 	private float wheelInteractionDuration = 0.2f;
 	private bool isFacingWheel = false;
-
 	private bool hasStartedTurning = false;
+	private bool isMoving;
 
-	private const string isWalking = "IsWalking";
-	private const string pickedUpOrb = "PickedUpOrb";
-	private const string droppedOrb = "DroppedOrb";
 
 	private List<Action> methodsToCallWhenReachDestination = new List<Action>();
-	//private Wheel currentWheel;
 
 	private PlayerState playerState;
 	public PauseMenu pauseMenu;
@@ -63,8 +56,6 @@ public class PlayerController : MonoBehaviour
 		navAgent = GetComponent<NavMeshAgent>();
 		navAgent.autoTraverseOffMeshLink = false;
 		rb = GetComponent<Rigidbody>();
-		/*wristCollider = GameObject.FindGameObjectWithTag("Wrist").GetComponent<Collider>();
-		wristCollider.enabled = true;*/
 	}
 
 	void Update()
@@ -77,15 +68,12 @@ public class PlayerController : MonoBehaviour
 
 			if (navAgent.isOnOffMeshLink)
 			{
-				print("*** AGENT ON OFF MESH LINK ***");
 				playerState.UpdateStateOnStartMoving();
-				//stAnimator.SetBool(isWalking, true);
 				StartCoroutine(SmoothTraverse(navAgent));
 			}
 		}
 		else
 		{
-			/*playerState.UpdateStateOnStopMoving();*/
 			StopWalking();
 		}
 	}
@@ -99,7 +87,6 @@ public class PlayerController : MonoBehaviour
 		Vector3 startPos = agent.transform.position;
 		Vector3 endPos =
 			new Vector3(linkData.endPos.x, agent.transform.position.y, linkData.endPos.z); // Keep consistent Y level
-		print("*** ENDPOS: " + endPos);
 		
 		float duration = Vector3.Distance(startPos, endPos) / agent.speed;
 		float elapsedTime = 0f;
@@ -113,10 +100,9 @@ public class PlayerController : MonoBehaviour
 
 			yield return null;
 		}
-
 		
 
-		agent.transform.position = endPos; // Ensure final position is accurate
+		agent.transform.position = endPos;
 		if (agent.isOnNavMesh)
 		{
 			agent.CompleteOffMeshLink();
@@ -133,14 +119,7 @@ public class PlayerController : MonoBehaviour
 			{
 				onDestinationReached?.Invoke();
 				onDestinationReached = null;
-				
-				//playerState.UpdateStateOnStopMoving();
-				//StopWalking();
 			}
-			/*else
-			{
-				playerState.UpdateStateOnStartMoving();
-			}*/
 		}
 	}
 
@@ -171,16 +150,6 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		/*if (Input.GetMouseButtonDown(1)) // RIGHT CLICK  - - - - - - - - - - - -
-		{
-			DropCurrentOrb();
-		}*/
-
-		/*if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			QuitGame();
-		}*/
-
 		// - - - - following is for debugging only - - - - - 
 		Ray ray02 = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Vector3 rayOrigin = ray02.origin;
@@ -208,7 +177,6 @@ public class PlayerController : MonoBehaviour
 
 	public void OnDestinationReached()
 	{
-		//print("Reached destination!");
 		foreach (Action method in methodsToCallWhenReachDestination)
 		{
 			method.Invoke();
@@ -240,7 +208,6 @@ public class PlayerController : MonoBehaviour
 
 	public void SetHeldOrb(GameObject orb)
 	{
-		print(" *** SetHeldOrb: setting currentHeldOrb");
 		currentHeldOrb = orb;
 	}
 
@@ -254,12 +221,9 @@ public class PlayerController : MonoBehaviour
 	{
 		if (currentHeldOrb != null)
 		{
-			print("*** DropCurrentOrb: dropping currentHeldOrb");
-			//Debugger.UpdateMessage("dropcurrentorb: dropping");
 			PickUpController orbController = currentHeldOrb.GetComponent<PickUpController>();
 			if (currentHeldOrb != null)
 			{
-				print("*** DropCurrentOrb DROPPING, CURRENTHELD IS NOT NULL");
 				orbController.DropObject();
 				currentHeldOrb = null;
 			}
@@ -268,9 +232,7 @@ public class PlayerController : MonoBehaviour
 
 	public void ToggleWristCollider()
 	{
-		
 		wristCollider.enabled = !wristCollider.enabled;
-		print("WRIST IS "+wristCollider.enabled);
 	}
 
 	private void SetAnimatorIsMoving()
@@ -283,19 +245,15 @@ public class PlayerController : MonoBehaviour
 	public void HandlePickUpOrbStart()
 	{
 		SoundController.instance.PlaySFX(SoundController.instance.PickUpBallSFX, transform, .5f);
-		//stAnimator.SetTrigger(pickedUpOrb);
 	}
 
 	public void HandlePickUpOrbEnd()
 	{
 		SoundController.instance.PlaySFX(SoundController.instance.DropBallSFX, transform, .5f);
-		//stAnimator.SetTrigger(droppedOrb);
 	}
 
 	private void UpdateMovementState()
 	{
-		//Debug.Log($"Movement State Changed: IsMoving = {isMoving}");
-
 		// Check if the character is moving
 		bool currentlyMoving = navAgent.velocity.sqrMagnitude > 0.01f &&
 		                       navAgent.remainingDistance > navAgent.stoppingDistance;
@@ -307,30 +265,20 @@ public class PlayerController : MonoBehaviour
 			//If moving switch to walk 
 			playerState.UpdateStateOnStartMoving();
 		}
-		/*else
-		{
-			//If not moving switch to idle
-			playerState.UpdateStateOnStopMoving();
-		}*/
 	}
 
 	public void StopWalking()
 	{
-		//stAnimator.SetBool(isWalking, false);
 		playerState.UpdateStateOnStopMoving();
-		//isMoving = false;
 	}
 
 	public void StartWalking(Vector3 destination)
 	{
 		isFacingWheel = false;
-		//stAnimator.SetBool(isWalking, true);
 		navAgent.SetDestination(destination);
 		
-		//isMoving = true;
 		playerState.UpdateStateOnStartMoving();
 		onDestinationReached = OnDestinationReached;
-		//Debugger.UpdateMessage("Started Walking");
 	}
 	
 	public void HandleCurrentState(PlayerStateType currentState, GameObject currentInteractable)
@@ -367,7 +315,6 @@ public class PlayerController : MonoBehaviour
 				HandleTurnWheelState(currentState, currentInteractable);
 				break;
 			default:
-				Debug.Log("need handle");
 				break;
 		}
 	}
@@ -388,9 +335,6 @@ public class PlayerController : MonoBehaviour
 		{
 			DropCurrentOrb();
 			playerState.dropOrb();
-			//playerState.UpdateStateOnStopMoving();
-			//AnimationStates.ChangeToDrop();
-			//Debugger.UpdateMessage("Dropped orb walking");
 		}
 	}
 
@@ -398,11 +342,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(1))
 		{
-			print("*** HandleIdleWithOrbState: right click drop orb ");
 			DropCurrentOrb();
 			playerState.dropOrb();
-			//playerState.UpdateStateOnStopMoving();
-			//Debugger.UpdateMessage("Dropped orb idling");
 		}
 	}
     
@@ -410,8 +351,6 @@ public class PlayerController : MonoBehaviour
 	{
 		if (currentHeldOrb == null)
 		{
-			print("*** HandlePickupState: currentHeldOrb is null");
-
 			PickUpController currentHeldOrbController = currentInteractable.GetComponent<PickUpController>();
 
 			if (currentHeldOrbController != null)
@@ -433,13 +372,13 @@ public class PlayerController : MonoBehaviour
 					Ray ray = new Ray(transform.position, direction.normalized);
 					if (Physics.Raycast(ray, out RaycastHit hit, distance))
 					{
-						if (hit.collider.gameObject == currentInteractable)
+						if (hit.collider.gameObject == currentInteractable
+						    || hit.collider.gameObject.CompareTag("podiumCharged")
+						    || hit.collider.gameObject.CompareTag("podiumUncharged")
+						    || hit.collider.gameObject.transform.parent.CompareTag("energyOrbCharged")
+						    || hit.collider.gameObject.transform.parent.CompareTag("energyOrbUncharged"))
 						{
 							canPickUp = true;
-						}
-						else
-						{
-							print("*** Pickup blocked by: " + hit.collider.name);
 						}
 					}
 				}
@@ -448,16 +387,8 @@ public class PlayerController : MonoBehaviour
 				{
 					currentHeldOrbController.PickUpObject();
 					SetHeldOrb(currentInteractable);
-					print("is carrying??" + IsCarryingOrb());
-					//playerState.UpdateStateOnStopMoving();
-					AnimationStates.ChangeToPickUp(playerState.getIsOrbOnPodium(), stateBeforeResetOrb);
-					
-					
-					print("*** HandlePickupState: currentOrb is not null");
-					//return;
-
+					AnimationStates.ChangeToPickUp(playerState.getIsOrbOnPodium());
 				}
-
 				playerState.UpdateStateOnStopMoving();
 			}
 		}
@@ -466,30 +397,15 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetMouseButtonDown(1))
 		{
-			print("*** HandleIdleWithOrbState: right click drop orb ");
 			DropCurrentOrb();
 			playerState.dropOrb();
 		}
 	}
-
-
 	
-	IEnumerator WaitFor20Seconds(PickUpController currentHeldOrbController)
-	{
-		Debug.Log("Start waiting...");
-		yield return new WaitForSeconds(.75f); // Wait for 0.20 seconds
-		currentHeldOrbController.PickUpObject();
-		Debug.Log("Finished waiting!");
-	}
-	
-	//TODO: FIX SNAPPING TO PODIUM
-	//TODO: make transition between walking with orb and idling without?
 	private void HandleNextToPodiumWithOrbState(GameObject currentInteractable)
 	{
 		if (Input.GetMouseButtonDown(1))
 		{
-			print(" *** HandleNextToPodiumWithOrbState: mouse down, dropping orb");
-			//PickUpController currentOrb = currentInteractable.GetComponent<PickUpController>();
 			if (currentHeldOrb != null)
 			{
 				DropCurrentOrb();
@@ -592,21 +508,7 @@ public class PlayerController : MonoBehaviour
 
 		isFacingWheel = true;
 	}
-
-	public void ResetOrbAfterDrop()
-	{
-		AnimationStates.UpdateState(PlayerStateType.PickupOrb);
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		if(other.gameObject.CompareTag("test"))
-		{
-			print("***PARENTING");
-			transform.parent = other.gameObject.transform;
-			rb.constraints = RigidbodyConstraints.FreezePosition;
-		}
-	}
+	
 
 	private void OnTriggerExit(Collider other)
 	{
@@ -614,14 +516,8 @@ public class PlayerController : MonoBehaviour
 		rb.constraints = RigidbodyConstraints.None;
 	}
 
-	private PlayerStateType stateBeforeResetOrb;
 	public void HandleResetOrb(GameObject resetOrb)
 	{
-		stateBeforeResetOrb = playerState.getCurrentState();
 		HandlePickupState(resetOrb, true);
-		/*PickUpController currentHeldOrbController = resetOrb.GetComponent<PickUpController>();
-		currentHeldOrbController.PickUpObject();
-		SetHeldOrb(resetOrb);
-		playerState.UpdateStateOnStopMoving();*/
 	}
 }

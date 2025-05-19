@@ -55,7 +55,6 @@ public class CameraController : MonoBehaviour
     
     public void ShakeCamera(float intensity, float duration)
     {
-        Debug.Log($"ShakeCamera called with intensity={intensity}, duration={duration}");
         if (shakeCoroutine != null)
         {
             StopCoroutine(shakeCoroutine);

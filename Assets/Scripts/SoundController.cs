@@ -48,8 +48,6 @@ public class SoundController : MonoBehaviour
     [SerializeField] private float wheelSoundFadeDuration = 0.5f;
     private Dictionary<string, Coroutine> activeFadeoutCoroutines = new Dictionary<string, Coroutine>();
     
-    private bool isInTransition = false;
-    
     // Getters
     public AudioClip PickUpBallSFX => pickUpBallSFX;
     public AudioClip DropBallSFX => dropBallSFX;

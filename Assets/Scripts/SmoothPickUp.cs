@@ -20,7 +20,6 @@ public class SmoothPickUp : PickUpController
     {
         if (other.gameObject.CompareTag("Wrist"))
         {
-            print("COMPARED WRIST ");
             PickUpController parentOrb = transform.parent.GetComponentInParent<PickUpController>();
             print(parentOrb.gameObject.name);
             if (parentOrb != null)

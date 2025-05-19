@@ -7,7 +7,6 @@ public class Wheel : MonoBehaviour
 {
    [SerializeField] private List<MovingPlatform> movingPlatforms;
    //[SerializeField] private PickUpController pickUps; // use if not using a list 
-   private bool isTurningObject = false;
    public bool IsBoatWheel()
    {
        if (movingPlatforms == null || movingPlatforms.Count == 0)
@@ -25,9 +24,6 @@ public class Wheel : MonoBehaviour
    }
    public void HandleWheelScroll()
    {
-
-         isTurningObject = true; // The player is allowed to turn the wheel
-
          // Detect mouse scroll input
          float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
@@ -44,9 +40,7 @@ public class Wheel : MonoBehaviour
                // Update the wheel progress in the MovingPlatform
                movingPlatform.SetWheelProgress(newProgress);
                TurnWheelObject(newProgress);
-
-               //Debug.Log("wheel is turning " + newProgress);
-         }
+            }
       }
    }
 

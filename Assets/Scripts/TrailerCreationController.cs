@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-
 public class TrailerCreationController : MonoBehaviour
 {
     public float moveSpeed = 5f;

@@ -21,17 +21,14 @@ public class UnchargedPodium : PodiumController
 
     public override void OnCollisionEnter(Collision other)
     {
-        print("*** OVERRIDE OnCollisionEnter : UNCHARGED PODIUM SNAPPING ORB");
         bool isCharged = other.gameObject.CompareTag("energyOrbCharged");
         
         if (other.gameObject == Orb && isCharged)
         {
-            print(" *** OVERRIDE OnCollisionEnter: SWITCH TO CHARGED PODIUM");
             SwitchToChargedPodium();
         }
         else if (other.gameObject == Orb && !isCharged)
         {
-            print(" *** OVERRIDE OnCollisionEnter: put uncharged on podium ");
             PutUnChargedOnPodium();
         }
     }
@@ -47,7 +44,6 @@ public class UnchargedPodium : PodiumController
         {
             if (loadNextLevelOnCharged && sceneController != null)
             {
-                Debug.Log("GO TO LEVEL 3");
                 sceneController.StartCoroutine(DelayedLoadNextLevel());
             }
 
@@ -64,12 +60,7 @@ public class UnchargedPodium : PodiumController
             GetOrb().transform.SetParent(podiumController.GetOrbPositionOnPodium());
             GetOrb().transform.localPosition = Vector3.zero;
 
-            Debug.Log("HERE");
             Destroy(gameObject);
-        }
-        else
-        {
-            Debug.LogError("Charged podium prefab is not assigned!");
         }
     }
 
@@ -79,8 +70,6 @@ public class UnchargedPodium : PodiumController
         yield return new WaitForSeconds(nextLevelDelay);
         
         int currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-        
-        Debug.Log("ACTUALLY LOADING NEXT LEVEL NOW");
         
         sceneController.GoToNextLevel(currentLevel, false); 
     }
