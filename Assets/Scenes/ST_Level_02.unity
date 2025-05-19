@@ -2024,7 +2024,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8788a4323ba80224aaa9032e6bfb0298, type: 3}
   m_Resource: {fileID: 8300000, guid: 8788a4323ba80224aaa9032e6bfb0298, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.484
+  m_Volume: 0.14
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3250,7 +3250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: shakeIntensity
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3281891359295986590, guid: 1b090e48c50c8574ebe8d579270cbf44, type: 3}
       propertyPath: activationDelay

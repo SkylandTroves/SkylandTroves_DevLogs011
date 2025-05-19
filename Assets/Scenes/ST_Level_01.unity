@@ -4682,7 +4682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1458290777332173911, guid: 3795891dbd3439e4b81c1345cf8d9ae1, type: 3}
       propertyPath: shakeIntensity
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1458290777332173911, guid: 3795891dbd3439e4b81c1345cf8d9ae1, type: 3}
       propertyPath: activationDelay

@@ -23,6 +23,7 @@ public class SceneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
@@ -31,39 +32,33 @@ public class SceneController : MonoBehaviour
         UpdateCurrentLevel();
         if (CurrentLevel >= 1)
         {
-  //          SkipButtonCanvas.gameObject.SetActive(true);
-            StartWindEffectsForCurrentLevel();
+            SkipButtonCanvas.gameObject.SetActive(true);
         }
         else
         {
-//            SkipButtonCanvas.gameObject.SetActive(false);
-            StartWindEffectsForCurrentLevel();
+            SkipButtonCanvas.gameObject.SetActive(false);
         }
-        PlayMusicForCurrentLevel(false); // Don't play transition sound when initializing a scene
+        StartWindEffectsForCurrentLevel();
+        PlayMusicForCurrentLevel(false); 
         
-        // Important: Ensure we do an initial fade-in for every scene
         StartCoroutine(InitialFadeIn());
     }
     
     private IEnumerator InitialFadeIn()
     {
-        yield return new WaitForSeconds(0.1f); // Small delay to ensure everything is initialized
+        yield return new WaitForSeconds(0.1f);
         
-        // Find Game controller in current scene
         Game currentGameController = FindObjectOfType<Game>();
         if (currentGameController != null && currentGameController.crossFade != null)
         {
-            // Set initial state to black (fully faded)
             currentGameController.crossFade.SetTrigger("End");
             
-            // For video player scenes specifically, add a bit more delay
             string currentScene = SceneManager.GetActiveScene().name;
             if (currentScene == "StartEndMenus" || currentScene == "ST_EndScreen")
             {
                 yield return new WaitForSeconds(0.5f);
             }
             
-            // Trigger the fade out (revealing the scene)
             currentGameController.crossFade.SetTrigger("End");
         }
     }
@@ -71,17 +66,28 @@ public class SceneController : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.activeSceneChanged -= OnSceneChanged;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateCurrentLevel();
+        StartCoroutine(DelayedWindAndMusic());
+    }
+
+    private IEnumerator DelayedWindAndMusic()
+    {
+        yield return new WaitForEndOfFrame();
+        StartWindEffectsForCurrentLevel();
+        PlayMusicForCurrentLevel(true); 
     }
 
     private void OnSceneChanged(Scene oldScene, Scene newScene)
     {
         UpdateCurrentLevel();
         StartWindEffectsForCurrentLevel();
-        // Play music with transition sound when moving between levels
-        // Check if we're coming from a game level (not menu/start screen)
-        bool playTransitionSound = oldScene.buildIndex >= 1 && oldScene.buildIndex <= 6 &&
-                                    newScene.buildIndex >= 1 && newScene.buildIndex <= 6;
-        PlayMusicForCurrentLevel(playTransitionSound);
+        PlayMusicForCurrentLevel(false);
     }
 
     private IEnumerator DelayedStartGame()
@@ -102,7 +108,7 @@ public class SceneController : MonoBehaviour
     {
         if (SoundController.instance == null) return;
         
-        bool withTransition = playTransitionSound && CurrentLevel >= 1 && SceneManager.GetActiveScene().name != "StartEndMenus";
+        bool withTransition = false;
         bool withFadeIn = true; 
         float volume = 1.0f * musicVolumeFactor;
         
@@ -130,7 +136,7 @@ public class SceneController : MonoBehaviour
                 SoundController.instance.PlayEndScreenMusic(volume, withTransition, withFadeIn);
                 break;
             default:
-               
+            
                 SoundController.instance.StopLevelMusic();
                 break;
         }
@@ -141,17 +147,21 @@ public class SceneController : MonoBehaviour
         if (SoundController.instance != null)
         {
             SoundController.instance.StopLoopingSound("LevelWind");
-        }
-        
-        if (CurrentLevel >= 0 && CurrentLevel <= 7)
-        {
-            PlayWindSoundForLevel(CurrentLevel);
+            
+            if (CurrentLevel >= 0 && CurrentLevel <= 7)
+            {
+                PlayWindSoundForLevel(CurrentLevel);
+            }
         }
     }
 
     private void PlayWindSoundForLevel(int level)
     {
-        if (SoundController.instance == null) return;
+        if (SoundController.instance == null) 
+        {
+            Debug.LogWarning("SoundController instance is null when attempting to play wind sound");
+            return;
+        }
 
         AudioClip windClip;
         float volume = 0.8f; 
@@ -189,6 +199,13 @@ public class SceneController : MonoBehaviour
                 break;
         }
 
+        Debug.Log("Playing wind sound for level " + level + " with volume " + volume);
+        if (windClip == null)
+        {
+            Debug.LogError("Wind clip is null for level " + level);
+            return;
+        }
+
         SoundController.instance.PlayLoopingSound(windClip, transform, "LevelWind", volume);
     }
 
@@ -200,7 +217,6 @@ public class SceneController : MonoBehaviour
 
     public void GoToNewScene(string sceneName)
     {
-        // Always find the current Game controller in the active scene
         Game currentGameController = FindObjectOfType<Game>();
         
         if (currentGameController != null && currentGameController.crossFade != null)
@@ -215,7 +231,6 @@ public class SceneController : MonoBehaviour
     
     public void GoToNewScene(int buildIndex)
     { 
-        // Always find the current Game controller in the active scene
         Game currentGameController = FindObjectOfType<Game>();
         
         if (currentGameController != null && currentGameController.crossFade != null)
@@ -230,32 +245,25 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator CrossfadeAndLoadScene(string sceneName, Game currentGameController)
     {
-        // Trigger fade to black
         currentGameController.crossFade.SetTrigger("Start");
         
-        // Wait for crossfade animation
         yield return new WaitForSeconds(currentGameController.crossFadeTime);
         
-        // Check if we're loading level 3
         if (sceneName == "ST_Level_03")
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         
-        // Load the new scene
         SceneManager.LoadScene(sceneName);
     }
     
     private IEnumerator CrossfadeAndLoadScene(int buildIndex, Game currentGameController)
     {
-        // Trigger fade to black
         currentGameController.crossFade.SetTrigger("Start");
         
-        // Wait for crossfade animation
         yield return new WaitForSeconds(currentGameController.crossFadeTime);
         
-        // Load the new scene
         SceneManager.LoadScene(buildIndex);
     }
     
@@ -273,7 +281,6 @@ public class SceneController : MonoBehaviour
     {
         if (SoundController.instance != null)
         {
-            // Play transition sound only if explicitly requested
             SoundController.instance.StopLevelMusicWithFade(() => {
                 switch (CurrentLevel)
                 {
@@ -293,11 +300,10 @@ public class SceneController : MonoBehaviour
                         GoToEndScreen();
                         break;
                 }
-            }, playTransitionSound); // Use the passed parameter here
+            }, playTransitionSound);
         }
         else
         {
-            // Fallback if SoundController is not available
             switch (CurrentLevel)
             {
                 case 1:
@@ -323,7 +329,6 @@ public class SceneController : MonoBehaviour
     {
         if (SoundController.instance != null)
         {
-            // Play transition sound for all level changes
             SoundController.instance.StopLevelMusicWithFade(() => {
                 switch (CurrentLevel)
                 {
@@ -346,11 +351,10 @@ public class SceneController : MonoBehaviour
                         GoToLevelFive();
                         break;
                 }
-            }, true); // true = play transition SFX
+            }, true);
         }
         else
         {
-            // Fallback if SoundController is not available
             switch (CurrentLevel)
             {
                 case 1:
@@ -379,16 +383,15 @@ public class SceneController : MonoBehaviour
     {
         if (SoundController.instance != null)
         {
-            // Play transition sound when explicitly exiting menu to first level
             SoundController.instance.StopLevelMusicWithFade(() => {
                 GoToNewScene("ST_Level_01");
-  //              SkipButtonCanvas.gameObject.SetActive(true);
-            }, true); // true = play transition SFX
+                SkipButtonCanvas.gameObject.SetActive(true);
+            }, true);
         }
         else
         {
             GoToNewScene("ST_Level_01");
-//            SkipButtonCanvas.gameObject.SetActive(true);
+            SkipButtonCanvas.gameObject.SetActive(true);
         }
     }
 
@@ -433,7 +436,7 @@ public class SceneController : MonoBehaviour
 
     public void GoToEndScreen()
     {
-        GoToNewScene("ST_EndScreen");
+        GoToNewScene(6); 
     }
 
     public void OnQuitButtonQuitGame()
