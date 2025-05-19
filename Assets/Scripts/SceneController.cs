@@ -8,10 +8,22 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Game gameController;
     [SerializeField] private float startButtonDelay = 1f;
     [SerializeField] private float musicVolumeFactor = 0.25f;
-    public Canvas SkipButtonCanvas;
+    //public Canvas SkipButtonCanvas;
     private static SceneController instance = null;
     private static int CurrentLevel;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GoToNextLevel(CurrentLevel);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GoToPreviousLevel(CurrentLevel);
+        }
+    }
     private void Awake()
     {
         if (instance == null)
@@ -95,7 +107,7 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(startButtonDelay);
         
         GoToNewScene("ST_Level_01");
-        SkipButtonCanvas.gameObject.SetActive(true);
+        //SkipButtonCanvas.gameObject.SetActive(true);
     }
 
     private void PlayMusicForCurrentLevel(bool playTransitionSound = true)

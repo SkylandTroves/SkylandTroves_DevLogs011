@@ -9,9 +9,11 @@ public class AnimationStates : MonoBehaviour
     private int currentState;
     private const string stateTagAnimator = "currentState";
     private float animSpeed;
+    private PlayerState playerState;
 
     private void Start()
     {
+        playerState = GetComponent<PlayerState>();
         animSpeed = stAnimator.speed;
     }
 
@@ -21,14 +23,14 @@ public class AnimationStates : MonoBehaviour
         //Debug.Log(" *** UpdateState: INT " + (int)stateType);
     }
 
-    public void ChangeToPickUp(bool isOrbOnPodium)
+    public void ChangeToPickUp(bool isOrbOnPodium, PlayerStateType stateBefore)
     {
         //stAnimator.SetInteger(stateTagAnimator, (int)PlayerStateType.PickupOrb);
         print(" *** ChangeToPickUp: pick up anim");
-        StartCoroutine(PlayPickupAnimation(isOrbOnPodium));
+        StartCoroutine(PlayPickupAnimation(isOrbOnPodium, stateBefore));
     }
     
-    IEnumerator PlayPickupAnimation(bool isOrbOnPodium)
+    IEnumerator PlayPickupAnimation(bool isOrbOnPodium, PlayerStateType stateBefore)
     {
         if (isOrbOnPodium)
         {
@@ -41,9 +43,16 @@ public class AnimationStates : MonoBehaviour
             UpdateState(PlayerStateType.PickupOrb);
         }
         yield return new WaitForSeconds(1f); // Adjust this to match the pick-up animation duration
-        
-        UpdateState(PlayerStateType.IdleWithOrb);
-        
+
+        if (playerState.getCurrentState() == PlayerStateType.NextToWheelWithoutOrb)
+        {
+            UpdateState(PlayerStateType.NextToWheelWithOrb);
+            //playerState.UpdateStateOnStopMoving();
+        }
+        else
+        {
+            UpdateState(PlayerStateType.IdleWithOrb);
+        }
     }
 
     public void pauseAnimation()

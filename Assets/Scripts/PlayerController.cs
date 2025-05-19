@@ -405,39 +405,74 @@ public class PlayerController : MonoBehaviour
 			//Debugger.UpdateMessage("Dropped orb idling");
 		}
 	}
-
-	private void HandlePickupState(GameObject currentInteractable)
+    
+	private void HandlePickupState(GameObject currentInteractable, bool isResetting = false)
 	{
 		if (currentHeldOrb == null)
 		{
 			print("*** HandlePickupState: currentHeldOrb is null");
+
 			PickUpController currentHeldOrbController = currentInteractable.GetComponent<PickUpController>();
-			print("*** CURRINTER" + currentHeldOrbController.gameObject.name);
+
 			if (currentHeldOrbController != null)
 			{
-				AnimationStates.ChangeToPickUp(playerState.getIsOrbOnPodium());
-				print("*** HandlePickupState: currentOrb is not null");
-				//StartCoroutine(WaitFor20Seconds(currentHeldOrbController));
-				currentHeldOrbController.PickUpObject();
-				
-				SetHeldOrb(currentInteractable);
-				
-				
-				
-				//Debugger.UpdateMessage("Picked up orb");
+				bool canPickUp = false;
+
+				if (isResetting)
+				{
+					// Skip obstruction check
+					canPickUp = true;
+					
+				}
+				else
+				{
+					// Check if there's anything between the player and orb
+					Vector3 direction = currentInteractable.transform.position - transform.position;
+					float distance = direction.magnitude;
+
+					Ray ray = new Ray(transform.position, direction.normalized);
+					if (Physics.Raycast(ray, out RaycastHit hit, distance))
+					{
+						if (hit.collider.gameObject == currentInteractable)
+						{
+							canPickUp = true;
+						}
+						else
+						{
+							print("*** Pickup blocked by: " + hit.collider.name);
+						}
+					}
+				}
+
+				if (canPickUp)
+				{
+					currentHeldOrbController.PickUpObject();
+					SetHeldOrb(currentInteractable);
+					print("is carrying??" + IsCarryingOrb());
+					//playerState.UpdateStateOnStopMoving();
+					AnimationStates.ChangeToPickUp(playerState.getIsOrbOnPodium(), stateBeforeResetOrb);
+					
+					
+					print("*** HandlePickupState: currentOrb is not null");
+					//return;
+
+				}
+
+				playerState.UpdateStateOnStopMoving();
 			}
-			playerState.UpdateStateOnStopMoving();
 		}
+
 		playerState.setIsOrbOnPodium(false);
+
 		if (Input.GetMouseButtonDown(1))
 		{
 			print("*** HandleIdleWithOrbState: right click drop orb ");
 			DropCurrentOrb();
 			playerState.dropOrb();
-			//playerState.UpdateStateOnStopMoving();
-			//Debugger.UpdateMessage("Dropped orb idling");
 		}
 	}
+
+
 	
 	IEnumerator WaitFor20Seconds(PickUpController currentHeldOrbController)
 	{
@@ -579,8 +614,14 @@ public class PlayerController : MonoBehaviour
 		rb.constraints = RigidbodyConstraints.None;
 	}
 
+	private PlayerStateType stateBeforeResetOrb;
 	public void HandleResetOrb(GameObject resetOrb)
 	{
-		HandlePickupState(resetOrb);
+		stateBeforeResetOrb = playerState.getCurrentState();
+		HandlePickupState(resetOrb, true);
+		/*PickUpController currentHeldOrbController = resetOrb.GetComponent<PickUpController>();
+		currentHeldOrbController.PickUpObject();
+		SetHeldOrb(resetOrb);
+		playerState.UpdateStateOnStopMoving();*/
 	}
 }

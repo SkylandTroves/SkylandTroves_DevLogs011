@@ -335,4 +335,9 @@ public class PlayerState : MonoBehaviour
         
         // do the same for all the other objects
     }
+
+    public PlayerStateType getCurrentState()
+    {
+        return currentState;
+    }
 }
